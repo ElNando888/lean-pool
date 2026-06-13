@@ -20,7 +20,7 @@ import LeanPool.KrafftSieve.Basic
 /-!
 # Selberg Weights
 
-This module defines the permitted residue classes $A_i$ and the global surviving set $A$,
+This module defines the permitted residue classes $localInterval$ and the global surviving set $A$,
 as well as the indicator function $f(x)$ for survivors in the Krafft Sieve.
 -/
 
@@ -35,23 +35,23 @@ open scoped Pointwise
 noncomputable section
 
 /--
-Definition of the permitted residue classes A_i.
+Definition of the permitted residue classes localInterval.
 Define the set of permitted residue classes for each prime as
-$A_i = (\mathbb{Z}/p_i\mathbb{Z}) \setminus \{\pm r_i \pmod{p_i}\}$.
+$localInterval = (\mathbb{Z}/p_i\mathbb{Z}) \setminus \{\pm r_i \pmod{p_i}\}$.
 -/
-def A_i (n : ℕ) (r : Fin (w n) → ℕ) (i : Fin (w n)) : Finset (ZMod (p n i)) :=
+def localInterval (n : ℕ) (r : Fin (w n) → ℕ) (i : Fin (w n)) : Finset (ZMod (p n i)) :=
   haveI : NeZero (p n i) := ⟨p_ne_zero n i⟩
   Finset.univ.filter (fun x => x ≠ (r i : ZMod (p n i)) ∧ x ≠ -(r i : ZMod (p n i)))
 
 /--
 Definition of the global set of surviving residues A.
 Define the global set of surviving residues $A \subseteq \mathbb{Z}/q\mathbb{Z}$ such that
-$x \in A$ if and only if $x \pmod{p_i} \in A_i$ for all $1 \le i \le w$.
+$x \in A$ if and only if $x \pmod{p_i} \in localInterval$ for all $1 \le i \le w$.
 -/
 def A (n : ℕ) (r : Fin (w n) → ℕ) : Finset (ZMod (q n)) :=
   haveI : NeZero (q n) := ⟨ Finset.prod_ne_zero_iff.mpr fun _ hp =>
     Nat.Prime.ne_zero <| Finset.mem_filter.mp hp |>.2.2⟩
-  Finset.univ.filter (fun x => ∀ i : Fin (w n), (x.cast : ZMod (p n i)) ∈ A_i n r i)
+  Finset.univ.filter (fun x => ∀ i : Fin (w n), (x.cast : ZMod (p n i)) ∈ localInterval n r i)
 
 /--
 Definition of the indicator function f.
@@ -66,9 +66,10 @@ As defined previously, an integer x survives the sieve (i.e., f(x) = 1) if and o
 x is not congruent to ±r^K_i mod p_i for all 1 <= i <= w.
 -/
 theorem survives_iff (n : ℕ) (x : ZMod (q n)) :
-    f n (r_K n) x = 1 ↔ ∀ i : Fin (w n),
-      (x.cast : ZMod (p n i)) ≠ r_K n i ∧ (x.cast : ZMod (p n i)) ≠ -r_K n i := by
-  unfold f A A_i; simp +decide [Finset.mem_filter]
+    f n (krafftResidue n) x = 1 ↔ ∀ i : Fin (w n),
+       (x.cast : ZMod (p n i)) ≠ krafftResidue n i ∧
+         (x.cast : ZMod (p n i)) ≠ -krafftResidue n i := by
+  unfold f A localInterval; simp +decide [Finset.mem_filter]
 
 /-
 Krafft Algebraic Equivalence: For any prime p >= 5
@@ -103,25 +104,25 @@ lemma krafft_algebraic_equivalence (p : ℕ) (hp : p.Prime) (h_ge_5 : p ≥ 5) (
   grind
 
 /-
-Interval Projection Bound: For any x in A_n, the
-value 6x+1 is strictly bounded by the square of the next possible prime after P_n:
+Interval Projection Bound: For any x in evalInterval, the
+value 6x+1 is strictly bounded by the square of the next possible prime after primeWindow:
 6x + 1 < (6n+5)^2.
 -/
-lemma interval_projection_bound (n : ℕ) (x : ℕ) (hx : x ∈ A_n n) :
+lemma interval_projection_bound (n : ℕ) (x : ℕ) (hx : x ∈ evalInterval n) :
     6 * x + 1 < (6 * n + 5) ^ 2 := by
-  unfold A_n at hx
+  unfold evalInterval at hx
   rcases n with (_ | _ | n) <;> norm_num at *
   · linarith [Nat.sub_add_cancel (by nlinarith : 2 * (‹_› : ℕ) ≤ 6 * ‹_› ^ 2)]
   · grind
   · linarith [ sq n ]
 
 /-
-Any prime p such that 5 <= p < 6n+5 must be in P_n. This is because the integers 6n+2, 6n+3,
+Any prime p such that 5 <= p < 6n+5 must be in primeWindow. This is because the integers 6n+2, 6n+3,
 6n+4 are all composite (divisible by 2 or 3), so there are no primes in the interval [6n+2, 6n+4].
 -/
 lemma primes_in_range_eq_P_n (n : ℕ) (p : ℕ) (hp : p.Prime)
     (h_ge_5 : 5 ≤ p) (h_lt : p < 6 * n + 5) :
-    p ∈ P_n n := by
+    p ∈ primeWindow n := by
   by_cases h_cases : p = 6 * n + 4 ∨ p = 6 * n + 3 ∨ p = 6 * n + 2
   · rcases h_cases with (rfl | rfl | rfl) <;> simp_all +arith only [Nat.reduceLeDiff,
     add_lt_add_iff_left, Nat.lt_add_one]
@@ -155,12 +156,13 @@ lemma prime_of_no_prime_factors_lt {k m : ℕ} (hk : 2 ≤ k) (h_sq : k < m ^ 2)
   exact h_no_factors p hp_prime (by nlinarith [Nat.sqrt_le k]) hp_div.1
 
 /-
-If x survives, then for any p in P_n, p does not divide 6x-1 and p does not divide 6x+1.
+If x survives, then for any p in primeWindow, p does not divide 6x-1 and p does not divide 6x+1.
 -/
-lemma not_dvd_of_survives (n : ℕ) (x : ℕ) (h_survives : f n (r_K n) x = 1) (p_val : ℕ)
-    (hp : p_val ∈ P_n n) : ¬(p_val : ℤ) ∣ (6 * x - 1) ∧ ¬(p_val : ℤ) ∣ (6 * x + 1) := by
+lemma not_dvd_of_survives (n : ℕ) (x : ℕ) (h_survives : f n (krafftResidue n) x = 1) (p_val : ℕ)
+    (hp : p_val ∈ primeWindow n) : ¬(p_val : ℤ) ∣ (6 * x - 1) ∧ ¬(p_val : ℤ) ∣ (6 * x + 1) := by
   obtain ⟨i, hi⟩ := mem_P_n_iff_exists_index n p_val |>.1 hp
-  have h_cong : (x.cast : ZMod p_val) ≠ r_K n i ∧ (x.cast : ZMod p_val) ≠ -r_K n i := by
+  have h_cong : (x.cast : ZMod p_val) ≠ krafftResidue n i ∧
+       (x.cast : ZMod p_val) ≠ -krafftResidue n i := by
     convert survives_iff n x |>.1 h_survives i
     · aesop
     all_goals subst hi; norm_cast
@@ -177,15 +179,15 @@ lemma not_dvd_of_survives (n : ℕ) (x : ℕ) (h_survives : f n (r_K n) x = 1) (
   have h_ge_5 := Finset.mem_filter.mp hp |>.2.1
   have := krafft_algebraic_equivalence p_val h_prime h_ge_5 x
   simp_all +decide [← ZMod.intCast_zmod_eq_zero_iff_dvd]
-  simp_all +decide [r_K]
+  simp_all +decide [krafftResidue]
 
 /-
-The Sieve Isomorphism: Assume x in A_n. By the Fundamental
+The Sieve Isomorphism: Assume x in evalInterval. By the Fundamental
 Theorem of Arithmetic and the Sieve of Eratosthenes bound from earlier, x survives the Krafft
 sieve if and only if both 6x-1 and 6x+1 are prime numbers.
 -/
-lemma sieve_equivalence (n : ℕ) (hn : n ≥ 1) (x : ℕ) (hx : x ∈ A_n n) :
-    f n (r_K n) x = 1 ↔ Nat.Prime (6 * x - 1) ∧ Nat.Prime (6 * x + 1) := by
+lemma sieve_equivalence (n : ℕ) (hn : n ≥ 1) (x : ℕ) (hx : x ∈ evalInterval n) :
+    f n (krafftResidue n) x = 1 ↔ Nat.Prime (6 * x - 1) ∧ Nat.Prime (6 * x + 1) := by
   rw [survives_iff]
   constructor <;> intro h
   · have h_prime_factors : ∀ p : ℕ, p.Prime → p < 6 * n + 5 →
@@ -201,8 +203,8 @@ lemma sieve_equivalence (n : ℕ) (hn : n ≥ 1) (x : ℕ) (hx : x ∈ A_n n) :
       · have h_pos : x ≥ 1 := Nat.pos_of_ne_zero (by
           rintro rfl
           have h_range : 2 * n ≤ 6 * n ^ 2 := by nlinarith
-          have h_not : ¬ 0 ∈ A_n n := by
-            unfold A_n; norm_num
+          have h_not : ¬ 0 ∈ evalInterval n := by
+            unfold evalInterval; norm_num
             nlinarith [Nat.sub_add_cancel h_range]
           exact absurd hx h_not)
         exact le_tsub_of_add_le_left (by linarith)
@@ -210,8 +212,8 @@ lemma sieve_equivalence (n : ℕ) (hn : n ≥ 1) (x : ℕ) (hx : x ∈ A_n n) :
           have h_x_pos : x ≥ 1 := Nat.pos_of_ne_zero (by
             rintro rfl
             have h_range : 2 * n ≤ 6 * n ^ 2 := by nlinarith
-            have h_not : ¬ 0 ∈ A_n n := by
-              unfold A_n; norm_num
+            have h_not : ¬ 0 ∈ evalInterval n := by
+              unfold evalInterval; norm_num
               nlinarith [Nat.sub_add_cancel h_range]
             exact absurd hx h_not)
           linarith
@@ -224,8 +226,8 @@ lemma sieve_equivalence (n : ℕ) (hn : n ≥ 1) (x : ℕ) (hx : x ∈ A_n n) :
           Order.lt_add_one_iff, zero_le, Nat.cast_pred, Nat.cast_mul, Nat.cast_ofNat,
           not_false_eq_true]
         have h_range : 2 * n ≤ 6 * n ^ 2 := by nlinarith
-        have h_not : ¬ 0 ∈ A_n n := by
-          unfold A_n; norm_num
+        have h_not : ¬ 0 ∈ evalInterval n := by
+          unfold evalInterval; norm_num
           nlinarith [Nat.sub_add_cancel h_range]
         exact absurd hx h_not
     · apply prime_of_no_prime_factors_lt
@@ -233,8 +235,8 @@ lemma sieve_equivalence (n : ℕ) (hn : n ≥ 1) (x : ℕ) (hx : x ∈ A_n n) :
       · have h_pos : x > 0 := Nat.pos_of_ne_zero (by
           rintro rfl
           have h_range : 2 * n ≤ 6 * n ^ 2 := by nlinarith
-          have h_not : ¬ 0 ∈ A_n n := by
-            unfold A_n; norm_num
+          have h_not : ¬ 0 ∈ evalInterval n := by
+            unfold evalInterval; norm_num
             nlinarith [Nat.sub_add_cancel h_range]
           exact absurd hx h_not)
         linarith
@@ -250,20 +252,21 @@ lemma sieve_equivalence (n : ℕ) (hn : n ≥ 1) (x : ℕ) (hx : x ∈ A_n n) :
         rw [ Nat.dvd_prime h.1 ] at H
         have h_pi_lt : p n i < 6 * n + 2 := p_lt_range n i
         rcases x with ( _ | _ | x ) <;> simp_all +arith +decide only
-        · unfold A_n at hx; norm_num at hx; nlinarith
-        · cases H <;> simp_all +arith +decide only [le_add_iff_nonneg_left, zero_le, A_n,
+        · unfold evalInterval at hx; norm_num at hx; nlinarith
+        · cases H <;> simp_all +arith +decide only [le_add_iff_nonneg_left, zero_le, evalInterval,
           Finset.mem_Icc, tsub_le_iff_right, add_le_add_iff_right, Nat.add_one_sub_one]
           · exact absurd (p_ge_5 n i) (by aesop)
           · nlinarith only [ hx, h_pi_lt ]
       · rw [ Nat.dvd_prime h.2 ] at H
         have h_contra : p n i ≤ 6 * n + 1 := Nat.le_of_lt_succ (p_lt_range n i)
-        cases H <;> simp_all +arith +decide only [ge_iff_le, A_n, Finset.mem_Icc,
+        cases H <;> simp_all +arith +decide only [ge_iff_le, evalInterval, Finset.mem_Icc,
           tsub_le_iff_right, le_add_iff_nonneg_left, zero_le]
         · exact absurd (p_ge_5 n i) (by aesop)
         · nlinarith only [ hn, hx, h_contra ]
     have := krafft_algebraic_equivalence ( p n i ) (p_prime n i) (p_ge_5 n i) x
     generalize_proofs at *
-    simp_all +decide only [ge_iff_le, Int.cast_natCast, or_self, iff_false, not_or, r_K, ne_eq]
+    simp_all +decide only [ge_iff_le, Int.cast_natCast, or_self, iff_false, not_or,
+      krafftResidue, ne_eq]
     convert this using 1
     · norm_num [ ZMod.natCast_eq_natCast_iff' ]
       rw [ ZMod.cast_eq_val ]
@@ -281,13 +284,13 @@ Prove that an integer $x \in \mathcal{A}_n$ survives the Krafft sieve (meaning b
 and $6x+1$ are prime) if and only if its global hit counter is exactly zero:
 $$ c(x) = 0 \iff x \text{ survives the Krafft sieve} $$
 -/
-lemma additive_sieve_equivalence (n : ℕ) (hn : n ≥ 1) (x : ℕ) (hx : x ∈ A_n n) :
+lemma additive_sieve_equivalence (n : ℕ) (hn : n ≥ 1) (x : ℕ) (hx : x ∈ evalInterval n) :
     c n x = 0 ↔ Nat.Prime (6 * x - 1) ∧ Nat.Prime (6 * x + 1) := by
   have := @sieve_equivalence n hn x; simp_all only [ge_iff_le, forall_const]; (
   unfold c f at *; simp_all only [ite_eq_left_iff, zero_ne_one, imp_false, Decidable.not_not]
   unfold A at this; simp_all only [Finset.mem_filter, Finset.mem_univ, true_and]
   unfold g; simp_all
-  unfold A_i at this; simp_all only [ne_eq, Finset.mem_filter, Finset.mem_univ, true_and])
+  unfold localInterval at this; simp_all only [ne_eq, Finset.mem_filter, Finset.mem_univ, true_and])
 
 /--
 Non-negative Hits:
@@ -300,15 +303,15 @@ lemma non_negative_hits (n : ℕ) (x : ZMod (q n)) :
 
 /--
 The Weighted Existence Principle:
-Assume there exists a specific configuration such that $S_2(n, W) < S_1(n, W)$. Prove that
+Assume there exists a specific configuration such that $sum2(n, W) < sum1(n, W)$. Prove that
 there must exist at least one integer $x \in \mathcal{A}_n$ such that $W(x) > 0$ and $c(x) = 0$.
 -/
 theorem weighted_existence_principle (n : ℕ) (W : ZMod (q n) → ℝ) (hW : ∀ x, W x ≥ 0)
-    (h_ineq : S_2 n W < S_1 n W) :
-    ∃ x ∈ A_n n, W (x : ZMod (q n)) > 0 ∧ c n (x : ZMod (q n)) = 0 := by
+    (h_ineq : sum2 n W < sum1 n W) :
+    ∃ x ∈ evalInterval n, W (x : ZMod (q n)) > 0 ∧ c n (x : ZMod (q n)) = 0 := by
   contrapose! h_ineq
-  -- For each $x \in A_n$, if $W(x) > 0$ then $c(x) \ge 1$.
-  have h_c_ge_one : ∀ x ∈ A_n n, W x > 0 → c n x ≥ 1 := by
+  -- For each $x \in evalInterval$, if $W(x) > 0$ then $c(x) \ge 1$.
+  have h_c_ge_one : ∀ x ∈ evalInterval n, W x > 0 → c n x ≥ 1 := by
     -- Since $c(x)$ is the sum of non-negative terms, if $c(x) \neq 0$, then $c(x) \geq 1$.
     intros x hx hWx_pos
     have h_c_nonneg : 0 ≤ c n x :=
@@ -321,24 +324,24 @@ theorem weighted_existence_principle (n : ℕ) (W : ZMod (q n) → ℝ) (hW : �
 
 /--
 Definition of the Krafft Sufficiency condition
-Existence of a weight function $W$ such that $S_2(n, W) < S_1(n, W)$.
+Existence of a weight function $W$ such that $sum2(n, W) < sum1(n, W)$.
 -/
-def Krafft_Sufficiency (n : ℕ) : Prop :=
+def KrafftSufficiency (n : ℕ) : Prop :=
   ∃ W : ZMod (q n) → ℝ, (∀ x, W x ≥ 0) ∧
-  (∀ x : ZMod (q n), x.val ∉ A_n n → W x = 0) ∧
-  S_2 n W < S_1 n W
+  (∀ x : ZMod (q n), x.val ∉ evalInterval n → W x = 0) ∧
+  sum2 n W < sum1 n W
 
 /-
 The Krafft Sieve Guarantee:
 Admit that there exists a valid non-negative weight function $W(x)$ supported on
 $\mathcal{A}_n$ such that the magnitude of the negative third-harmonic resonance strictly
 overpowers the main term, yielding:
-$$ S_2(n, W) < S_1(n, W) $$
+$$ sum2(n, W) < sum1(n, W) $$
 Conclude that by the Weighted Existence Principle and the Additive Sieve Equivalence, a Twin Prime
 index is unconditionally guaranteed in $\mathcal{A}_n$.
 -/
-theorem krafft_sieve_guarantee (n : ℕ) (hn : n ≥ 1) (h_admit : Krafft_Sufficiency n) :
-    ∃ x ∈ A_n n, Nat.Prime (6 * x - 1) ∧ Nat.Prime (6 * x + 1) := by
+theorem krafft_sieve_guarantee (n : ℕ) (hn : n ≥ 1) (h_admit : KrafftSufficiency n) :
+    ∃ x ∈ evalInterval n, Nat.Prime (6 * x - 1) ∧ Nat.Prime (6 * x + 1) := by
   obtain ⟨ W, hW_nonneg, _, hW_ineq ⟩ := h_admit
   obtain ⟨ x, hx ⟩ := weighted_existence_principle n W hW_nonneg hW_ineq
   exact ⟨ x, hx.1, additive_sieve_equivalence n hn x ( hx.1 ) |>.1 hx.2.2 ⟩
