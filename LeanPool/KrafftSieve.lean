@@ -12,7 +12,7 @@ import LeanPool.KrafftSieve.SelbergWeights
 import LeanPool.KrafftSieve.OptimalWeights
 
 /-!
-# A Weighted Turán Sieve for Twin Primes via the Krafft Geometry
+# Reduction of the Twin Prime Conjecture via Krafft Geometry
 
 Source: doi:10.5281/zenodo.19763833
 Authors: Fernando Portela

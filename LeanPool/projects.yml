@@ -2935,8 +2935,8 @@ projects:
       - "11B75"
       - "11P70"
   - slug: krafftsieve
-    title: "A Weighted Turán Sieve for Twin Primes via the Krafft Geometry"
-    summary: Formalizes an additive Turán sieve evaluated over bounded, symmetric intervals using a centered modular Krafft alignment. It reduces the Twin Prime Conjecture to a variational optimization problem over multidimensional weights and proves that purely one-dimensional character weight systems are strictly insufficient.
+    title: "Reduction of the Twin Prime Conjecture via Krafft Geometry"
+    summary: Formalizes a rigorous reduction of the Twin Prime Conjecture. Proves the unconditional theorem that if the Rayleigh-Ritz quotient over the orthogonal unit sphere satisfies muMin < 1, then a twin prime pair must exist. This establishes a hard analytic link between discrete prime gaps and continuous variational optimization.
     branch: analytic number theory
     entry_module: LeanPool.KrafftSieve
     authors:
