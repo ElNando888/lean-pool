@@ -2934,3 +2934,33 @@ projects:
       - "11B30"
       - "11B75"
       - "11P70"
+  - slug: krafftsieve
+    title: "A Weighted Turán Sieve for Twin Primes via the Krafft Geometry"
+    summary: Formalizes an additive Turán sieve evaluated over bounded, symmetric intervals using a centered modular Krafft alignment. It reduces the Twin Prime Conjecture to a variational optimization problem over multidimensional weights and proves that purely one-dimensional character weight systems are strictly insufficient.
+    branch: analytic number theory
+    entry_module: LeanPool.KrafftSieve
+    authors:
+      - Fernando Portela
+    source:
+      doi: "10.5281/zenodo.19763833"
+      github_repo: ElNando888/KrafftSieve
+    status: verified
+    main_declarations:
+      - KrafftSieve.krafft_sieve_guarantee
+      - KrafftSieve.krafft_sieve_guarantee_with_mu_min
+      - KrafftSieve.resonance_lt_mainTerm
+    main_results:
+      - declaration: KrafftSieve.krafft_sieve_guarantee
+        informal: Proves that if an admissible multidimensional weight function exists that strictly suppresses the penalized sum below the total base sum, the target interval must contain a twin prime pair.
+      - declaration: KrafftSieve.krafft_sieve_guarantee_with_mu_min
+        informal: Analytically reduces the discrete twin prime guarantee to demonstrating that the minimum of the continuous Rayleigh-Ritz quotient over the orthogonal unit sphere is strictly less than 1.
+      - declaration: KrafftSieve.resonance_lt_mainTerm
+        informal: Establishes the spectral deficit theorem, showing that the suppression capacity of any purely one-dimensional character weight system is strictly less than the principal density term.
+    tags:
+      - analytic-number-theory
+      - sieve-theory
+      - twin-primes
+      - optimization
+    msc:
+      - "11N05"
+      - "11N35"
