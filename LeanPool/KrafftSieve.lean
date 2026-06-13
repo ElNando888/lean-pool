@@ -12,15 +12,14 @@ import LeanPool.KrafftSieve.SelbergWeights
 import LeanPool.KrafftSieve.OptimalWeights
 
 /-!
-# Krafft Sieve for Twin Primes
+# A Weighted Turán Sieve for Twin Primes via the Krafft Geometry
 
 Source: doi:10.5281/zenodo.19763833
 Authors: Fernando Portela
 Status: verified
-Main declarations: `resonance_lt_mainTerm`, `krafft_sieve_guarantee`, `Krafft_Sufficiency`,
-  `krafft_sieve_guarantee_with_mu_min`
-Tags: number-theory, twin-primes, sieve-theory, fourier-analysis
-MSC: 11N05, 11N35, 11N36
+Main declarations: `KrafftSieve.krafft_sieve_guarantee`, `KrafftSieve.krafft_sieve_guarantee_with_mu_min`, `KrafftSieve.resonance_lt_mainTerm`
+Tags: analytic-number-theory, sieve-theory, twin-primes, optimization
+MSC: 11N05, 11N35
 -/
 
 /-!
