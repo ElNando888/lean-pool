@@ -17,7 +17,7 @@ import LeanPool.KrafftSieve.OptimalWeights
 Source: doi:10.5281/zenodo.19763833
 Authors: Fernando Portela
 Status: verified
-Main declarations: `KrafftSieve.krafft_sieve_guarantee`, `KrafftSieve.krafft_sieve_guarantee_with_mu_min`, `KrafftSieve.resonance_lt_mainTerm`
+Main declarations: `KrafftSieve.krafft_sieve_guarantee`, `KrafftSieve.resonance_lt_mainTerm`
 Tags: analytic-number-theory, sieve-theory, twin-primes, optimization
 MSC: 11N05, 11N35
 -/

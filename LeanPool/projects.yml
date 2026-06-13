@@ -2947,7 +2947,6 @@ projects:
     status: verified
     main_declarations:
       - KrafftSieve.krafft_sieve_guarantee
-      - KrafftSieve.krafft_sieve_guarantee_with_mu_min
       - KrafftSieve.resonance_lt_mainTerm
     main_results:
       - declaration: KrafftSieve.krafft_sieve_guarantee
