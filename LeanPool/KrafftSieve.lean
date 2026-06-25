@@ -18,7 +18,7 @@ import LeanPool.KrafftSieve.MainTheorem
 Source: doi:10.5281/zenodo.19763833
 Authors: Fernando Portela
 Status: verified
-Main declarations: `KrafftSieve.mu_min_lt_one_implies_tpc`, `KrafftSieve.krafft_sieve_guarantee`
+Main declarations: `KrafftSieve.mu_min_lt_one_implies_tpc`
 Tags: analytic-number-theory, sieve-theory, twin-primes, optimization
 MSC: 11N05, 11N35
 -/
