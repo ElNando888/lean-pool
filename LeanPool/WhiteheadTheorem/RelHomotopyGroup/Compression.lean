@@ -26,7 +26,6 @@ whose image is in `A`, then `f` represents zero in the relative homotopy group. 
 lemma compression_criterion_1 (f : RelGenLoop (n + 1) X A a) (g : C(I^Fin (n + 1), X))
     (rg : Set.range g ⊆ A) (H : ContinuousMap.HomotopyRel f g (∂I^(n + 1))) :
     ⟦f⟧ = (⟦RelGenLoop.const⟧ : π_rel (n + 1) X A a) :=
-  -- let g' : RelGenLoop n X A a := RelGenLoop.ofHomotopyRel f g H
   (RelGenLoop.ofHomotopyRel.eq f g H).trans <| Quotient.eq.mpr <| Nonempty.intro <|
     let R := Cube.strongDeformRetrToBoundaryJar n
     let g_bd : ∀ y ∈ ∂I^(n+1), g y = f.val y :=
@@ -35,7 +34,7 @@ lemma compression_criterion_1 (f : RelGenLoop (n + 1) X A a) (g : C(I^Fin (n + 1
       map_zero_left y := by simp [RelGenLoop.ofHomotopyRel]
       map_one_left y := by
         unfold RelGenLoop.const
-        simp only [id_apply, toFun_eq_coe, ContinuousMap.coe_coe, Homotopy.apply_one, comp_apply,
+        simp only [id_apply, Homotopy.apply_one, comp_apply,
           ContinuousMap.const_apply]
         have r_y_in_jar : R.r y ∈ ⊔I^(n+1) := Set.range_subset_iff.mp R.r_range y
         have r_y_in_bd : R.r y ∈ ∂I^(n+1) := Cube.boundaryJar_subset_boundary (n+1) r_y_in_jar
@@ -63,7 +62,6 @@ lemma compression_criterion_2
     (f : RelGenLoop n X A a) (fz : ⟦f⟧ = (⟦RelGenLoop.const⟧ : π_rel n X A a)) :
     ∃ g : C(I^ Fin n, X), Set.range g ⊆ A ∧ ContinuousMap.HomotopicRel f g (∂I^n) := by
   have H : ContinuousMap.HomotopicWith .. := Quotient.eq.mp fz.symm
-  -- have H_fun := H.some.toContinuousMap
   let R := Cube.strongDeformRetrToBoundaryJar n
   use H.some.toContinuousMap.comp <| (toContinuousMap Cube.splitAtLast).comp <|
     R.r.comp <| Cube.inclToTop

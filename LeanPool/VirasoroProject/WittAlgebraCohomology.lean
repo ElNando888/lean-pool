@@ -43,22 +43,13 @@ noncomputable def normalizingCochain : LieOneCochain 𝕜 (WittAlgebra 𝕜) �
 
 lemma normalizingCochain_apply_lgen_zero :
     normalizingCochain γ (lgen 𝕜 0) = (-2⁻¹ : 𝕜) * γ (lgen 𝕜 1) (lgen 𝕜 (-1)) := by
-  have aux := (WittAlgebra.lgen 𝕜).constr_basis 𝕜 (fun n ↦ if n = 0
-        then (-2⁻¹ : 𝕜) • γ (lgen 𝕜 1) (lgen 𝕜 (-1))
-        else (1/n : 𝕜) • γ (lgen 𝕜 0) (lgen 𝕜 n)) 0
-  dsimp at aux
-  rw [← aux]
-  congr
+  change ((WittAlgebra.lgen 𝕜).constr 𝕜 _) (lgen 𝕜 0) = _
+  simp [smul_eq_mul]
 
 lemma normalizingCochain_apply_lgen (n : ℤ) (hn : n ≠ 0) :
     normalizingCochain γ (lgen 𝕜 n) = (1/n : 𝕜) * γ (lgen 𝕜 0) (lgen 𝕜 n) := by
-  have aux := (WittAlgebra.lgen 𝕜).constr_basis 𝕜 (fun n ↦ if n = 0
-        then (-2⁻¹ : 𝕜) • γ (lgen 𝕜 1) (lgen 𝕜 (-1))
-        else (1/n : 𝕜) • γ (lgen 𝕜 0) (lgen 𝕜 n)) n
-  dsimp at aux
-  simp only [hn, ↓reduceIte] at aux
-  rw [← aux]
-  congr
+  change ((WittAlgebra.lgen 𝕜).constr 𝕜 _) (lgen 𝕜 n) = _
+  simp [smul_eq_mul, hn]
 
 lemma add_bdry_normalizingCochain_apply_lgen_one :
     (γ + (normalizingCochain γ).bdry) (lgen 𝕜 1) (lgen 𝕜 (-1)) = 0 := by
@@ -140,8 +131,7 @@ lemma exists_add_bdry_eq_smul_virasoroCocycle :
         · -- k = 0 case is true for any cocycle by skew-symmetry
           simp
         · -- k = 1 case follows due to the choice of the normalizing coboundary
-          convert add_bdry_normalizingCochain_apply_lgen_one γ
-          ring
+          convert add_bdry_normalizingCochain_apply_lgen_one γ <;> norm_num
         · -- k = 2 case is what determines the multiplicative factor r
           rw [hr]
           norm_num
@@ -204,9 +194,10 @@ theorem rank_lieTwoCohomology_eq_one :
     obtain ⟨γ, hγ'⟩ := Quotient.exists_rep γ'
     obtain ⟨r, hr⟩ := exists_add_bdry_eq_smul_virasoroCocycle γ
     use r
-    convert (LinearMap.congr_arg (f := LieTwoCocycle.toLieTwoCohomology 𝕜 ..) hr).symm
     rw [← hγ']
-    exact (LieTwoCocycle.cohomologyClass_add_bdry γ (normalizingCochain γ)).symm
+    change r • (virasoroCocycle 𝕜).cohomologyClass = γ.cohomologyClass
+    rw [← LieTwoCocycle.cohomologyClass_add_bdry γ (normalizingCochain γ), hr]
+    exact (map_smul (LieTwoCocycle.toLieTwoCohomology 𝕜 (WittAlgebra 𝕜) 𝕜) r _).symm
 
 end WittAlgebra -- namespace
 

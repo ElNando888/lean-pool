@@ -141,19 +141,15 @@ lemma edge_in_FL {𝕏 : Proof} {x y : 𝕏.X} (x_y : (edge 𝕏.α) x y) :
   case and Δ φ ψ in_Δ =>
     apply @List.mem_map_of_mem _ _ _ _ (fun x ↦ f (r 𝕏.α x)) at x_y
     simp only [this, List.mem_cons, List.not_mem_nil, or_false] at x_y
-    rcases x_y with h|h <;> rw [h]
-    · simp only [Sequent.FL, Finset.subset_iff,
-      Finset.mem_union, Finset.mem_singleton, Finset.mem_biUnion]
-      intro χ χ_cases
+    rcases x_y with h|h <;> rw [h] <;>
+      simp only [Sequent.FL, Finset.subset_iff,
+        Finset.mem_union, Finset.mem_singleton, Finset.mem_biUnion] <;>
+      intro χ χ_cases <;>
       rcases χ_cases with h|_ <;> subst_eqs
-      · exact ⟨χ, fₙ_sub_f h, Formula.FL_refl⟩
-      · exact ⟨φ & ψ, by simp [f, in_Δ], by simp [Formula.FL, Formula.FL_refl]⟩
-    · simp only [Sequent.FL, Finset.subset_iff,
-      Finset.mem_union, Finset.mem_singleton, Finset.mem_biUnion]
-      intro χ χ_cases
-      rcases χ_cases with h|_ <;> subst_eqs
-      · exact ⟨χ, fₙ_sub_f h, Formula.FL_refl⟩
-      · exact ⟨φ & ψ, by simp [f, in_Δ], by simp [Formula.FL, Formula.FL_refl]⟩
+    · exact ⟨χ, fₙ_sub_f h, Formula.FL_refl⟩
+    · exact ⟨φ & ψ, by simp [f, in_Δ], by simp [Formula.FL, Formula.FL_refl]⟩
+    · exact ⟨χ, fₙ_sub_f h, Formula.FL_refl⟩
+    · exact ⟨φ & ψ, by simp [f, in_Δ], by simp [Formula.FL, Formula.FL_refl]⟩
   case or Δ φ ψ in_Δ =>
     apply @List.mem_map_of_mem _ _ _ _ (fun x ↦ f (r 𝕏.α x)) at x_y
     simp only [this, List.mem_singleton] at x_y
@@ -264,9 +260,11 @@ theorem finite_proof_of_proof (𝕏 : Proof) (Δ : Sequent) : (𝕏 ⊢ Δ) → 
       ⟨f (r ((pointGeneratedProof (filtration 𝕏) ⟦x⟧).α) y), by
       simp only [Finset.mem_powerset]
       have in_fl := node_in_pg_sequent_in_FL (filtration 𝕏) ⟦x⟧ y
-      convert in_fl
-      simp only [←f_Δ, filtration, r, αQuot]
-      exact Eq.symm <| Quotient.mk_out x⟩)
+      have hΔ : Δ = f (r (filtration 𝕏).α ⟦x⟧) := by
+        simp only [←f_Δ, filtration, r, αQuot]
+        exact Eq.symm <| Quotient.mk_out x
+      rw [hΔ]
+      exact in_fl⟩)
     intro z1 z2 f_z_eq
     have f_z_eq := by simpa [pointGeneratedProof, filtration, r] using f_z_eq
     apply Subtype.ext

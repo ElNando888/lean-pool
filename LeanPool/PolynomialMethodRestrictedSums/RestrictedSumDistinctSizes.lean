@@ -113,7 +113,7 @@ lemma vandermonde_degree_eq (k : ℕ) (p : ℕ) [Fact (Nat.Prime p)] :
         j.val < i.val → (X i - X j : MvPolynomial (Fin (k + 1)) (ZMod p)).totalDegree = 1 := by
       intro i j a
       refine le_antisymm ?_ ?_ <;> norm_num [MvPolynomial.totalDegree];
-      · intro b hb; rw [MvPolynomial.coeff_X', MvPolynomial.coeff_X'] at hb; aesop;
+      · intro b hb; rw [MvPolynomial.coeff_X, MvPolynomial.coeff_X] at hb; aesop;
       · refine ⟨Finsupp.single i 1, ?_, ?_⟩ <;> aesop;
     -- The total degree of a product of polynomials is the sum of their total degrees.
     have h_total_deg : ∀ (S : Finset (Fin (k + 1) × Fin (k + 1))),
@@ -131,12 +131,7 @@ lemma vandermonde_degree_eq (k : ℕ) (p : ℕ) [Fact (Nat.Prime p)] :
       obtain ⟨fst, snd⟩ := a
       obtain ⟨left, right⟩ := hS
       simp_all only
-      -- The total degree of the product of two polynomials is the sum of their total degrees.
-      have h_total_deg_prod : ∀ (f g : MvPolynomial (Fin (k + 1)) (ZMod p)),
-          f ≠ 0 → g ≠ 0 → (f * g).totalDegree = f.totalDegree + g.totalDegree := by
-        intro f g hf hg
-        exact totalDegree_mul_of_isDomain hf hg
-      rw [h_total_deg_prod, a_2, van_deg] <;> norm_num [left];
+      rw [totalDegree_mul_of_isDomain, a_2, van_deg] <;> norm_num [left];
       · ring;
       · intro hcontra
         replace hcontra := congr_arg
@@ -210,10 +205,8 @@ lemma vandermonde_coeff_nonzero (c : Fin (k + 1) → ℕ) (m : ℕ)
                  MvPolynomial.X i) ^ m * ∏ i : Fin (k + 1), ∏ j : Fin (k + 1),
                      if j.val < i.val then (X i - X j) else 1 : MvPolynomial (Fin (k + 1)) (ℤ)))
                          = expectedValue c m := by
-           convert Vandermonde_coefficient_formula c m h_sum using 1;
-           norm_num [Finsupp.equivFunOnFinite];
-           unfold toFinsupp
-           simp_all only [ne_eq];
+           have h_index : (Finsupp.equivFunOnFinite.symm c : (Fin (k + 1)) →₀ ℕ) = toFinsupp c := by
+             ext i; simp [Finsupp.equivFunOnFinite, toFinsupp]
            -- By definition of polynomial multiplication and the properties of coefficients, the
            -- coefficient of the monomial corresponding to `c` in the product of the power sum and
            -- the Vandermonde polynomial is equal to the coefficient of the monomial corresponding
@@ -226,19 +219,19 @@ lemma vandermonde_coeff_nonzero (c : Fin (k + 1) → ℕ) (m : ℕ)
                        = MvPolynomial.coeff (Finsupp.equivFunOnFinite.symm c)
                            (MvPolynomial.map (algebraMap ℤ ℚ) (f * g)) := by
              intros f g; rw [MvPolynomial.coeff_map]; aesop;
-           convert h_coeff_eq _ _ using 3;
-           · aesop;
-           · -- Push `map` through the polynomial product.
-             rw [map_mul, map_pow, map_sum, map_prod]
-             refine congrArg₂ (· * ·) ?_ ?_
-             · refine congrArg (· ^ m) ?_
-               refine Finset.sum_congr rfl fun i _ => ?_
-               rw [MvPolynomial.map_X]
-             · refine Finset.prod_congr rfl fun i _ => ?_
-               rw [map_prod]
-               refine Finset.prod_congr rfl fun j _ => ?_
-               split_ifs <;>
-                 simp [MvPolynomial.map_X, map_sub, map_one]
+           rw [h_coeff_eq, h_index, ← Vandermonde_coefficient_formula c m h_sum]
+           congr 1
+           -- Push `map` through the polynomial product.
+           rw [map_mul, map_pow, map_sum, map_prod]
+           refine congrArg₂ (· * ·) ?_ ?_
+           · refine congrArg (· ^ m) ?_
+             refine Finset.sum_congr rfl fun i _ => ?_
+             rw [MvPolynomial.map_X]
+           · refine Finset.prod_congr rfl fun i _ => ?_
+             rw [map_prod]
+             refine Finset.prod_congr rfl fun j _ => ?_
+             rw [apply_ite (MvPolynomial.map (algebraMap ℤ ℚ))]
+             simp only [Fin.val_fin_lt, map_sub, MvPolynomial.map_X, map_one]
          have h_coeff_not_zero_in_K' : (algebraMap ℤ (ZMod p)) (
              MvPolynomial.coeff (Finsupp.equivFunOnFinite.symm c) (
              (∑ i : Fin (k + 1), MvPolynomial.X i) ^ m * ∏ i : Fin (k + 1), ∏ j : Fin (k + 1),
@@ -306,15 +299,14 @@ theorem restricted_sum_distinct_sizes (A : Fin (k + 1) → Finset (ZMod p))
       set m : ℕ := ∑ i, c i - (k + 1).choose 2;
       -- Show that $m < p$ and that the coefficient of $\prod X_i^{c_i}$ in $(\sum X_i)^m \cdot
       -- \text{vandermonde}$ is non-zero modulo $p$.
-      have hm_lt_p : m < p := by
-        exact restricted_sum_m_bound A h_nonempty h_sum_bound
+      have hm_lt_p : m < p := restricted_sum_m_bound A h_nonempty h_sum_bound
       have h_coeff_nonzero :
           (MvPolynomial.coeff (toFinsupp c) ((∑ i,
               (X i : MvPolynomial (Fin (k + 1)) (ZMod p))) ^ m *
             vandermondePolynomial k)) ≠ 0 := by
         -- Since $|A_i|$ are distinct, $c_i$ are distinct.
-        have hc_distinct : ∀ i j, i < j → c i ≠ c j := by
-          exact fun i j hij => fun h => h_sizes_distinct i j hij <|
+        have hc_distinct : ∀ i j, i < j → c i ≠ c j :=
+          fun i j hij => fun h => h_sizes_distinct i j hij <|
               by
                 linarith [
                   Nat.sub_add_cancel <| show 1 ≤ Finset.card (A i)
@@ -495,5 +487,4 @@ theorem restricted_sum_distinct_sizes (A : Fin (k + 1) → Finset (ZMod p))
           ∑ i, #(A i) - (k + 2).choose 2 = ∑ i, (#(A i) - 1) - (k + 1).choose 2 := by
         rw [h_sum_succ, h_choose_succ]
         omega
-      rw [h_lhs_eq]
-      exact h_theorem
+      rwa [h_lhs_eq]

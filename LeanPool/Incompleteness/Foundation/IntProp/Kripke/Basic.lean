@@ -96,8 +96,7 @@ def Satisfies (M : Kripke.Model) (w : M.World) : Formula ℕ → Prop
 
 namespace Satisfies
 
-instance semantics (M : Kripke.Model) :
-    Semantics (Formula ℕ) (M.World) :=
+instance semantics (M : Kripke.Model) : Semantics (Formula ℕ) (M.World) :=
   ⟨fun w ↦ Formula.Kripke.Satisfies M w⟩
 
 variable {M : Kripke.Model} {w w' : M.World} {a : ℕ} {φ ψ χ : Formula ℕ}
@@ -172,22 +171,17 @@ lemma iff_subst_self {F : Frame} {V : Valuation F} {x : F.World} (s) :
   | hand φ ψ ihφ ihψ =>
     constructor;
     · rintro ⟨hφ, hψ⟩;
-      constructor;
-      · apply ihφ.mp hφ;
-      · apply ihψ.mp hψ;
+      exact ⟨ihφ.mp hφ, ihψ.mp hψ⟩
     · rintro ⟨hφ, hψ⟩;
-      apply Satisfies.and_def.mpr;
-      constructor;
-      · apply ihφ.mpr hφ;
-      · apply ihψ.mpr hψ;
+      exact ⟨ihφ.mpr hφ, ihψ.mpr hψ⟩
   | hor φ ψ ihφ ihψ =>
     constructor;
-    · rintro (hφ | hψ);
-      · left; apply ihφ.mp hφ;
-      · right; apply ihψ.mp hψ;
-    · rintro (hφ | hψ);
-      · left; apply ihφ.mpr hφ;
-      · right; apply ihψ.mpr hψ;
+    · rintro (hφ | hψ)
+      · exact .inl <| ihφ.mp hφ
+      · exact .inr <| ihψ.mp hψ
+    · rintro (hφ | hψ)
+      · exact .inl <| ihφ.mpr hφ
+      · exact .inr <| ihψ.mpr hψ
 
 end Satisfies
 
@@ -258,8 +252,8 @@ protected lemma mdp (hpq : M ⊧ φ ==> ψ) (hp : M ⊧ φ) : M ⊧ ψ := by
 
 protected lemma efq : M ⊧ Axioms.EFQ φ := by simp [ValidOnModel, Satisfies];
 
-protected lemma lem : Symmetric M.Rel → M ⊧ Axioms.LEM φ := by
-  unfold Symmetric Axioms.LEM;
+protected lemma lem : IsSymmetric M.Rel → M ⊧ Axioms.LEM φ := by
+  unfold IsSymmetric Axioms.LEM;
   contrapose;
   push Not;
   intro h;
@@ -370,32 +364,26 @@ protected lemma orInst₁ : F ⊧ φ ==> φ ⋎ ψ := fun _ => ValidOnModel.orIn
 
 protected lemma orInst₂ : F ⊧ ψ ==> φ ⋎ ψ := fun _ => ValidOnModel.orInst₂
 
-protected lemma orElim :
-    F ⊧ (φ ==> χ) ==> (ψ ==> χ) ==> (φ ⋎ ψ ==> χ) :=
+protected lemma orElim : F ⊧ (φ ==> χ) ==> (ψ ==> χ) ==> (φ ⋎ ψ ==> χ) :=
   fun _ => ValidOnModel.orElim
 
 protected lemma imply₁ : F ⊧ φ ==> ψ ==> φ := fun _ => ValidOnModel.imply₁
 
-protected lemma imply₂ :
-    F ⊧ (φ ==> ψ ==> χ) ==> (φ ==> ψ) ==> φ ==> χ :=
+protected lemma imply₂ : F ⊧ (φ ==> ψ ==> χ) ==> (φ ==> ψ) ==> φ ==> χ :=
   fun _ => ValidOnModel.imply₂
 
-protected lemma mdp (hpq : F ⊧ φ ==> ψ) (hp : F ⊧ φ) :
-    F ⊧ ψ :=
+protected lemma mdp (hpq : F ⊧ φ ==> ψ) (hp : F ⊧ φ) : F ⊧ ψ :=
   fun V x => ValidOnModel.mdp (hpq V) (hp V) x
 
 protected lemma efq : F ⊧ Axioms.EFQ φ := fun _ => ValidOnModel.efq
 
-protected lemma lem (F_symm : Symmetric F.Rel) :
-    F ⊧ Axioms.LEM φ :=
+protected lemma lem (F_symm : IsSymmetric F.Rel) : F ⊧ Axioms.LEM φ :=
   fun _ => ValidOnModel.lem F_symm
 
-protected lemma dum (F_conn : Connected F.Rel) :
-    F ⊧ Axioms.Dummett φ ψ :=
+protected lemma dum (F_conn : Connected F.Rel) : F ⊧ Axioms.Dummett φ ψ :=
   fun _ => ValidOnModel.dum F_conn
 
-protected lemma wlem (F_conf : Confluent F.Rel) :
-    F ⊧ Axioms.WeakLEM φ :=
+protected lemma wlem (F_conf : Confluent F.Rel) : F ⊧ Axioms.WeakLEM φ :=
   fun _ => ValidOnModel.wlem F_conf
 
 end ValidOnFrame
@@ -475,22 +463,12 @@ instance definedBy_inter
   : DefinedBy (C₁ ∩ C₂) (Γ₁ ∪ Γ₂) := ⟨by
   rintro F;
   constructor
-  · rintro ⟨hF₁, hF₂⟩;
-    rintro φ (hφ₁ | hφ₂);
-    · exact h₁.defines F |>.mp hF₁ _ hφ₁;
-    · exact h₂.defines F |>.mp hF₂ _ hφ₂;
-  · intro h;
-    constructor;
-    · apply h₁.defines F |>.mpr;
-      intro φ hφ;
-      apply h;
-      left;
-      assumption;
-    · apply h₂.defines F |>.mpr;
-      intro φ hφ;
-      apply h;
-      right;
-      assumption;
+  · rintro ⟨hF₁, hF₂⟩ φ (hφ₁ | hφ₂)
+    · exact h₁.defines F |>.mp hF₁ _ hφ₁
+    · exact h₂.defines F |>.mp hF₂ _ hφ₂
+  · intro h
+    exact ⟨h₁.defines F |>.mpr fun φ hφ => h _ (.inl hφ),
+      h₂.defines F |>.mpr fun φ hφ => h _ (.inr hφ)⟩
 ⟩
 
 instance definedByFormula_inter
@@ -527,8 +505,8 @@ variable {C : Kripke.FrameClass} {Γ : Set (Formula ℕ)}
 
 lemma definedBy_with_axiomEFQ (defines : C.DefinedBy Γ) :
     DefinedBy C (insert (Axioms.EFQ (.atom 0)) Γ) := by
-  convert definedBy_inter AllFrameClass {Axioms.EFQ (.atom 0)} C Γ
-  tauto_set;
+  convert definedBy_inter AllFrameClass {Axioms.EFQ (.atom 0)} C Γ <;>
+    simp [AllFrameClass, Set.singleton_union];
 
 end FrameClass
 

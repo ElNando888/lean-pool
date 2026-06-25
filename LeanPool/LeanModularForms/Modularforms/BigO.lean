@@ -23,9 +23,7 @@ open scoped Interval Real NNReal ENNReal Topology BigOperators Nat
 
 
 lemma norm_symm (x y : ℤ) : ‖![x, y]‖ = ‖![y,x]‖ := by
-  simp_rw [EisensteinSeries.norm_eq_max_natAbs]
-  rw [max_comm]
-  simp
+  simp [EisensteinSeries.norm_eq_max_natAbs, max_comm]
 
 
 lemma linear_bigO (m : ℤ) (z : ℍ) : (fun (n : ℤ) => ((m : ℂ) * z + n)⁻¹) =O[cofinite]
@@ -36,7 +34,7 @@ lemma linear_bigO (m : ℤ) (z : ℍ) : (fun (n : ℤ) => ((m : ℂ) * z + n)⁻
     use 1
     simp only [gt_iff_lt, zero_lt_one, norm_inv, Nat.succ_eq_add_one, Nat.reduceAdd, mul_inv_rev,
       norm_mul, Real.norm_eq_abs, one_mul, Int.cofinite_eq, eventually_sup,
-      eventually_atBot, eventually_atTop, ge_iff_le, true_and, abs_norm]
+      eventually_atBot, eventually_atTop, true_and, abs_norm]
     constructor
     repeat{
     use 0
@@ -45,11 +43,7 @@ lemma linear_bigO (m : ℤ) (z : ℍ) : (fun (n : ℤ) => ((m : ℂ) * z + n)⁻
     simp only [Fin.isValue, Matrix.cons_val_zero, Matrix.cons_val_one, ge_iff_le] at *
     nth_rw 2 [mul_comm]
     simp_rw [Real.rpow_neg_one] at this
-    have hr : (r z)⁻¹ = |r z|⁻¹ := by
-      simp only [inv_inj]
-      apply symm
-      rw [abs_eq_self]
-      exact (r_pos z).le
+    have hr : (r z)⁻¹ = |r z|⁻¹ := by simp [abs_of_pos (r_pos z)]
     rw [← hr, _root_.norm_symm]
     exact this}
   apply Asymptotics.IsBigO.trans h1
@@ -58,11 +52,10 @@ lemma linear_bigO (m : ℤ) (z : ℍ) : (fun (n : ℤ) => ((m : ℂ) * z + n)⁻
   refine ⟨by simp only [gt_iff_lt, inv_pos]; exact r_pos z, ?_⟩
   simp only [Nat.succ_eq_add_one, Nat.reduceAdd, mul_inv_rev, norm_mul, norm_inv,
     Real.norm_eq_abs, abs_abs, abs_norm, Int.cofinite_eq, eventually_sup, eventually_atBot,
-    eventually_atTop, ge_iff_le]
+    eventually_atTop]
   constructor
   · use min (-1) m
     intro n hn
-    --have := EisensteinSeries.summand_bound z (k := 1) (by norm_num) ![n, m]
     rw [mul_comm]
     gcongr
     · simp [(r_pos z).le]
@@ -99,7 +92,7 @@ lemma Asymptotics.IsBigO.zify {α β : Type*} [Norm α] [Norm β] {f : ℤ → �
   rw [Int.cofinite_eq] at hC
   rw [Nat.cofinite_eq_atTop]
   apply Filter.Eventually.natCast_atTop (p := fun n => ‖f n‖ ≤ C * ‖g n‖)
-  simp_all only [eventually_sup, eventually_atBot, eventually_atTop, ge_iff_le]
+  simp_all only [eventually_sup, eventually_atBot, eventually_atTop]
 
 lemma Asymptotics.IsBigO.of_neg {α β : Type*} [Norm α] [Norm β] {f : ℤ → α} {g : ℤ → β}
     (hf : f =O[cofinite] g) : (fun n => f (-n)) =O[cofinite] fun n => g (-n) := by
@@ -108,9 +101,8 @@ lemma Asymptotics.IsBigO.of_neg {α β : Type*} [Norm α] [Norm β] {f : ℤ →
   refine Injective.tendsto_cofinite (Equiv.injective (Equiv.neg ℤ))
 
 lemma linear_bigO_nat (m : ℤ) (z : ℍ) : (fun (n : ℕ) => ((m : ℂ) * z + n)⁻¹) =O[cofinite]
-    fun n => (|(n : ℝ)|⁻¹) := by
-  have := linear_bigO (m : ℤ) z
-  apply this.zify
+    fun n => (|(n : ℝ)|⁻¹) :=
+  (linear_bigO (m : ℤ) z).zify
 
 lemma linear_bigO' (m : ℤ) (z : ℍ) : (fun (n : ℤ) => ((n : ℂ) * z + m)⁻¹) =O[cofinite]
     fun n => (|(n : ℝ)|⁻¹) := by
@@ -120,7 +112,7 @@ lemma linear_bigO' (m : ℤ) (z : ℍ) : (fun (n : ℤ) => ((n : ℂ) * z + m)�
     use 1
     simp only [gt_iff_lt, zero_lt_one, norm_inv, Nat.succ_eq_add_one, Nat.reduceAdd, mul_inv_rev,
       norm_mul, Real.norm_eq_abs, one_mul, Int.cofinite_eq, eventually_sup,
-      eventually_atBot, eventually_atTop, ge_iff_le, true_and, abs_norm]
+      eventually_atBot, eventually_atTop, true_and, abs_norm]
     constructor
     repeat{
       use 0
@@ -142,11 +134,10 @@ lemma linear_bigO' (m : ℤ) (z : ℍ) : (fun (n : ℤ) => ((n : ℂ) * z + m)�
   refine ⟨by simp only [gt_iff_lt, inv_pos]; exact r_pos z, ?_⟩
   simp only [Nat.succ_eq_add_one, Nat.reduceAdd, mul_inv_rev, norm_mul, norm_inv,
     Real.norm_eq_abs, abs_abs, abs_norm, Int.cofinite_eq, eventually_sup, eventually_atBot,
-    eventually_atTop, ge_iff_le]
+    eventually_atTop]
   constructor
   · use min (-1) m
     intro n hn
-    --have := EisensteinSeries.summand_bound z (k := 1) (by norm_num) ![n, m]
     rw [mul_comm]
     gcongr
     · simp [(r_pos z).le]

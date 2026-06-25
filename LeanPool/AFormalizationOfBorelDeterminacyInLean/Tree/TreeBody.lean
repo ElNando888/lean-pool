@@ -101,9 +101,7 @@ lemma subAt_body_image_compl : Subtype.val '' ((body.append x)⁻¹' X)ᶜ
     · exact (body.append x b).prop
     · rintro ⟨z, hz, hz_eq⟩
       apply hb
-      have hbz : body.append x b = z := by
-        ext1
-        exact hz_eq.symm
+      have hbz : body.append x b = z := Subtype.ext hz_eq.symm
       simpa [hbz] using hz
   · intro h
     refine ⟨⟨a, ?_⟩, ?_, rfl⟩
@@ -116,7 +114,7 @@ lemma subAt_body_image_compl_preimage (y : List A) :
         (fun a ↦ x ++ₛ (y ++ₛ a)) ⁻¹' (Subtype.val '' X) := by
   ext a
   simp only [Set.mem_preimage, Set.mem_image, Set.mem_compl_iff, Subtype.exists, subAt_body,
-    exists_and_right, exists_eq_right, Set.mem_diff, not_exists]
+    exists_and_right, exists_eq_right, Set.mem_sdiff, not_exists]
   tauto
 lemma subAt_body_image_compl_compl_preimage (y : List A) :
     (fun a ↦ y ++ₛ a) ⁻¹' (Subtype.val '' ((body.append x)⁻¹' X)ᶜᶜ)

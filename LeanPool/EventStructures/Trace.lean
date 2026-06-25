@@ -49,7 +49,7 @@ lemma traceEquiv_trans : ∀ ⦃t₁ t₂ t₃⦄,
   | swap ind _ ih => exact TraceEquiv.swap ind (ih h₂₃)
 
 /-- Trace equivalence is symmetric. -/
-lemma traceEquiv_symm : Symmetric (TraceEquiv es) := by
+lemma traceEquiv_symm : ∀ ⦃t₁ t₂⦄, TraceEquiv es t₁ t₂ → TraceEquiv es t₂ t₁ := by
   intro t₁ t₂ h
   induction h with
   | refl _ => exact TraceEquiv.refl _
@@ -196,11 +196,10 @@ lemma mul_not_comm_empty
     (hdistinct : ∃ e₁ e₂ : es.Event, e₁ ≠ e₂) :
     ∃ t₁ t₂ : List es.Event, ¬ TraceEquiv es (t₁ ++ t₂) (t₂ ++ t₁) := by
   obtain ⟨e₁, e₂, hneq⟩ := hdistinct
-  refine ⟨[e₁], [e₂], ?_⟩
-  intro hteq
-  have h' : TraceEquiv es [e₁, e₂] [e₂, e₁] := by simpa using hteq
-  have hlists_eq : [e₁, e₂] = [e₂, e₁] := traceEquiv_eq_empty es hempty h'
-  exact hneq (by injection hlists_eq)
+  refine ⟨[e₁], [e₂], fun hteq => hneq ?_⟩
+  have hlists_eq : [e₁, e₂] = [e₂, e₁] :=
+    traceEquiv_eq_empty es hempty (by simpa using hteq)
+  injection hlists_eq
 
 end Monoid
 

@@ -70,8 +70,11 @@ lemma intermediateTensorEquiv_apply_tmul (L : IntermediateField K K_bar)
     intermediateTensorEquiv K K_bar A L ⟨_, h⟩ =
     x ⊗ₜ a := by
   simp only [intermediateTensorEquiv]
-  convert LinearEquiv.ofBijective_symm_apply_apply _ _
-  rfl
+  refine Eq.trans (congrArg _ ?_) (LinearEquiv.ofBijective_symm_apply_apply
+    (LinearMap.rTensor A L.val.toLinearMap).rangeRestrict (x ⊗ₜ[K] a))
+  apply Subtype.ext
+  simp only [LinearMap.codRestrict_apply, LinearMap.rTensor_tmul,
+    AlgHom.toLinearMap_apply, IntermediateField.coe_val]
 /-- The `L`-linear version of `intermediateTensorEquiv`. -/
 def intermediateTensorEquiv' (L : IntermediateField K K_bar) :
     intermediateTensor' K K_bar A L ≃ₗ[L] L ⊗[K] A where
@@ -88,8 +91,7 @@ def intermediateTensorEquiv' (L : IntermediateField K K_bar) :
     | tmul y a =>
       change (intermediateTensorEquiv K K_bar A L) ⟨↑(x * y) ⊗ₜ[K] a, _⟩ =
         x • (intermediateTensorEquiv K K_bar A L) ⟨↑y ⊗ₜ[K] a, _⟩
-      rw [intermediateTensorEquiv_apply_tmul]
-      rw [intermediateTensorEquiv_apply_tmul]
+      rw [intermediateTensorEquiv_apply_tmul, intermediateTensorEquiv_apply_tmul]
       rfl
     | add y z hy hz =>
       simp only [LinearMap.coe_mk, LinearMap.coe_toAddHom, SetLike.mk_smul_mk, map_add,
@@ -231,6 +233,7 @@ theorem eHat_linear_independent : LinearIndependent ℒ e^' := by
   intro s g h
   have h' : ∑ i ∈ s, algebraMap ℒ k⁻ (g i) • e i = 0 := by
     apply_fun Submodule.subtype _ at h
+    rw [map_zero] at h
     convert h using 1
     simp only [map_sum, map_smul, Submodule.coe_subtype, eHat']
     apply Finset.sum_congr rfl
@@ -266,7 +269,6 @@ def isoRestrict' : ℒ ⊗[k] A ≃ₗ[ℒ] Matrix (Fin n) (Fin n) ℒ :=
   Basis.equiv (e^) (Matrix.stdBasis ℒ (Fin n) (Fin n)) (Equiv.refl _)
 
 instance : SMulCommClass k ℒ ℒ := inferInstance
--- instance : Algebra ℒ (ℒ ⊗[k] A) := Algebra.TensorProduct.leftAlgebra
 
 /-- Scalar-extension inclusion from the restricted tensor product into the algebraic closure. -/
 def inclusion : ℒ ⊗[k] A →ₐ[ℒ] k⁻ ⊗[k] A :=
@@ -368,8 +370,6 @@ lemma isoRestrict_map_one : isoRestrict' n k k⁻ A iso 1 = 1 := by
   since inclusion' is injective, isoRestrict 1 = 1
   -/
   have eq := congr($(comm_square n k k_bar A iso) 1)
-  -- have : (inclusion n k k_bar A iso) 1 = 1 := by
-  --   erw [_root_.map_one (f := inclusion n k k_bar A iso)]
   conv_rhs at eq =>
     rw [LinearMap.comp_apply]
     change (LinearMap.restrictScalars (@Subtype k_bar fun x ↦ x ∈ ℒ)) iso.toLinearEquiv.toLinearMap

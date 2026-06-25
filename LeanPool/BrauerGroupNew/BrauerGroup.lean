@@ -77,12 +77,6 @@ lemma bijective_of_surj_of_isCentralSimple
     (f : A →ₐ[K] B) [Nontrivial B] (h : Function.Surjective f) :
     Function.Bijective f :=
   ⟨IsSimpleRing.iff_injective_ringHom A |>.1 inferInstance f.toRingHom, h⟩
--- instance tensor_CSA_is_CSA
---     [Algebra.IsCentral K A] [hA : IsSimpleRing A]
---     [Algebra.IsCentral K B] [hB: IsSimpleRing B] :
---     IsSimpleRing (A ⊗[K] B) := inferInstance
-  --  is_central := IsCentralSimple.TensorProduct.isCentral K A B hA.is_central hB.is_central
-  --  simple := IsCentralSimple.TensorProduct.simple K A B
 
 instance CSA_op_is_CSA [hA : Algebra.IsCentral K A] : Algebra.IsCentral K Aᵐᵒᵖ where
   out z hz:= by
@@ -97,9 +91,6 @@ instance CSA_op_is_CSA [hA : Algebra.IsCentral K A] : Algebra.IsCentral K Aᵐ�
           MulOpposite.unop_op, z']
     obtain ⟨k, hk⟩ := hA.out <| Subalgebra.mem_center_iff.mpr hz'
     exact ⟨k, MulOpposite.unop_inj.mp hk⟩
-  -- is_simple := @op_simple A _ hA.is_simple
-
--- instance [IsSimpleRing A] : IsSimpleRing Aᵐᵒᵖ := @op_simple A _ _
 
 namespace tensorSelfOp
 
@@ -137,7 +128,6 @@ def toEnd : A ⊗[K] Aᵐᵒᵖ →ₐ[K] Module.End K A :=
     fun a a' => show _ = _ from DFunLike.ext _ _ fun x ↦ show a * (x * a'.unop) = a * x * a'.unop
       from mul_assoc _ _ _ |>.symm
 
--- instance : Algebra.IsCentral K Aᵐᵒᵖ := inferInstance -- CSA_op_is_CSA K A inferInstance
 instance : FiniteDimensional K Aᵐᵒᵖ := LinearEquiv.finiteDimensional
   (MulOpposite.opLinearEquiv K : A ≃ₗ[K] Aᵐᵒᵖ)
 
@@ -240,12 +230,10 @@ def mul (A B : CSA K) : CSA K where
   fin_dim := Module.Finite.tensorProduct K A B
 
 /-- Finite-dimensionality is preserved by passing to the opposite algebra. -/
-@[implicit_reducible]
-def isFinDimOfMop (A : Type*) [Ring A] [Algebra K A] [FiniteDimensional K A] :
+theorem isFinDimOfMop (A : Type*) [Ring A] [Algebra K A] [FiniteDimensional K A] :
     FiniteDimensional K Aᵐᵒᵖ := by
   have f:= MulOpposite.opLinearEquiv K (M:= A)
   exact Module.Finite.equiv f
-    -- Module.Finite.of_surjective f (LinearEquiv.surjective _)
 
 /-- The opposite algebra representative used for inversion in the Brauer group. -/
 def inv (A : CSA K) : CSA K := {
@@ -301,8 +289,7 @@ def dimOneIso (R : Type*) [Ring R] [Algebra K R] : (Matrix (Fin 1) (Fin 1) R) �
     Matrix.diagonal_apply_eq]
   right_inv r := by simp only [Fin.isValue, Matrix.diagonal_apply_eq]
   map_mul' m n := by
-    simp only [Fin.isValue, Matrix.mul_apply]
-    exact Fin.sum_univ_one fun i ↦ m 0 i * n i 0
+    simpa only [Fin.isValue, Matrix.mul_apply] using Fin.sum_univ_one fun i ↦ m 0 i * n i 0
   map_add' m n := by simp only [Fin.isValue, Matrix.add_apply]
   commutes' r := by
     simp only [Fin.isValue, Algebra.algebraMap_eq_smul_one']
@@ -435,24 +422,14 @@ theorem mul_assoc' (A B C : BrauerGroup (K := K)) : A * B * C = A * (B * C) := b
 lemma mul_inv (A : CSA.{u, u} K) : IsBrauerEquivalent (mul A (inv (K := K) A)) oneIn' := by
   unfold mul inv oneIn'
   let n := Module.finrank K A
-  have hn : NeZero n := by
-    constructor
-    by_contra! hn
-    simp only [n] at hn
-    have := Module.finrank_pos_iff (R := K) (M := A) |>.2 inferInstance
-    omega
+  have hn : NeZero n := ⟨Module.finrank_pos.ne'⟩
   have := tensorSelfOp K A
   exact ⟨1, n, one_ne_zero, hn.1, ⟨dimOneIso _|>.trans this⟩⟩
 
 lemma inv_mul (A : CSA.{u, u} K) : IsBrauerEquivalent (mul (inv (K := K) A) A) oneIn' := by
   unfold mul inv oneIn'
   let n := Module.finrank K A
-  have hn : NeZero n := by
-    constructor
-    by_contra! hn
-    simp only [n] at hn
-    have := Module.finrank_pos_iff (R := K) (M := A) |>.2 inferInstance
-    omega
+  have hn : NeZero n := ⟨Module.finrank_pos.ne'⟩
   have := tensorOpSelf K A
   exact ⟨1, n, one_ne_zero, hn.1, ⟨dimOneIso _|>.trans this⟩⟩
 
@@ -702,14 +679,11 @@ def e6Aux0 : (E ⊗[K] A) ⊗[E] (E ⊗[K] B) →ₐ[E] E ⊗[K] (A ⊗[K] B) :=
         map_zero' := by simp
         map_add' := fun _ _ => by simp [TensorProduct.add_tmul, TensorProduct.tmul_add]
         commutes' k := by
-          simp only [Algebra.TensorProduct.algebraMap_apply]
-          rw [show (algebraMap K A) k ⊗ₜ[K] (1 : B) = k • (1 : A ⊗[K] B) by
-            rw [Algebra.algebraMap_eq_smul_one]
-            rw [← TensorProduct.smul_tmul']
-            rfl]
-          rw [TensorProduct.tmul_smul]
-          rw [Algebra.smul_def (A := E ⊗[K] (A ⊗[K] B))]
-          convert _root_.mul_one _ } fun e a =>
+          rw [Algebra.algebraMap_eq_smul_one (R := K) (A := E ⊗[K] (A ⊗[K] B)),
+            Algebra.algebraMap_eq_smul_one (R := K) (A := A)]
+          rw [TensorProduct.smul_tmul (R := K), TensorProduct.tmul_smul,
+            TensorProduct.tmul_smul, Algebra.TensorProduct.one_def,
+            Algebra.TensorProduct.one_def] } fun e a =>
             show (_ ⊗ₜ[K] _) * (_ ⊗ₜ[K] _) = (_ ⊗ₜ[K] _) * (_ ⊗ₜ[K] _) by simp)
     (Algebra.TensorProduct.lift
       { toFun e := e ⊗ₜ[K] (1 ⊗ₜ 1)
@@ -726,14 +700,10 @@ def e6Aux0 : (E ⊗[K] A) ⊗[E] (E ⊗[K] B) →ₐ[E] E ⊗[K] (A ⊗[K] B) :=
         map_zero' := by simp
         map_add' := fun _ _ => by simp [TensorProduct.tmul_add]
         commutes' k := by
-          simp only [Algebra.TensorProduct.algebraMap_apply]
-          rw [show (1 : A) ⊗ₜ[K] (algebraMap K B) k = k • (1 : A ⊗[K] B) by
-            rw [Algebra.algebraMap_eq_smul_one]
-            rw [TensorProduct.tmul_smul]
-            rfl]
-          rw [TensorProduct.tmul_smul]
-          rw [Algebra.smul_def (A := E ⊗[K] (A ⊗[K] B))]
-          convert _root_.mul_one _ }
+          rw [Algebra.algebraMap_eq_smul_one (R := K) (A := E ⊗[K] (A ⊗[K] B)),
+            Algebra.algebraMap_eq_smul_one (R := K) (A := B)]
+          rw [TensorProduct.tmul_smul, TensorProduct.tmul_smul,
+            Algebra.TensorProduct.one_def, Algebra.TensorProduct.one_def] }
     fun e b => show (_ ⊗ₜ _) * (_ ⊗ₜ _) = (_ ⊗ₜ _) * (_ ⊗ₜ _) by simp)
       fun x y => show _ = _ by
         induction x using TensorProduct.induction_on with
@@ -863,7 +833,6 @@ def Aux' (F K E : Type u) [Field F] [Field K] [Field E]
   | add => simp only [mul_add, TensorProduct.tmul_add, g.map_add, f.map_add, *]
   | tmul k2 a2 =>
   simp only [Algebra.TensorProduct.tmul_mul_tmul, *]
-  -- rw [mul_comm]
   simp only [TensorProduct.AlgebraTensorModule.assoc_symm_tmul,
     TensorProduct.AlgebraTensorModule.congr_tmul, TensorProduct.AlgebraTensorModule.rid_tmul,
     LinearEquiv.refl_apply, Algebra.TensorProduct.tmul_mul_tmul, Algebra.mul_smul_comm,

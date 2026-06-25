@@ -40,7 +40,7 @@ lemma unitSphereDual_surj : ∀ f : {f : (StrongDual ℝ E) // norm f = 1},
   intro f
   apply LinearMap.surjective_of_ne_zero
   intro h
-  rw [← ContinuousLinearMap.coe_zero, ContinuousLinearMap.coe_inj] at h
+  rw [← ContinuousLinearMap.toLinearMap_zero, ContinuousLinearMap.coe_inj] at h
   have := h ▸ f.2
   simp only [norm_zero, zero_ne_one] at this
 
@@ -51,7 +51,7 @@ variable [CompleteSpace E]
 
 instance Halfspace.SetLike : SetLike (Halfspace E) E where
   coe := Halfspace.S
-  coe_injective' := by
+  coe_injective := by
     intro H1 H2 h
     obtain ⟨f1, α1⟩ := H1
     obtain ⟨f2, α2⟩ := H2
@@ -195,9 +195,8 @@ lemma halfspaceTranslation.injective (x : E) :
   intro y
   rw [SetLike.ext_iff] at h
   specialize h (y + x)
-  rw [← SetLike.mem_coe, ← SetLike.mem_coe, mem_halfspaceTranslation, mem_halfspaceTranslation,
+  rwa [← SetLike.mem_coe, ← SetLike.mem_coe, mem_halfspaceTranslation, mem_halfspaceTranslation,
     add_sub_cancel_right] at h
-  exact h
 
 lemma frontierHalfspace_Hyperplane {Hi_ : Halfspace E} :
   frontier Hi_ = {x : E | Hi_.f.1 x = Hi_.α } := by
@@ -233,7 +232,7 @@ lemma Halfspace.val_raw (p : Subspace ℝ E) [CompleteSpace p] (H_' : Halfspace 
   ∃ H_ : Halfspace E, ((∀ (x : { x // x ∈ p }), H_.f.1 x = H_'.f.1 x) ∧ ‖H_.f.1‖ = ‖H_'.f.1‖) ∧
     H_.α = H_'.α := by
   rcases H_' with ⟨ ⟨ f, hf ⟩, C ⟩
-  choose g hg using Real.exists_extension_norm_eq p f
+  choose g hg using exists_extension_norm_eq p f
   exact ⟨ ⟨ ⟨ g, hg.2 ▸ hf ⟩, C ⟩, hg, rfl ⟩
 
 /-- A halfspace of the subspace `p` extended to a halfspace of the whole space `E`. -/
@@ -260,8 +259,7 @@ lemma Halfspace.val_eq (p : Subspace ℝ E) [CompleteSpace p] (H_' : Halfspace p
   apply subset_antisymm <;> intro x <;> rw [Set.mem_inter_iff, Set.mem_image]
   · rintro ⟨ hxH_', hxp ⟩
     refine ⟨ ⟨ x, hxp ⟩, ?_, rfl ⟩
-    rw [Halfspace_mem, ← (this ⟨ x, hxp ⟩), ← Halfspace.val_C p H_']
-    exact hxH_'
+    rwa [Halfspace_mem, ← (this ⟨ x, hxp ⟩), ← Halfspace.val_C p H_']
   · rintro ⟨ ⟨ x', hx'p ⟩, hx'H_', rfl ⟩
     refine ⟨ ?_, hx'p ⟩
     rw [Halfspace_mem, ← (this ⟨ x', hx'p ⟩), ← Halfspace.val_C p H_'] at hx'H_'
@@ -275,8 +273,7 @@ lemma Halfspace.val_eq' (p : Subspace ℝ E) [CompleteSpace p] : ∀ (H_' : Half
   apply subset_antisymm <;> intro x <;> rw [Set.mem_inter_iff, Set.mem_image]
   · rintro ⟨ hxH_', hxp ⟩
     refine ⟨ ⟨ x, hxp ⟩, ?_, rfl ⟩
-    rw [Halfspace_mem, ← (this ⟨ x, hxp ⟩), ← Halfspace.val_C p H_']
-    exact hxH_'
+    rwa [Halfspace_mem, ← (this ⟨ x, hxp ⟩), ← Halfspace.val_C p H_']
   · rintro ⟨ ⟨ x', hx'p ⟩, hx'H_', rfl ⟩
     refine ⟨ ?_, hx'p ⟩
     rw [Halfspace_mem, ← (this ⟨ x', hx'p ⟩), ← Halfspace.val_C p H_'] at hx'H_'

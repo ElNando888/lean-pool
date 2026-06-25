@@ -24,8 +24,7 @@ namespace VonNeumannAlgebra
 variable {H : Type _} [NormedAddCommGroup H] [InnerProductSpace ℂ H] [CompleteSpace H]
 
 lemma star_commutant_iff {M : VonNeumannAlgebra H} {e : H →L[ℂ] H} :
-  star e ∈ M.commutant ↔ e ∈ M.commutant :=
-by
+  star e ∈ M.commutant ↔ e ∈ M.commutant := by
   simp only [mem_commutant_iff]
   constructor
   · rintro h g hg
@@ -46,16 +45,14 @@ theorem elem_idempotent_iff_ker_and_range_invariantUnder_commutant (M : VonNeuma
     (e : H →L[ℂ] H) (h : IsIdempotentElem e) :
     e ∈ M ↔ ∀ y : H →L[ℂ] H, y ∈ M.commutant →
       (LinearMap.ker e.toLinearMap).InvariantUnder y.toLinearMap ∧
-        (LinearMap.range e.toLinearMap).InvariantUnder y.toLinearMap :=
-  by
+        (LinearMap.range e.toLinearMap).InvariantUnder y.toLinearMap := by
   simp_rw [Submodule.invariantUnder_iff, Set.subset_def,
     ContinuousLinearMap.coe_coe, Set.mem_image, SetLike.mem_coe, LinearMap.mem_ker,
     LinearMap.mem_range, forall_exists_index, and_imp,
     forall_apply_eq_imp_iff₂]
   constructor
   · intro he y hy
-    have : e.comp y = y.comp e :=
-      by
+    have : e.comp y = y.comp e := by
       rw [← VonNeumannAlgebra.commutant_commutant M, VonNeumannAlgebra.mem_commutant_iff] at he
       exact (he y hy).symm
     exact
@@ -84,7 +81,7 @@ theorem elem_idempotent_iff_ker_and_range_invariantUnder_commutant (M : VonNeuma
       star_commutant_iff, or_self] at hm
     have hv_ker : e (v : H) = 0 := LinearMap.map_coe_ker e.toLinearMap v
     have hw_fixed : e (w : H) = w := by
-      rw [← hy, ← ContinuousLinearMap.mul_apply e e, IsIdempotentElem.eq h, hy]
+      rw [← hy, ← mul_apply_eq_comp e e, IsIdempotentElem.eq h, hy]
     have hmv_ker : e (m (v : H)) = 0 := (H' m hm).1 (v : H) hv_ker
     have hmw_fixed : e (m (w : H)) = m w := by
       obtain ⟨p, hp⟩ := (H' m hm).2 (w : H) ⟨y, hy⟩

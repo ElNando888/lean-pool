@@ -34,7 +34,7 @@ distance is equal to `1`.
 @[simps -isSimp]
 def BTgraph : SimpleGraph (Vertices R) where
   Adj L M := BruhatTits.IsNeighbour L M
-  symm L M := (isNeighbour_symm L M).mp
+  symm := ⟨fun L M => (isNeighbour_symm L M).mp⟩
   loopless := ⟨by
     intro L (h : inv L L = 1)
     rw [inv_self] at h
@@ -52,14 +52,9 @@ lemma reachable (M L : Vertices R) {n : ℕ} : (h : inv M L = n) → BTgraph.Rea
   | succ k ih =>
     intro M L h
     obtain ⟨T, hLT, hTM⟩ := exists_intermediate_vertex _ M L h
-    apply SimpleGraph.Reachable.trans
-    · apply SimpleGraph.Reachable.symm
-      apply SimpleGraph.Adj.reachable
-      exact hTM
-    · show BTgraph.Reachable T L
-      apply ih
-      rw [inv_symm]
-      exact hLT
+    refine (SimpleGraph.Adj.reachable hTM).symm.trans (ih T L ?_)
+    rw [inv_symm]
+    exact hLT
 
 /-- The Bruhat-Tits graph is connected. -/
 lemma BTgraph_connected : SimpleGraph.Connected (BTgraph (R := R)) where

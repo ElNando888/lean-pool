@@ -50,7 +50,7 @@ theorem ABW.toNBW.lang_sub {S Q} {A : ABW S Q} {w : Nat → S} :
     edge_closure := by grind
     p_root := by grind [ABW.toNBW]
     p_sat := by
-      simp only [Set.mem_setOf_eq, Prod.mk.eta, Set.mem_diff, Set.mem_inter_iff, Set.mem_union,
+      simp only [Set.mem_setOf_eq, Prod.mk.eta, Set.mem_sdiff, Set.mem_inter_iff, Set.mem_union,
         Prod.forall]
       intros q i h10
       specialize h2 i
@@ -79,9 +79,7 @@ theorem ABW.toNBW.lang_sub {S Q} {A : ABW S Q} {w : Nat → S} :
   · grind
 
 lemma lemma1 {α : Type} {a b c : Set α} {h : Disjoint a b} : a = (a ∪ (b ∩ c)) \ b := by
-  rw [Set.union_diff_distrib]
-  rw [Disjoint.sdiff_eq_right h.symm]
-  rw [←Set.sdiff_inter_right_comm]
+  rw [Set.union_sdiff_distrib, Disjoint.sdiff_eq_right h.symm, ← Set.sdiff_inter_right_comm]
   simp
 
 /-- The set of states occupying level `i` of the run DAG `G`. -/
@@ -137,13 +135,9 @@ lemma ancestor_1 {i j} (hij : i ≤ j) (v : G.level (j + 1)) :
 lemma ancestor_trans {i j k} (hij : i ≤ j) (hjk : j ≤ k) (v : G.level k) :
     ancestor hij (ancestor hjk v) = ancestor (hij.trans hjk) v := by
   induction k
-  · have i0 : i = 0 := by omega
-    have j0 : j = 0 := by omega
-    subst i0
-    subst j0
-    unfold ancestor
-    simp only [↓reduceDIte]
-    apply ancestor_refl
+  · obtain rfl : i = 0 := by omega
+    obtain rfl : j = 0 := by omega
+    simp [ancestor]
   next k IH =>
     by_cases jeq : j = k + 1
     · subst jeq
@@ -227,21 +221,21 @@ theorem ABW.toNBW.lang_sup {S Q} {A : ABW S Q} [Finite Q] {w : Nat → S} :
           grind
         · rcases IH with ⟨hW, h2⟩ | ⟨hW, ⟨W'', ⟨h2, h3, h4⟩⟩⟩
           · rw [h2]
-            simp only [Set.mem_diff, and_imp]
+            simp only [Set.mem_sdiff, and_imp]
             by_cases hinf : ((helper.p (G := G) (n + 1)).1 ⊆ A.F)
             · left
-              rw [←Set.diff_eq_empty] at hinf
+              rw [←Set.sdiff_eq_empty] at hinf
               refine ⟨hinf, ?_⟩
-              simp only [helper.p, level, hW, ↓reduceIte, Set.mem_diff, Set.mem_setOf_eq,
+              simp only [helper.p, level, hW, ↓reduceIte, Set.mem_sdiff, Set.mem_setOf_eq,
                 ite_eq_left_iff, p] at hinf ⊢
               intros; contradiction
             · right
               have hW2 : (p (n + 1)).2 ≠ ∅ := by
                 rw [h2]
                 intro H
-                rw [Set.diff_eq_empty] at H
+                rw [Set.sdiff_eq_empty] at H
                 contradiction
-              rw [←Set.diff_eq_empty] at hinf
+              rw [←Set.sdiff_eq_empty] at hinf
               refine ⟨hinf, ?_⟩
               exists (p (n + 2)).2 ∪ (A.F ∩ (p (n + 2)).1)
               simp only [Set.union_subset_iff, Set.inter_subset_right, and_true]
@@ -265,7 +259,7 @@ theorem ABW.toNBW.lang_sup {S Q} {A : ABW S Q} [Finite Q] {w : Nat → S} :
               have hW2 : (p (n + 1)).2 ≠ ∅ := by
                 rw [h2]
                 intro H
-                rw [Set.diff_eq_empty] at H
+                rw [Set.sdiff_eq_empty] at H
                 contradiction
               refine ⟨hW2, ?_⟩
               exists (p (n + 2)).2 ∪ (A.F ∩ (p (n + 2)).1)

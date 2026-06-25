@@ -124,6 +124,7 @@ theorem ramanujan_E₆' : serreD 6 E₆.toFun = - 2⁻¹ * E₄.toFun * E₄.toF
   have hfun : ∀ z, serreD 6 E₆.toFun z = c * (E₄.toFun z * E₄.toFun z) := fun z => by
     have := smul_modularForm_eq_pointwise hc z
     convert this using 2
+    all_goals rfl
   have hc_val : c = -(1/2 : ℂ) := scalar_eq_of_tendsto hfun serre_DE₆_tendsto_atImInfty
     (by simpa [mul_one] using E₄_tendsto_one_atImInfty.mul E₄_tendsto_one_atImInfty)
   ext z
@@ -135,27 +136,20 @@ theorem ramanujan_E₆' : serreD 6 E₆.toFun = - 2⁻¹ * E₄.toFun * E₄.toF
 
 /-- Relationship between D and serreD: `D f = serreD k f + k/12 * E₂ * f`. -/
 lemma D_eq_serre_D_add (k : ℂ) (f : ℍ → ℂ) (z : ℍ) :
-    D f z = serreD k f z + k * 12⁻¹ * E₂ z * f z := by
-  simp only [serre_D_apply]; ring
+    D f z = serreD k f z + k * 12⁻¹ * E₂ z * f z := by simp only [serre_D_apply]; ring
 
 @[simp]
 theorem ramanujan_E₂ : D E₂ = 12⁻¹ * (E₂ * E₂ - E₄.toFun) := by
-  ext z
-  rw [D_eq_serre_D_add 1 E₂ z]
+  ext z; rw [D_eq_serre_D_add 1 E₂ z]
   simp only [congrFun ramanujan_E₂' z, Pi.mul_apply, Pi.sub_apply,
-    show (-12⁻¹ : ℍ → ℂ) z = -12⁻¹ from rfl, show (12⁻¹ : ℍ → ℂ) z = 12⁻¹ from rfl]
-  ring
+    show (-12⁻¹ : ℍ → ℂ) z = -12⁻¹ from rfl, show (12⁻¹ : ℍ → ℂ) z = 12⁻¹ from rfl]; ring
 
 theorem ramanujan_E₄ : D E₄.toFun = 3⁻¹ * (E₂ * E₄.toFun - E₆.toFun) := by
-  ext z
-  rw [D_eq_serre_D_add 4 E₄.toFun z]
+  ext z; rw [D_eq_serre_D_add 4 E₄.toFun z]
   simp only [congrFun ramanujan_E₄' z, Pi.mul_apply, Pi.sub_apply,
-    show (-3⁻¹ : ℍ → ℂ) z = -3⁻¹ from rfl, show (3⁻¹ : ℍ → ℂ) z = 3⁻¹ from rfl]
-  ring
+    show (-3⁻¹ : ℍ → ℂ) z = -3⁻¹ from rfl, show (3⁻¹ : ℍ → ℂ) z = 3⁻¹ from rfl]; ring
 
 theorem ramanujan_E₆ : D E₆.toFun = 2⁻¹ * (E₂ * E₆.toFun - E₄.toFun * E₄.toFun) := by
-  ext z
-  rw [D_eq_serre_D_add 6 E₆.toFun z]
+  ext z; rw [D_eq_serre_D_add 6 E₆.toFun z]
   simp only [congrFun ramanujan_E₆' z, Pi.mul_apply, Pi.sub_apply,
-    show (-2⁻¹ : ℍ → ℂ) z = -2⁻¹ from rfl, show (2⁻¹ : ℍ → ℂ) z = 2⁻¹ from rfl]
-  ring
+    show (-2⁻¹ : ℍ → ℂ) z = -2⁻¹ from rfl, show (2⁻¹ : ℍ → ℂ) z = 2⁻¹ from rfl]; ring

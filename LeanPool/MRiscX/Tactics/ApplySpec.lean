@@ -3,7 +3,7 @@ Copyright (c) 2026 Julius Marx. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Julius Marx
 -/
-import Lean
+import Lean.Elab.Tactic.Basic
 import LeanPool.MRiscX.AbstractSyntax.Instr
 import LeanPool.MRiscX.AbstractSyntax.AbstractSyntax
 import LeanPool.MRiscX.Semantics.Specification
@@ -206,13 +206,6 @@ private def getSpecTacFromInstr (i : Instr) (pc : UInt64) (name? : Option Ident 
 private def runSpecAndSolve (instr : Instr) (pc : UInt64) (name? : Option Ident := none) :
     TacticM Unit := do
   evalTactic (← getSpecTacFromInstr instr pc name?)
-  -- evalTactic (← `(tactic | try simp))
-  -- evalTactic (← `(tactic | try simp))
-  -- evalTactic (← `(tactic | try simpCurrInstr))
-  -- evalTactic (← `(tactic | try exact $(mkIdent `h_pc)))
-  -- evalTactic (← `(tactic | try simp at *))
-  -- evalTactic (← `(tactic | try repeat (constructor <;> try assumption)))
-  -- evalTactic (← `(tactic | try repeat assumption))
 
 
 private def getInstrAtPc (ctx : Lean.LocalContext) (pc : UInt64) :

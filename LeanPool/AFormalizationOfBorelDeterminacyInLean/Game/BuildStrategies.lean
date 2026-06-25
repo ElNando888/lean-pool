@@ -30,14 +30,10 @@ noncomputable def tryAndElse (planA planB : PreStrategy T p) :
 variable {planA planB planB' : PreStrategy T p}
 @[gcongr] lemma tryAndElse_mono (hB : planB ≤ planB') :
   tryAndElse planA planB ≤ tryAndElse planA planB' := by
-  intro _ _; unfold tryAndElse; split_ifs
-  · rfl
-  · apply hB
+  intro _ _; unfold tryAndElse; split_ifs <;> [rfl; apply hB]
 lemma quasi_of_planB (h : planB.IsQuasi) :
   (planA.tryAndElse planB).IsQuasi := by
-  dsimp [IsQuasi, tryAndElse]; intros; split_ifs
-  · assumption
-  · apply h
+  dsimp [IsQuasi, tryAndElse]; intros; split_ifs <;> [assumption; apply h]
 lemma planA_sub : planA ≤ planA.tryAndElse planB := by
   intro _ _ _ h'; dsimp [tryAndElse]; split_ifs with h
   · exact h'
@@ -163,13 +159,21 @@ noncomputable def firstMove : PreStrategy T Player.zero := by
       exact congrArg Subtype.val hs |>.symm
     subst heq; use rfl, hf; intro y b hpr hpo
     convert hs (y := a :: y) (by simpa) (by synthIsPosition) using 1
-    simp [PreStrategy.firstMove]
+    · rfl
+    · rfl
+    · rfl
+    · simp only [PreStrategy.firstMove, dif_pos]; rfl
+    · rfl
   · rintro ⟨rfl, hf, hs⟩; use hf; intro y b hpr hpo
     rcases y with (_ | ⟨a', y⟩)
     · simp [List.cons_prefix_cons] at hpr; simp [hpr, PreStrategy.firstMove]
     · obtain ⟨rfl, hpr2⟩ := List.cons_prefix_cons.mp hpr
       convert hs hpr2 (by synthIsPosition) using 1
-      simp [PreStrategy.firstMove]
+      · rfl
+      · rfl
+      · rfl
+      · simp only [PreStrategy.firstMove, dif_pos]; rfl
+      · rfl
 @[simp] lemma firstMove_body a' (x : Stream' A) :
   x.cons a' ∈ body (s.firstMove a h).subtree ↔ a = a' ∧ x ∈ body s.subtree := by
   constructor
@@ -207,9 +211,10 @@ lemma firstMove_extQuasi_tree (hs : s.IsQuasi) (hT : IsPruned G.tree) :
     obtain ⟨rfl, hx'⟩ := hx
     obtain ⟨b, hbs⟩ := hs ⟨_, hx'.1⟩ (by synthIsPosition)
     exact ⟨b, by
-      convert hbs using 1
-      simp [firstMove, subtreeIncl]
-      rfl⟩
+      convert hbs using 1 <;>
+        first
+          | rfl
+          | (simp only [firstMove, subtreeIncl, dif_pos]; rfl)⟩
 @[simp] lemma firstMove_extQuasi_isWinning (hT : IsPruned G.tree) (hs : s.IsQuasi) :
   ((s.firstMove a h).extQuasi hT).1.IsWinning ↔ s.IsWinning := by
   unfold IsWinning; rw [firstMove_extQuasi_tree a h s hs]; apply firstMove_isWinning a h s
@@ -261,8 +266,7 @@ lemma wonPosition_iff_disjoint' {x} :
   simp only [Set.eq_univ_iff_forall, Set.eq_empty_iff_forall_notMem, Set.mem_inter_iff,
     Set.mem_range]
   constructor
-  · intro h z hz
-    rcases hz with ⟨⟨a, rfl⟩, hpay⟩
+  · rintro h z ⟨⟨a, rfl⟩, hpay⟩
     rw [Player.payoff_swap_residual] at hpay
     have hpre := h a
     rw [Player.payoff_residual] at hpre
@@ -272,14 +276,13 @@ lemma wonPosition_iff_disjoint' {x} :
     have hpay' : body.append x a ∉ (Player.residual x p).payoff G := by
       intro hp
       apply hpay
-      rw [Player.payoff_residual]
-      exact hp
+      rwa [Player.payoff_residual]
     exact h (body.append x a) ⟨⟨a, rfl⟩, by
       rw [Player.payoff_swap_residual]
       exact hpay'⟩
 lemma wonPosition_iff_disjoint {x} :
   G.WonPosition x p ↔ principalOpen x ∩ (p.swap.residual x).payoff G = ∅ := by
-  simpa [← Set.image_val_inj, Set.inter_assoc, ← Set.inter_diff_assoc] using
+  simpa [← Set.image_val_inj, Set.inter_assoc, ← Set.inter_sdiff_assoc] using
     wonPosition_iff_disjoint'
 
 /-- the defensive PreStrategy never moves into a winning position of the opponent -/
@@ -310,9 +313,7 @@ lemma subtree_induction_body {f g : PreStrategy T p} {x} (h : x ∈ body f.subtr
   apply mem_body_of_take 0; intro n _; apply f.subtree_induction (by apply h; simp)
   intro m hm hx hp; simp at hm
   have hnode : take m (f.subtreeIncl ⟨Stream'.take n x, by apply h; simp⟩) =
-      f.subtreeIncl (body.take m ⟨x, h⟩) := by
-    ext
-    simp [hm.le]
+      f.subtreeIncl (body.take m ⟨x, h⟩) := by ext; simp [hm.le]
   intro ha
   let hp' : IsPosition (f.subtreeIncl (body.take m ⟨x, h⟩)).val p := by
     simpa [← hnode] using hp

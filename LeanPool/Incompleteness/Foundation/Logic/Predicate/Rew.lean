@@ -49,11 +49,7 @@ variable (ω : Rew L ξ₁ n₁ ξ₂ n₂)
 
 instance : FunLike (Rew L ξ₁ n₁ ξ₂ n₂) (Semiterm L ξ₁ n₁) (Semiterm L ξ₂ n₂) where
   coe := fun f => f.toFun
-  coe_injective' := fun f g h => by rcases f; rcases g; simpa using h
-
-instance :
-    CoeFun (Rew L ξ₁ n₁ ξ₂ n₂) (fun _ => Semiterm L ξ₁ n₁ → Semiterm L ξ₂ n₂) :=
-  DFunLike.hasCoeToFun
+  coe_injective := fun f g h => by rcases f; rcases g; simpa using h
 
 protected lemma func {k} (f : L.Func k) (v : Fin k → Semiterm L ξ₁ n₁) :
     ω (func f v) = func f (fun i => ω (v i)) := ω.func' f v
@@ -131,8 +127,7 @@ def map (b : Fin n₁ → Fin n₂) (e : ξ₁ → ξ₂) : Rew L ξ₁ n₁ ξ�
   bind (fun n => #(b n)) (fun m => &(e m))
 
 /-- Imported declaration from the Incompleteness formalization. -/
-def substs {n'} (v : Fin n → Semiterm L ξ n') : Rew L ξ n ξ n' :=
-  bind v fvar
+def substs {n'} (v : Fin n → Semiterm L ξ n') : Rew L ξ n ξ n' := bind v fvar
 
 /-- Imported declaration from the Incompleteness formalization. -/
 def emb {o : Type v₁} [h : IsEmpty o] {ξ : Type v₂} {n} : Rew L o n ξ n := map id h.elim
@@ -144,20 +139,16 @@ abbrev embs {o : Type v₁} [IsEmpty o] {n} : Rew L o n ℕ n := emb
 def empty {o : Type v₁} [h : IsEmpty o] {ξ : Type v₂} {n} : Rew L o 0 ξ n := map Fin.elim0 h.elim
 
 /-- Imported declaration from the Incompleteness formalization. -/
-def bShift : Rew L ξ n ξ (n + 1) :=
-  map Fin.succ id
+def bShift : Rew L ξ n ξ (n + 1) := map Fin.succ id
 
 /-- Imported declaration from the Incompleteness formalization. -/
-def bShiftAdd (m : ℕ) : Rew L ξ n ξ (n + m) :=
-  map (Fin.addNat · m) id
+def bShiftAdd (m : ℕ) : Rew L ξ n ξ (n + m) := map (Fin.addNat · m) id
 
 /-- Imported declaration from the Incompleteness formalization. -/
-def cast {n n' : ℕ} (h : n = n') : Rew L ξ n ξ n' :=
-  map (Fin.cast h) id
+def cast {n n' : ℕ} (h : n = n') : Rew L ξ n ξ n' := map (Fin.cast h) id
 
 /-- Imported declaration from the Incompleteness formalization. -/
-def castLE {n n' : ℕ} (h : n ≤ n') : Rew L ξ n ξ n' :=
-  map (Fin.castLE h) id
+def castLE {n n' : ℕ} (h : n ≤ n') : Rew L ξ n ξ n' := map (Fin.castLE h) id
 
 /-- Imported declaration from the Incompleteness formalization. -/
 def toS : Rew L (Fin n) 0 Empty n := Rew.bind ![] (#·)
@@ -342,11 +333,9 @@ section «lp_section_8»
 
 variable {n'} (w : Fin n → Semiterm L ξ n')
 
-@[simp] lemma substs_bvar (x : Fin n) : substs w #x = w x :=
-  by simp[substs]
+@[simp] lemma substs_bvar (x : Fin n) : substs w #x = w x := by simp[substs]
 
-@[simp] lemma substs_fvar (x : ξ) : substs w &x = &x :=
-  by simp[substs]
+@[simp] lemma substs_fvar (x : ξ) : substs w &x = &x := by simp[substs]
 
 @[simp] lemma substs_zero (w : Fin 0 → Term L ξ) : substs w = Rew.id :=
   by
@@ -396,8 +385,7 @@ section «lp_section_12»
 
 variable {k} (w : Fin k → Semiterm L ξ n)
 
-@[simp] lemma embSubsts_bvar (x : Fin k) : embSubsts w #x = w x :=
-  by simp[embSubsts]
+@[simp] lemma embSubsts_bvar (x : Fin k) : embSubsts w #x = w x := by simp[embSubsts]
 
 @[simp] lemma embSubsts_zero (w : Fin 0 → Term L ξ) : embSubsts w = Rew.emb := by
   ext x
@@ -439,14 +427,7 @@ variable (ω : Rew L ξ₁ n₁ ξ₂ n₂)
 @[simp] lemma q_eq_zero_iff : ω.q t = #0 ↔ t = #0 := by
   cases t
   · rename_i i
-    cases i using Fin.cases
-    · simp only [q_bvar_zero]
-    · simp only [q_bvar_succ, bShift_ne_zero]
-      constructor
-      · intro h
-        cases h
-      · intro h
-        cases h
+    cases i using Fin.cases <;> simp
   · simp only [q_fvar, bShift_ne_zero, reduceCtorEq]
   · simp only [Rew.func, reduceCtorEq]
 
@@ -457,15 +438,10 @@ variable (ω : Rew L ξ₁ n₁ ξ₂ n₂)
     · simp only [q_bvar_zero, Semiterm.Positive.bvar]
       rfl
     · simp only [q_bvar_succ, bShift_positive, Semiterm.Positive.bvar]
-      constructor
-      · intro _
-        exact Nat.succ_pos _
-      · intro _
-        trivial
+      exact ⟨fun _ ↦ Nat.succ_pos _, fun _ ↦ trivial⟩
   · simp only [q_fvar, bShift_positive, Semiterm.Positive.fvar]
   · rename_i v ih
-    simp only [Rew.func, Semiterm.Positive.func]
-    exact forall_congr' ih
+    simpa only [Rew.func, Semiterm.Positive.func] using forall_congr' ih
 
 @[simp] lemma qpow_id {k} : (Rew.id : Rew L ξ n ξ n).qpow k = Rew.id := by induction k <;> simp[*]
 
@@ -738,8 +714,6 @@ variable (ω : SyntacticRew L n₁ n₂)
   · cases x using Fin.cases <;> simp
   · cases x <;> simp
 
---@[simp] lemma qpow_fix (k : ℕ) : (fix (L := L) (n := n)).qpow k = fix := by
-
 end «lp_section_18»
 
 /-- Imported declaration from the Incompleteness formalization. -/
@@ -809,8 +783,7 @@ lemma embSubsts_bv (t : Semiterm L Empty n) (v : Fin n → Semiterm L ξ m) :
   simp only [Semiterm.Positive, embSubsts_bv, Finset.mem_biUnion, forall_exists_index, and_imp]
   exact ⟨fun H i hi x hx ↦ H x i hi hx, fun H x i hi hx ↦ H i hi x hx⟩
 
-@[simp] lemma bshift_positive (t : Semiterm L ξ n) : Positive (Rew.bShift t) := by
-  exact bShift_positive t
+@[simp] lemma bshift_positive (t : Semiterm L ξ n) : Positive (Rew.bShift t) := bShift_positive t
 
 lemma emb_comp_bShift_comm {o : Type v₁} [IsEmpty o] :
     Rew.bShift.comp (Rew.emb : Rew L o n ξ n) = Rew.emb.comp Rew.bShift := by

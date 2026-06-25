@@ -174,16 +174,14 @@ def _root_.VirasoroProject.LieOneCochain.bdryHom :
   map_add' Z W := by
     ext
     · rfl
-    · calc Z.2 + W.2 + β (Z.1 + W.1)
-       _ = Z.2 + β Z.1 + (W.2 + β W.1)                   := by simp only [map_add]; ac_rfl
-       _ = ((Z.1, Z.2 + β Z.1) + (W.1, W.2 + β W.1)).2   := by rfl
+    · change Z.2 + W.2 + β (Z.1 + W.1) = Z.2 + β Z.1 + (W.2 + β W.1)
+      simp only [map_add]
+      ac_rfl
   map_smul' c Z := by
     ext
     · rfl
-    · calc ((c • Z).1, (c • Z).2 + β (c • Z).1).2
-       _ = c • Z.2 + β (c • Z.1)           := by rfl
-       _ = c • (Z.2 + β Z.1)               := by simp only [LinearMapClass.map_smul, smul_add]
-       _ = (c • (Z.1, Z.2 + β Z.1)).2      := by rfl
+    · change c • Z.2 + β (c • Z.1) = c • (Z.2 + β Z.1)
+      simp only [LinearMapClass.map_smul, smul_add]
   map_lie' := by
     intro Z W
     ext <;> rfl
@@ -251,6 +249,10 @@ noncomputable def equivOfLieTwoCoboundary {γ' : LieTwoCocycle 𝕜 𝓰 𝓪}
       (g := (LieTwoCocycle.CentralExtension.congr obs').toLieHom.comp <| (-β).bdryHom γ')
       (by
         convert LieTwoCocycle.CentralExtension.hom_of_coboundary_add γ γ' γ β (-β) obs obs'
+        all_goals try first
+          | exact (LieOneCochain.neg_bdry β).symm
+          | rw [LieOneCochain.neg_bdry]
+          | rfl
         ext1 Z
         simp only [LieHom.coe_id, id_eq, LieTwoCocycle.CentralExtension.congr, Prod.mk.eta,
                   LieOneCochain.bdryHom, add_neg_cancel, LieHom.comp_apply, LieHom.coe_mk]
@@ -259,6 +261,10 @@ noncomputable def equivOfLieTwoCoboundary {γ' : LieTwoCocycle 𝕜 𝓰 𝓪}
         · simp only [left_eq_add]; rfl)
       (by
         convert LieTwoCocycle.CentralExtension.hom_of_coboundary_add γ' γ γ' (-β) β obs' obs
+        all_goals try first
+          | exact (LieOneCochain.neg_bdry β).symm
+          | rw [LieOneCochain.neg_bdry]
+          | rfl
         ext1 Z
         simp only [LieHom.coe_id, id_eq, LieTwoCocycle.CentralExtension.congr, Prod.mk.eta,
                   LieOneCochain.bdryHom, LieHom.comp_apply, LieHom.coe_mk]

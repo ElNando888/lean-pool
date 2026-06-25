@@ -63,23 +63,16 @@ theorem unitArc_at_end (θ₁ θ₂ a b : ℝ) (hab : a ≠ b) :
   simp only [unitArc]
   have hba : b - a ≠ 0 := sub_ne_zero.mpr (Ne.symm hab)
   congr 1
-  push_cast
-  have : (↑b - ↑a) / (↑b - ↑a) = (1 : ℂ) := by
-    apply div_self; exact_mod_cast hba
-  rw [this, one_mul]
+  field_simp
   ring
 
 /-- The unit arc is continuous. -/
 theorem unitArc_continuous (θ₁ θ₂ a b : ℝ) : Continuous (unitArc θ₁ θ₂ a b) := by
   unfold unitArc
-  apply Complex.continuous_exp.comp
-  apply Continuous.mul
-  · apply continuous_ofReal.comp
-    fun_prop
-  · exact continuous_const
+  fun_prop
 
 /-- Helper: the angle function for the unit arc has a specific derivative. -/
-private lemma unitArc_angle_hasDerivAt (θ₁ θ₂ a b t : ℝ) (hab : b - a ≠ 0) :
+private lemma unitArc_angle_hasDerivAt (θ₁ θ₂ a b t : ℝ) (_hab : b - a ≠ 0) :
     HasDerivAt (fun s => θ₁ + (s - a) / (b - a) * (θ₂ - θ₁))
       ((θ₂ - θ₁) / (b - a)) t := by
   have hd : HasDerivAt (fun s => (s - a) / (b - a)) (1 / (b - a)) t := by
@@ -87,8 +80,9 @@ private lemma unitArc_angle_hasDerivAt (θ₁ θ₂ a b t : ℝ) (hab : b - a �
   have h1 : HasDerivAt (fun s => (s - a) / (b - a) * (θ₂ - θ₁))
       ((θ₂ - θ₁) / (b - a)) t := by
     have hmul := hd.mul_const (θ₂ - θ₁)
-    convert hmul using 1
-    field_simp
+    convert hmul using 2 <;> first
+      | rfl
+      | ring
   simpa using h1.const_add θ₁
 
 /-- Derivative of the unit arc. -/
@@ -97,24 +91,21 @@ theorem unitArc_hasDerivAt (θ₁ θ₂ a b t : ℝ) (hab : a < b) :
       (unitArc θ₁ θ₂ a b t * (↑((θ₂ - θ₁) / (b - a)) * I)) t := by
   have hba : b - a ≠ 0 := sub_ne_zero.mpr hab.ne'
   have hangle := unitArc_angle_hasDerivAt θ₁ θ₂ a b t hba
-  -- Lift angle derivative to ℂ
   have hlift : HasDerivAt (fun s => (↑(θ₁ + (s - a) / (b - a) * (θ₂ - θ₁)) : ℂ))
       (↑((θ₂ - θ₁) / (b - a))) t :=
     hangle.ofReal_comp
-  -- Multiply by I
   have hc : HasDerivAt (fun s => (↑(θ₁ + (s - a) / (b - a) * (θ₂ - θ₁)) : ℂ) * I)
       (↑((θ₂ - θ₁) / (b - a)) * I) t :=
     hlift.mul_const I
-  -- Apply chain rule for cexp
   have hexp := hc.cexp
   simp only [unitArc]
-  convert hexp using 1
+  convert hexp using 2
+  rfl
 
 /-- Key distance formula: squared norm of difference of two points on the unit circle. -/
 theorem exp_sub_norm_sq (θ₁ θ₂ : ℝ) :
     ‖exp (↑θ₁ * I) - exp (↑θ₂ * I)‖ ^ 2 = 2 - 2 * Real.cos (θ₁ - θ₂) := by
   rw [← Complex.normSq_eq_norm_sq]
-  -- Expand using exp(iθ) = cos θ + i sin θ
   simp only [Complex.normSq_apply, Complex.exp_mul_I, Complex.sub_re, Complex.sub_im,
     Complex.add_re, Complex.mul_re, Complex.I_re, mul_zero,
     Complex.I_im, mul_one, sub_zero, Complex.add_im,

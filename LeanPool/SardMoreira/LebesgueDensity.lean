@@ -9,7 +9,7 @@ import LeanPool.SardMoreira.NormedSpace
 import LeanPool.SardMoreira.MeasureComap
 import LeanPool.SardMoreira.MeasureBallSemicontinuous
 import LeanPool.SardMoreira.Topology
-import Mathlib.Data.Real.StarOrdered
+import Mathlib.Algebra.Order.Star.Real
 import Mathlib.LinearAlgebra.FreeModule.PID
 import Mathlib.MeasureTheory.Constructions.HaarToSphere
 import Mathlib.MeasureTheory.Covering.Besicovitch
@@ -83,8 +83,7 @@ theorem MeasureTheory.Measure.AbsolutelyContinuous.exists_pos_forall_lt_imp_lt_o
     ∃ δ : ℝ≥0, δ > 0 ∧ ∀ s, ν s < δ → μ s < ε := by
   obtain ⟨φ, hφm, rfl⟩ : ∃ φ : α → ℝ≥0∞, Measurable φ ∧ μ = ν.withDensity φ := by
     refine ⟨μ.rnDeriv ν, by fun_prop, ?_⟩
-    symm
-    refine Measure.absolutelyContinuous_iff_withDensity_rnDeriv_eq.mp h
+    exact (Measure.absolutelyContinuous_iff_withDensity_rnDeriv_eq.mp h).symm
   have hφ : ∫⁻ x, φ x ∂ν ≠ ⊤ := by
     rw [← setLIntegral_univ, ← withDensity_apply _ .univ]
     apply measure_ne_top
@@ -111,7 +110,7 @@ theorem exists_absolutelyContinuous_forall_pos_exists_lt_gt :
   -- Define the measures μ and ν as described.
   use MeasureTheory.volume.withDensity (‖·‖ₑ), MeasureTheory.volume
   constructor
-  · exact withDensity_absolutelyContinuous volume fun x ↦ ↑(Real.nnabs x);
+  · exact withDensity_absolutelyContinuous volume fun x ↦ ↑(Real.nnabs x)
   · intro C δ hδ
     -- Choose $a > 0$ large enough such that $a * δ / 2 > C$.
     obtain ⟨a, ha₀, ha⟩ : ∃ a : ℝ≥0, a > 0 ∧ a * δ / 2 > C := by
@@ -169,12 +168,12 @@ theorem MeasureTheory.Measure.AbsolutelyContinuous.exists_pos_forall_lt_imp_lt
   refine ⟨δ, hδ₀, fun s hs ↦ ?_⟩
   calc
     μ s = μ (s ∩ {x | C < μ.rnDeriv ν x}) + μ (s \ {x | C < μ.rnDeriv ν x}) := by
-      rw [measure_inter_add_diff]
+      rw [measure_inter_add_sdiff]
       apply measurableSet_lt <;> fun_prop
     _ < ε / 2 + C * δ := by
       have : μ (s \ {x | ↑C < μ.rnDeriv ν x}) ≤ ↑C * ↑δ := by
         grw [← setLIntegral_rnDeriv h, ← hs, ← setLIntegral_const]
-        refine (setLIntegral_mono measurable_const ?_).trans (lintegral_mono_set diff_subset)
+        refine (setLIntegral_mono measurable_const ?_).trans (lintegral_mono_set sdiff_subset)
         simp
       refine ENNReal.add_lt_add_of_lt_of_le ?_ ?_ this
       · refine ne_top_of_le_ne_top (by finiteness) this
@@ -384,8 +383,9 @@ theorem eventually_forall_le_continuousWithinAt_Ici_measure_closedBall
   filter_upwards [eventually_lt_nhds ε₀] with r hr ν hν
   rw [← continuousWithinAt_Ioi_iff_Ici, ContinuousWithinAt]
   convert tendsto_measure_biInter_gt (by measurability) (by intros; gcongr)
-    ⟨ε, hr, ((hν _).trans_lt hε).ne⟩
-  rw [biInter_gt_closedBall]
+    ⟨ε, hr, ((hν _).trans_lt hε).ne⟩ using 2
+  · rfl
+  · rw [biInter_gt_closedBall]
 
 theorem eventually_continuousWithinAt_Ici_measure_inter_closedBall_div
     {X : Type*} [PseudoMetricSpace X] [MeasurableSpace X] [OpensMeasurableSpace X]

@@ -169,8 +169,7 @@ noncomputable abbrev iSupChainSepsubfield (c : Set (AllSepSubfield K D)) [Nonemp
       obtain ⟨L1, hx⟩ := hx
       use L1.1.1.3 hx hx0|>.choose
       constructor
-      · have : L1.1.1.1 ≤ ⨆ (L : c), (L.1.1).toSubalgebra := by
-          exact le_iSup_of_le L1 (by rfl)
+      · have : L1.1.1.1 ≤ ⨆ (L : c), (L.1.1).toSubalgebra := le_iSup_of_le L1 (by rfl)
         exact this (L1.1.1.3 hx hx0).choose_spec.1
       · exact L1.1.1.3 hx hx0|>.choose_spec.2
   }
@@ -271,7 +270,6 @@ instance (L : SubField K D) : IsScalarTower K L (Subalgebra.centralizer K (A := 
 
 instance (L : SubField K D) : FiniteDimensional L (Subalgebra.centralizer K (A := D) L) :=
   haveI : FiniteDimensional K (Subalgebra.centralizer K (A := D) L) := inferInstance
-  -- haveI : FiniteDimensional K L := sorry
   Module.Finite.of_restrictScalars_finite K _ _
 
 /-- The center of a centralizer is equivalent to its image in the ambient division algebra. -/
@@ -385,8 +383,13 @@ theorem exists_sep_masSubfield' : ∃ (a : D), IsMax (SubField.botAdjoin K D a) 
     contrapose! h
     apply Subalgebra.toSubring_injective
     convert congr(Subring.map CL.val.toRingHom $h)
-    ext
-    simp
+    all_goals first
+      | rfl
+      | exact (Subalgebra.center_toSubring K ↥CL).symm
+      | · ext x
+          simp only [Subalgebra.mem_toSubring, Subring.mem_map, Subring.mem_top,
+            true_and, AlgHom.toRingHom_eq_coe, RingHom.coe_coe, Subalgebra.coe_val,
+            Subtype.exists, exists_prop, exists_eq_right]
   obtain ⟨a, ha1, ha2⟩ := @JacobsonNoether.exists_separable_and_not_isCentral
     (Subalgebra.centralizer K (A := D) L) _ inst3 ass
   obtain ⟨L, hLsep⟩ := L
@@ -428,13 +431,11 @@ theorem exists_sep_masSubfield' : ∃ (a : D), IsMax (SubField.botAdjoin K D a) 
       intro x1 hx1
       simp only [Set.mem_union, SetLike.mem_coe, Set.mem_singleton_iff] at hx1
       obtain hxL | hxa := hx1
-      · have hLsep' : Algebra.IsSeparable K L := hLsep
-        rw [Algebra.isSeparable_def] at hLsep'
-        have := IsSeparable.map (F := K) (K := L)
+      · exact IsSeparable.map (F := K) (K := L)
           (L := SubField.adjoin K D L a.1 a.2) (x := (⟨x1, hxL⟩ : L))
           (Subalgebra.inclusion (Set.subset_union_left |>.trans Algebra.subset_adjoin))
-          (Subalgebra.inclusion_injective _) <| hLsep' ⟨x1, hxL⟩
-        exact this
+          (Subalgebra.inclusion_injective _) <|
+          (Algebra.isSeparable_def K L).1 hLsep ⟨x1, hxL⟩
       · subst hxa
         letI : Algebra.IsSeparable K L := hLsep
         letI := IsLAlg K D L a.1 a.2

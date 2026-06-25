@@ -622,65 +622,17 @@ private theorem proofTransformation_step {𝕏 : Proof} {σ}
     rw [ExtSkip.r]
     simp [ptm_eq, ExtSkip.fₙ_alternate, h2]
   case topₗ Δ in_Δ =>
-    have ptm_eq :
-        proofTransformationMap partialProof y_zy =
-          ⟨ExtSkip.RuleApp.topₗ Δ in_Δ, children⟩ := by
-      simp [proofTransformationMap, r_def, children]
-    simp only [ExtSkip.p, ptm_eq, List.map_map, List.map_eq_singleton_iff, Function.comp_apply,
-      proofTransformation_f, Bool.false_eq_true, Finset.union_singleton, List.map_eq_nil_iff,
-      Finset.union_insert, children]
-    rw [ExtSkip.r]
-    simp [ptm_eq, ←h2]
+    simp [ExtSkip.p, ExtSkip.r, proofTransformationMap, r_def, ←h2]
   case topᵣ Δ in_Δ =>
-    have ptm_eq :
-        proofTransformationMap partialProof y_zy =
-          ⟨ExtSkip.RuleApp.topᵣ Δ in_Δ, children⟩ := by
-      simp [proofTransformationMap, r_def, children]
-    simp only [ExtSkip.p, ptm_eq, List.map_map, List.map_eq_singleton_iff, Function.comp_apply,
-      proofTransformation_f, Bool.false_eq_true, Finset.union_singleton, List.map_eq_nil_iff,
-      Finset.union_insert, children]
-    rw [ExtSkip.r]
-    simp [ptm_eq, ←h2]
+    simp [ExtSkip.p, ExtSkip.r, proofTransformationMap, r_def, ←h2]
   case axₗₗ Δ n in_Δ =>
-    have ptm_eq :
-        proofTransformationMap partialProof y_zy =
-          ⟨ExtSkip.RuleApp.axₗₗ Δ n in_Δ, children⟩ := by
-      simp [proofTransformationMap, r_def, children]
-    simp only [ExtSkip.p, ptm_eq, List.map_map, List.map_eq_singleton_iff, Function.comp_apply,
-      proofTransformation_f, Bool.false_eq_true, Finset.union_singleton, List.map_eq_nil_iff,
-      Finset.union_insert, children]
-    rw [ExtSkip.r]
-    simp [ptm_eq, ←h2]
+    simp [ExtSkip.p, ExtSkip.r, proofTransformationMap, r_def, ←h2]
   case axₗᵣ Δ n in_Δ =>
-    have ptm_eq :
-        proofTransformationMap partialProof y_zy =
-          ⟨ExtSkip.RuleApp.axₗᵣ Δ n in_Δ, children⟩ := by
-      simp [proofTransformationMap, r_def, children]
-    simp only [ExtSkip.p, ptm_eq, List.map_map, List.map_eq_singleton_iff, Function.comp_apply,
-      proofTransformation_f, Bool.false_eq_true, Finset.union_singleton, List.map_eq_nil_iff,
-      Finset.union_insert, children]
-    rw [ExtSkip.r]
-    simp [ptm_eq, ←h2]
+    simp [ExtSkip.p, ExtSkip.r, proofTransformationMap, r_def, ←h2]
   case axᵣₗ Δ n in_Δ =>
-    have ptm_eq :
-        proofTransformationMap partialProof y_zy =
-          ⟨ExtSkip.RuleApp.axᵣₗ Δ n in_Δ, children⟩ := by
-      simp [proofTransformationMap, r_def, children]
-    simp only [ExtSkip.p, ptm_eq, List.map_map, List.map_eq_singleton_iff, Function.comp_apply,
-      proofTransformation_f, Bool.false_eq_true, Finset.union_singleton, List.map_eq_nil_iff,
-      Finset.union_insert, children]
-    rw [ExtSkip.r]
-    simp [ptm_eq, ←h2]
+    simp [ExtSkip.p, ExtSkip.r, proofTransformationMap, r_def, ←h2]
   case axᵣᵣ Δ n in_Δ =>
-    have ptm_eq :
-        proofTransformationMap partialProof y_zy =
-          ⟨ExtSkip.RuleApp.axᵣᵣ Δ n in_Δ, children⟩ := by
-      simp [proofTransformationMap, r_def, children]
-    simp only [ExtSkip.p, ptm_eq, List.map_map, List.map_eq_singleton_iff, Function.comp_apply,
-      proofTransformation_f, Bool.false_eq_true, Finset.union_singleton, List.map_eq_nil_iff,
-      Finset.union_insert, children]
-    rw [ExtSkip.r]
-    simp [ptm_eq, ←h2]
+    simp [ExtSkip.p, ExtSkip.r, proofTransformationMap, r_def, ←h2]
   case orₗ Δ φ ψ in_Δ =>
     have ptm_eq :
         proofTransformationMap partialProof y_zy =
@@ -767,8 +719,9 @@ private theorem proofTransformation_path {𝕏 : Proof} {σ}
       simp only [r_def, List.mem_map, List.mem_singleton] at this
     case pre z z_in =>
       apply Sigma.Lex.left
-      convert z_in
-      simp [this]
+      change (f (n + 1)).1 ∈ p 𝕏.α (f n).1
+      rw [this]
+      exact z_in
     all_goals
       have ⟨z, z_prop, eq⟩ := this
       apply Sigma.lex_iff.2 (Or.inr ⟨?_, ?_⟩)

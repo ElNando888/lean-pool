@@ -147,11 +147,9 @@ def inr : J →ₗ⁅K⁆ L ⋉[φ] J := {
     · simp only [RingHom.id_apply, smul_right]
   map_lie' := by
     intro x y
-    ext
-    · simp only [bracket_def, lie_self, map_zero, LieDerivation.coe_zero, Pi.zero_apply,
-      sub_self, zero_add]
-    · simp only [bracket_def, lie_self, map_zero, LieDerivation.coe_zero, Pi.zero_apply,
-      sub_self, zero_add]
+    ext <;>
+      simp only [bracket_def, lie_self, map_zero, LieDerivation.coe_zero, Pi.zero_apply,
+        sub_self, zero_add]
 }
 
 /-- TODO. -/
@@ -243,6 +241,10 @@ theorem finrank_eq [StrongRankCondition K] [Module.Free K L] [Module.Free K J]
       [Module.Finite K L] [Module.Finite K J] :
     Module.finrank K (L ⋉[φ] J) = Module.finrank K L + Module.finrank K J :=
   Module.finrank_prod
+
+-- `LieRing.ofAssociativeRing` is a local instance in Mathlib (a `def`, not a global instance), so
+-- we re-enable it locally to view the commutative ring `K` as a Lie ring over itself.
+attribute [local instance 100] LieRing.ofAssociativeRing
 
 /-- Any semidirect product of the base field with an abelian Lie algebra is almost abelian. -/
 theorem isAlmostAbelian {φ : K →ₗ⁅K⁆ LieDerivation K L L} [IsLieAbelian L]

@@ -35,15 +35,13 @@ variable {A B : Set (Fin n → ℤ)} {q : ℝ≥0∞}
 lemma quality_mono (h : A ⊆ B) : quality A ≤ quality B :=
   sInf_le_sInf fun _ mq ↦ mq.subset fun _ ma ↦ ⟨h ma.1, ma.2⟩
 
-lemma quality_le_of_finite (hq : {a ∈ A | q < tupleQuality a}.Finite) : quality A ≤ q :=
-  sInf_le hq
+lemma quality_le_of_finite (hq : {a ∈ A | q < tupleQuality a}.Finite) : quality A ≤ q := sInf_le hq
 
 lemma quality_finite (hA : A.Finite) : quality A = 0 := by
   rw [← nonpos_iff_eq_zero]
   exact quality_le_of_finite (hA.sep _)
 
-lemma quality_empty : quality (n := n) ∅ = 0 :=
-  quality_finite Set.finite_empty
+lemma quality_empty : quality (n := n) ∅ = 0 := quality_finite Set.finite_empty
 
 lemma quality_union_finite (h : B.Finite) : quality (A ∪ B) = quality A := by
   refine le_antisymm (sInf_le_sInf fun q mq ↦ ?_) (quality_mono Set.subset_union_left)
@@ -62,7 +60,7 @@ lemma quality_ge_of_liminf (f : ℕ → Fin n → ℤ) (s : Set ℕ)
   rw [eventually_atTop] at qf
   obtain ⟨N₀, hN₀⟩ := qf
   have key : {i | N₀ ≤ i ∧ i ∈ s}.Infinite := by
-    convert infs.diff (Set.finite_lt_nat N₀) using 1
+    convert infs.sdiff (Set.finite_lt_nat N₀) using 1
     ext
     simp [and_comm]
   refine key.image (injs.mono fun _ m ↦ m.2) |>.mono fun a ma ↦ ?_

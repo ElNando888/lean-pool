@@ -200,7 +200,7 @@ def mk (x : ℝ) (lub : ℕ → ℚInterval)
     exact ⟨hlb n, hub n⟩
 
 theorem mk_val_eq_val : (mk x v h₁ h₂ h₃ h₄ h₅).val = x :=
-  val_uniq (by convert h₃) (by convert h₄)
+  val_uniq (fun n ↦ h₃ n) (fun n ↦ h₄ n)
 
 theorem lb_le_ub (x : ComputableℝSeq) : ∀n, x.lb n ≤ x.ub n :=
   fun n ↦ Rat.cast_le.mp (le_trans (x.hlb n) (x.hub n))
@@ -252,80 +252,6 @@ def neg (x : ComputableℝSeq) : ComputableℝSeq :=
 /-- Subtraction of computable real sequences. -/
 def sub (x : ComputableℝSeq) (y : ComputableℝSeq) : ComputableℝSeq :=
   add x (neg y)
-
--- def applyℚMono (x : ComputableℝSeq) (fq : ℚ → ℚ) (fr : ℝ → ℝ) (hfr : ∀q, fq q = fr q)
---     (hf₁ : Monotone fr) (hf₂ : Continuous fr) : ComputableℝSeq :=
---   mk (x := fr x.val)
---   (lb := x.lb.apply fq (hf₂.continuous_embed fq hfr))
---   (ub := x.ub.apply fq (hf₂.continuous_embed fq hfr))
---   (hlb := fun n ↦ (hfr _).symm ▸ (hf₁ (x.hlb n)))
---   (hub := fun n ↦ (hfr _).symm ▸ (hf₁ (x.hub n)))
---   (heq := CauSeq.equiv_apply x.lb x.ub fq (hf₂.continuous_embed fq hfr) x.heq)
-
--- @[simp]
--- theorem val_applyℚMono : (applyℚMono x fq fr h₁ h₂ h₃).val = fr x.val :=
---   mk_val_eq_val
-
--- def applyℚAnti (x : ComputableℝSeq) (fq : ℚ → ℚ) (fr : ℝ → ℝ) (hfr : ∀q, fq q = fr q)
---     (hf₁ : Antitone fr) (hf₂ : Continuous fr) : ComputableℝSeq :=
---   applyℚMono (neg x) (fq∘Neg.neg) (fr∘Neg.neg)
---     (fun q ↦ by have := hfr (-q); rwa [Rat.cast_neg] at this)
---     (hf₁.comp monotone_id.neg)
---     (hf₂.comp ContinuousNeg.continuous_neg)
-
--- @[simp]
--- theorem val_applyℚAnti : (applyℚAnti x fq fr h₁ h₂ h₃).val = fr x.val := by
---   rw [applyℚAnti, val_applyℚMono, neg, mk_val_eq_val]
---   dsimp
---   rw [neg_neg]
-
--- --Faster one for rational multiplcation
--- def lb_mulQ [hx : ComputableℝSeq x] : CauSeq ℚ qabs :=
---   if q ≥ 0 then hx.lb * CauSeq.const qabs q else hx.ub * CauSeq.const qabs q
-
--- def ub_mulQ [hx : ComputableℝSeq x] : CauSeq ℚ qabs :=
---   if q ≥ 0 then hx.ub * CauSeq.const qabs q else hx.lb * CauSeq.const qabs q
-
--- /- Multiplication of two computable sequences. Can't just use CauSeq mul because that
---  no longer gives correct upper/lower bounds. -/
--- def ComputableℝSeqMul [hx : ComputableℝSeq x] : ComputableℝSeq (x * q) where
---   lb := lb_mulQ x q
---   ub := ub_mulQ x q
---   hlb n := by
---     simp_rw [lb_mulQ, min_def]
---     by_cases hq : (q:ℝ) > 0
---     <;> split_ifs with h
---     <;> rify at *
---     <;> nlinarith (config := {splitNe := true}) [hx.hlb n, hx.hub n]
---   hub n := by
---     simp_rw [ub_mulQ, max_def]
---     by_cases hq : (q:ℝ) > 0
---     <;> split_ifs with h
---     <;> rify at *
---     <;> nlinarith (config := {splitNe := true}) [hx.hlb n, hx.hub n]
---   heq := by
---     have : (ub_mulQ x q - lb_mulQ x q)
---       = fun n => (abs (ub x n - lb x n)) * (abs q) := by
---       funext n
---       dsimp
---       simp_rw [ub_mulQ, lb_mulQ]
---       simp_rw [min_def, max_def, abs_ite_le]
---       split_ifs <;> nlinarith
---     rw [this]
---     apply IsCauSeq.mul
---     · intro ε hε
---       obtain ⟨i, hi⟩ := hx.hgap ε hε
---       use i
---       intro j hj
---       replace hi := hi j hj
---       simp_rw [abs_ite_le] at hi ⊢
---       split_ifs at hi ⊢
---       <;> dsimp at * <;> linarith
---     · exact IsCauSeq.const _
-
--- instance instComputableQMul [ComputableℝSeq x] : ComputableℝSeq (q * x) :=
---   mul_comm x q ▸ instComputableMulQ x q
-
 
 /-- "Bundled" multiplication to give lower and upper bounds. This bundling avoids the need to
   call lb and ub separately for each half (which, in a large product, leads to an exponential
@@ -393,11 +319,14 @@ def mul (x : ComputableℝSeq) (y : ComputableℝSeq) : ComputableℝSeq where
   lub := mul' x y
   hcl := mul'_fst_iscau
   hcu := mul'_snd_iscau
-  heq' := by convert lb_ub_mul_equiv x y
+  heq' := by
+    convert lb_ub_mul_equiv x y using 2
+    · exact Subtype.ext fst_mul'_eq_mulLb
+    · exact Subtype.ext snd_mul'_eq_mulUb
   hlub n :=
     let h₀ : Real.mk _ = x.val * y.val := by
       apply val_uniq' (mulLb_is_lb x y) (mulUb_is_ub x y)
-      convert lb_ub_mul_equiv x y
+      exact lb_ub_mul_equiv x y
     h₀ ▸ QInterval.mem_mulPair _ (x.val_mem_interval n) _ (y.val_mem_interval n)
 
 instance instComputableZero : Zero ComputableℝSeq :=
@@ -492,8 +421,8 @@ theorem ub_add : (x + y).ub = x.ub + y.ub :=
   rfl
 
 @[simp]
-theorem val_add : (x + y).val = x.val + y.val := by
-  convert (mk_val_eq_val : (add x y).val = x.val + y.val)
+theorem val_add : (x + y).val = x.val + y.val :=
+  (mk_val_eq_val : (add x y).val = x.val + y.val)
 
 @[simp]
 theorem lb_neg : (-x).lb = -x.ub :=
@@ -504,13 +433,13 @@ theorem ub_neg : (-x).ub = -x.lb := by
   rfl
 
 @[simp]
-theorem val_neg : (-x).val = -x.val := by
-  convert (mk_val_eq_val : (neg x).val = -x.val)
+theorem val_neg : (-x).val = -x.val :=
+  (mk_val_eq_val : (neg x).val = -x.val)
 
 @[simp]
 theorem lb_sub : (x - y).lb = x.lb - y.ub := by
   suffices (sub x y).lb = x.lb - y.ub by
-    convert this
+    exact this
   rw [sub, add, neg]
   ext
   simp [mk, lb, ub, sub_eq_add_neg]
@@ -518,7 +447,7 @@ theorem lb_sub : (x - y).lb = x.lb - y.ub := by
 @[simp]
 theorem ub_sub : (x - y).ub = x.ub - y.lb := by
   suffices (sub x y).ub = x.ub - y.lb by
-    convert this
+    exact this
   rw [sub, add, neg]
   ext
   simp [mk, lb, ub, sub_eq_add_neg]
@@ -526,7 +455,7 @@ theorem ub_sub : (x - y).ub = x.ub - y.lb := by
 @[simp]
 theorem val_sub : (x - y).val = x.val - y.val := by
   suffices (sub x y).val = x.val - y.val by
-    convert this
+    exact this
   rw [sub, add, neg, mk_val_eq_val, mk_val_eq_val]
   rfl
 
@@ -545,7 +474,7 @@ theorem ub_mul : (x * y).ub = ((x.lb * y.lb) ⊔ (x.ub * y.lb)) ⊔ ((x.lb * y.u
 @[simp]
 theorem val_mul : (x * y).val = x.val * y.val := by
   suffices (mul x y).val = x.val * y.val by
-    convert this
+    exact this
   rw [val_def]
   exact val_uniq' (mulLb_is_lb x y) (mulUb_is_ub x y) (lb_ub_mul_equiv x y)
 
@@ -887,8 +816,7 @@ theorem val_safeInv {x : ComputableℝSeq} (hnz : x.val ≠ 0) : (x.safeInv hnz)
   rw [safeInv, mk_val_eq_val]
 
 theorem val_safeInv_ne_zero {x : ComputableℝSeq} (hnz : x.val ≠ 0) : (x.safeInv hnz).val ≠ 0 := by
-  rw [val_safeInv, ne_eq, inv_eq_zero]
-  exact hnz
+  rwa [val_safeInv, ne_eq, inv_eq_zero]
 
 /-- Subtype of sequences with nonzero values. These admit a (terminating) inverse function. -/
 def nzSeq := {x : ComputableℝSeq // x.val ≠ 0}
@@ -934,8 +862,7 @@ theorem inv_eq_safeInv {x : ComputableℝSeq} (hnz : x.val ≠ 0) : x⁻¹ = x.s
   next h => rfl
   next h =>
     absurd h
-    rw [sign_zero_iff]
-    exact hnz
+    rwa [sign_zero_iff]
 
 @[simp]
 theorem val_inv (x : ComputableℝSeq) : x⁻¹.val = x.val⁻¹ := by
@@ -1025,10 +952,6 @@ theorem neg_eq_of_add (x y : ComputableℝSeq) (h : x + y = 0) : -x = y := by
   a * a⁻¹ ≠ 1, and (a⁻¹)⁻¹ ≠ a. This typeclass collects all these facts together.
 
 TODO could include mul_inv_rev, inv_eq_of_mul, intCast_ofNat, intCast_negSucc. -/
-/-TODO(mul_assoc)
-class CompSeqClass (G : Type u) extends
-  CommSemiring G, DivInvMonoid G, HasDistribNeg G, SubtractionCommMonoid G, IntCast G, RatCast G
--/
 class CompSeqClass (G : Type u) extends
   AddCommMonoid G, CommMagma G, MulZeroOneClass G, Inv G, Div G,
   HasDistribNeg G, SubtractionCommMonoid G, NatCast G, IntCast G, RatCast G
@@ -1076,15 +999,6 @@ noncomputable instance instSeqCompSeqClass : CompSeqClass ComputableℝSeq := by
             CauSeq.inf_idem, CauSeq.sup_idem, CauSeq.zero_apply, CauSeq.coe_inf, CauSeq.coe_sup,
             Pi.sup_apply, Pi.inf_apply, sup_eq_right, inf_eq_left, lb_le_ub a n]
        }
-
-/-TODO(mul_assoc)
-@[simp]
-theorem val_natpow (x : ComputableℝSeq) (n : ℕ): (x ^ n).val = x.val ^ n := by
-  induction n
-  · rw [pow_zero, val_one, pow_zero]
-  · rename_i ih
-    rw [pow_succ, pow_succ, val_mul, ih]
--/
 
 end semiring
 

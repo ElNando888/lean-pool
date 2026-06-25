@@ -71,7 +71,6 @@ aim of reaching a contradiction (as then, no such partition can exist). We may f
   we have a contradiction (`no_spinalMap`), and therefore show that no spinal map exists.
 -/
 
-attribute [aesop norm 10 tactic] Lean.Elab.Tactic.Omega.omegaDefault
 attribute [aesop 2 simp] Set.subset_def Finset.subset_iff
 
 namespace LeanPool.AharoniKorman
@@ -157,9 +156,7 @@ instance : PartialOrder Hollom where
 @[simp] lemma toHollom_le_toHollom_iff_fixed_right {a b c d n : ℕ} :
     h(a, b, n) ≤ h(c, d, n) ↔ a ≤ c ∧ b ≤ d := by
   refine ⟨?_, ?_⟩
-  · rintro (_ | _)
-    · omega
-    · omega
+  · rintro (_ | _) <;> omega
   · rintro ⟨h₁, h₂⟩
     exact .within h₁ h₂
 
@@ -212,8 +209,7 @@ lemma embed_apply (n : ℕ) (x y : ℕ) : embed n (x, y) = h(x, y, n) := rfl
 
 lemma embed_strictMono {n : ℕ} : StrictMono (embed n) := (embed n).strictMono
 
-lemma level_eq_range (n : ℕ) : level n = Set.range (embed n) := by
-  simp [level, Set.range, embed]
+lemma level_eq_range (n : ℕ) : level n = Set.range (embed n) := by simp [level, Set.range, embed]
 
 lemma level_isPWO {n : ℕ} : (level n).IsPWO := by
   rw [level_eq_range, ← Set.image_univ]
@@ -254,11 +250,13 @@ lemma line_injOn {C : Set Hollom} (n : ℕ) (hC : IsChain (· ≤ ·) C) (hCn : 
   induction hCn hx using induction_on_level with | h a b =>
   induction hCn hy using induction_on_level with | h c d =>
   have := hC.total hx hy
-  aesop
+  simp at *
+  lia
 
 lemma add_lt_add_of_lt {a b c d n : ℕ} (h : h(a, b, n) < h(c, d, n)) : a + b < c + d := by
   change embed n (a, b) < embed n (c, d) at h
-  aesop
+  simp at *
+  lia
 
 lemma line_mapsTo {x y : Hollom} (hxy : (ofHollom x).2.2 = (ofHollom y).2.2) :
     Set.MapsTo line (Set.Icc x y) (Set.Icc (line x) (line y)) := by
@@ -360,7 +358,7 @@ theorem no_infinite_antichain {A : Set Hollom} (hC : IsAntichain (· ≤ ·) A) 
     exact hC hcd hab (by simp; omega) (HollomOrder.twice this)
 
 private lemma triangle_finite (n : ℕ) : {x : ℕ × ℕ | x.1 + x.2 ≤ n}.Finite :=
-  (Set.finite_Iic (n, n)).subset <| by aesop
+  (Set.finite_Iic (n, n)).subset <| by simp [Set.subset_def]; lia
 
 variable {C : Set Hollom}
 
@@ -402,13 +400,13 @@ theorem exists_finite_intersection (hC : IsChain (· ≤ ·) C) :
       simp +contextual [Set.subset_def, D, embed_apply]
     -- ...and `C ∩ level (n + 1)` is infinite (by assumption).
     specialize hC' (n + 1) (by omega)
-    rw [← (C ∩ level (n + 1)).inter_union_diff D, Set.infinite_union] at hC'
+    rw [← (C ∩ level (n + 1)).inter_union_sdiff D, Set.infinite_union] at hC'
     refine hC'.resolve_left ?_
     simpa using this
   -- In fact, we only need it to be nonempty, and find a point.
   obtain ⟨x, hxy⟩ := this.nonempty
   induction hxy.1.2 using induction_on_level with | h x y =>
-  simp only [Set.mem_diff, Set.mem_inter_iff, toHollom_mem_level_iff, and_true, Set.mem_setOf_eq,
+  simp only [Set.mem_sdiff, Set.mem_inter_iff, toHollom_mem_level_iff, and_true, Set.mem_setOf_eq,
     ofHollom_toHollom, not_le, D] at hxy
   -- Take the point `(x, y, n + 1)` in `C` that avoids `D`. As `(u, v, n)` is also in the chain `C`,
   -- they must be comparable.
@@ -459,7 +457,7 @@ structure SpinalMap (C : Set α) where
 
 instance : FunLike (SpinalMap C) α α where
   coe := SpinalMap.toFun
-  coe_injective' | ⟨f, _, _, _⟩, ⟨g, _, _, _⟩, h => by simp_all only
+  coe_injective | ⟨f, _, _, _⟩, ⟨g, _, _, _⟩, h => by simp_all only
 
 /-! ### Basic lemmas for spinal maps -/
 namespace SpinalMap
@@ -597,7 +595,8 @@ lemma card_chainBetween {a b c d : ℕ} (hac : a ≤ c) (hbd : b ≤ d) :
 lemma chainBetween_subset {a b c d : ℕ} :
     chainBetween a b c d ⊆ Finset.Icc (a, b) (c, d) := by
   rw [chainBetween]
-  aesop (add simp Finset.subset_iff)
+  split_ifs <;> simp [Finset.subset_iff]
+  lia
 
 open Finset in
 lemma mapsTo_Icc_image (hC : IsChain (· ≤ ·) C) {a b c d n : ℕ}
@@ -652,8 +651,7 @@ theorem card_C_inter_Icc_eq [DecidablePred (· ∈ C)] (f : SpinalMap C) {n : �
   have int_eq : int = Set.Icc h(xl, yl, n) h(xh, yh, n) := by
     simp only [coe_image, coe_Icc, int, embed_image_Icc]
   have hI : IsChain (· ≤ ·) (I : Set Hollom) := hC.mono (by simp [Set.subset_def, I])
-  have hIn : (I : Set Hollom) ⊆ level n := by
-    simp +contextual [Set.subset_def, I, int, embed_apply]
+  have hIn : (I : Set Hollom) ⊆ level n := by simp +contextual [Set.subset_def, I, int, embed_apply]
   have : Set.MapsTo line int (Icc (xl + yl) (xh + yh)) := by
     rw [int_eq, coe_Icc]
     exact line_mapsTo rfl
@@ -844,11 +842,11 @@ lemma square_subset_above (h : (C ∩ level n).Finite) :
   -- With this pair, we can use the "base" of the square as `max a b + 1`.
   rw [eventually_atTop]
   refine ⟨max a b + 1, ?_⟩
-  simp +contextual only [ge_iff_le, sup_le_iff, embed, RelEmbedding.coe_mk,
+  simp +contextual only [sup_le_iff, embed, RelEmbedding.coe_mk,
     Function.Embedding.coeFn_mk, Set.mem_inter_iff, and_imp, «forall», toHollom_mem_level_iff,
     Prod.forall, Set.subset_def, Set.mem_image, Set.mem_Ici, Prod.exists, Prod.mk_le_mk,
     Set.mem_setOf_eq, forall_exists_index, EmbeddingLike.apply_eq_iff_eq, Prod.mk.injEq,
-    toHollom_le_toHollom_iff_fixed_right, Set.mem_diff, and_true, ← max_add_add_right]
+    toHollom_le_toHollom_iff_fixed_right, Set.mem_sdiff, and_true, ← max_add_add_right]
   -- After simplifying, direct calculations show the subset relation as required.
   rintro k hak hbk _ _ _ f g hkf hkg rfl rfl rfl
   constructor
@@ -961,7 +959,7 @@ lemma square_subset_S_case_1 (h : (C ∩ level n).Finite) (h' : (C ∩ level (n 
   have : ∀ᶠ a in atTop, embed n '' .Ici (a, a) ⊆ {x | ∀ y ∈ C ∩ level (n + 1), x ≤ y ∨ y ≤ x} := by
     rw [eventually_atTop, level_eq]
     refine ⟨max b c, ?_⟩
-    simp only [ge_iff_le, sup_le_iff, embed, RelEmbedding.coe_mk, Function.Embedding.coeFn_mk,
+    simp only [sup_le_iff, embed, RelEmbedding.coe_mk, Function.Embedding.coeFn_mk,
       Set.mem_inter_iff, Set.mem_setOf_eq, and_imp, «forall», ofHollom_toHollom, Prod.forall,
       Set.subset_def, Set.mem_image, Set.mem_Ici, Prod.exists, Prod.mk_le_mk, forall_exists_index,
       EmbeddingLike.apply_eq_iff_eq, Prod.mk.injEq]
@@ -986,7 +984,8 @@ lemma square_subset_S_case_2 (h : (C ∩ level n).Finite) (h' : (C ∩ level (n 
   rw [S, if_neg h']
   filter_upwards [eventually_ge_atTop (x0 n C + 1), eventually_ge_atTop (y0 n C + 1),
     square_subset_R h] with a hax hay haR
-  aesop (add simp embed_apply)
+  simp [Set.subset_def, embed_apply] at *
+  grind
 
 theorem square_subset_S (h : (C ∩ level n).Finite) :
     ∀ᶠ a in atTop, embed n '' Set.Ici (a, a) ⊆ S n C \ (C ∩ level n) :=
@@ -1119,8 +1118,7 @@ lemma S_mapsTo_previous (f : SpinalMap C) (hC : IsChain (· ≤ ·) C) (hn : n �
     simp only [Set.mem_inter_iff, SpinalMap.mem, true_and] at this
     simp [← hp] at this
   -- Next `f (a, b, m) = (a, b, m) = f (x, y, n)`
-  have hp' : f h(a, b, m) = f h(x, y, n) := by
-    rw [hp, f.idempotent]
+  have hp' : f h(a, b, m) = f h(x, y, n) := by rw [hp, f.idempotent]
   -- But `(x, y, n) ≤ (a, b, m)` if `m + 2 ≤ n`, so this cannot hold
   have : ¬ m + 2 ≤ n := by
     intro h

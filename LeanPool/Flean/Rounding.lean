@@ -129,8 +129,7 @@ lemma round0_neg :
 
 lemma round_down_neg (q : ℚ) (h : q ≠ 0) :
   roundDown (-q) = FloatRep.neg (roundDown q : FloatRep C) := by
-  rw [roundDown, <-round0_neg, roundf_neg, round0_neg]
-  exact h
+  rwa [roundDown, <-round0_neg, roundf_neg, round0_neg]
 
 lemma round_down_coe (f : FloatRep C) (h : f.validM) :
   roundDown (coeQ f) = f := roundf_coe round0 f h
@@ -161,8 +160,7 @@ lemma roundf_valid (r : IntRounder) [rh : ValidRounder r] (q : ℚ) (h : q ≠ 0
   apply roundf_almost_valid (r := r) (h := h)
 
 lemma round_down_valid (q : ℚ) (h : q ≠ 0) :
-  (roundDown q : FloatRep C).validM := by
-  apply roundf_valid (r := round0) (h := h)
+  (roundDown q : FloatRep C).validM := roundf_valid round0 q h
 
 lemma roundf_of_pos (r : IntRounder) [rh : ValidRounder r] (q : ℚ) (h : 0 < q) :
   0 < coeQ (roundf r q : FloatRep C) := by
@@ -248,6 +246,7 @@ lemma le_roundf_of_le (r : IntRounder) [rh : ValidRounder r] (q1 q2 : ℚ) (q1_n
     simp_rw [floatrepLe, roundf_of_neg' r q1 q1h, roundf_of_neg' r q2 q2h]
     simp_rw [floatrepLe, FloatRep.neg] at ih
     simp_rw [roundf_of_neg' r q1 q1h, roundf_of_neg' r q2 q2h] at ih
+    simp only [Bool.not_true, FloatRep.neg, floatrepLePos] at ih ⊢
     convert ih
 
 lemma le_round_down_of_le (q1 q2 : ℚ) (q1_nezero : q1 ≠ 0) (q2_nezero : q2 ≠ 0) :
@@ -291,10 +290,7 @@ instance (R : Rounding) : ValidRounder (roundFunction R) := by
 def roundRep [R : Rounding] (q : ℚ) : FloatRep C := roundf (roundFunction R) q
 
 lemma round_rep_coe [R : Rounding] (f : FloatRep C) (h : f.validM) :
-  roundRep (coeQ f) = f := by
-  rw [roundRep]
-  apply roundf_coe
-  exact h
+  roundRep (coeQ f) = f := roundf_coe (roundFunction R) f h
 
 lemma round_valid_m [R : Rounding] (q : ℚ) (q_nezero : q ≠ 0) :
   (roundRep q : FloatRep C).validM := roundf_valid (roundFunction R) q q_nezero
@@ -338,9 +334,8 @@ lemma round_min_e (r : IntRounder) [rh : ValidRounder r] {q : ℚ} (h : q ≠ 0)
   linarith
 
 lemma round_min_e' [R : Rounding] (q : ℚ) (h : q ≠ 0) :
-  Int.log 2 |q| ≤ (roundRep q : FloatRep C).e := by
-  rw [roundRep]
-  apply round_min_e (r := roundFunction R) (h := h)
+  Int.log 2 |q| ≤ (roundRep q : FloatRep C).e :=
+  round_min_e (roundFunction R) h
 
 lemma convert_rep_strict_mono (q : ℚ) :
   StrictMono (fun (x : ℚ) => (1 + x / C.prec)*(2 : ℚ)^Int.log 2 |q|) := by
@@ -463,6 +458,7 @@ lemma roundf_up_minus_down {q : ℚ} (q_nezero : q ≠ 0) :
   · rw [Nat.cast_natAbs]
     nth_rw 5 [abs_of_nonneg]
     · convert this using 1
+      · rfl
       ring
     · apply Int.floor_nonneg.mpr
       apply mantissa_nonneg C q q_nezero

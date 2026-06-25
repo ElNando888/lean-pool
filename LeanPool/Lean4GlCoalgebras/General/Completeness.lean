@@ -196,16 +196,6 @@ lemma next_next_cor {Γ Δ : Sequent} {strat : Strategy coalgebraGame Prover}
   have P_has_moves_next : (coalgebraGame.moves next).Nonempty :=
     winning_has_moves P_next still_winning_next
   let next_next' := strat next P_next P_has_moves_next
-  have B_next_next : coalgebraGame.turn next_next'.1 = Builder := by
-    have next_next_in_moves := next_next'.2
-    unfold next Game.Pos.moves Game.moves at next_next_in_moves
-    dsimp [coalgebraGame] at next_next_in_moves
-    rcases (Finset.mem_map).mp next_next_in_moves with ⟨R, _, hR⟩
-    rw [← hR]
-    rfl
-  have next_next_in_cone : inMyCone strat (Sum.inl Γ, [], []) next_next' := by
-    have := @inMyCone.oStep _ _ strat _ _ _ g.2.1 g.2.2 next_in_moves
-    exact inMyCone.myStep this P_has_moves_next P_next
   have h : next_next'.1 = (nextNext g h nrep pos).1 := by grind [nextNext]
   simp only [← h]
   have next_next_in_moves := next_next'.2
@@ -568,6 +558,9 @@ def repNext (Γ : Sequent) {Δ : Sequent} {strat : Strategy coalgebraGame Prover
         omega
       have turn := @rewind_turn g.1 ⟨(2 * (Fin.find _ (List.mem_iff_get.1 rep)).1), hbound⟩
       simp only [g.2.2, Nat.even_mul, even_two, true_or, if_true] at turn
+      have hpos : repPos g rep = rewindHistory g.1
+          ⟨2 * (Fin.find _ (List.mem_iff_get.1 rep)).1, hbound⟩ := rfl
+      rw [hpos]
       convert turn⟩
 
 /-- The sequent at the premise defined by `repNext` is the sequent `Δ` which we expect. -/
@@ -1122,7 +1115,7 @@ def gameBModel (Γ : Sequent) {strat : Strategy coalgebraGame Builder}
     apply WellFounded.transGen
     let instFunLike : FunLike Unit (MaximalPath Γ strat) GamePos := by exact {
       coe := fun u π ↦ π.first
-      coe_injective' := by intro u w; grind}
+      coe_injective := by intro u w; grind}
     have instRelHome :
         RelHomClass Unit (Function.swap (pathRelation Γ strat))
           (Relation.TransGen (Function.swap Move)) := by exact {
@@ -1307,6 +1300,34 @@ lemma diamond_in_last_of_diamond_in_first {Γ : Sequent} {strat : Strategy coalg
           grind
         · exact P_turn_u₂
 
+/-- A diamond in the first sequent of a maximal path also lies in its last sequent. -/
+private lemma diamond_in_last_of_diamond_in_first_path {Γ : Sequent}
+    {strat : Strategy coalgebraGame Builder} (h : winning strat (startPos Γ))
+    (γ : MaximalPath Γ strat) {φ} (hmem : ◇φ ∈ firstSequent γ) :
+    ◇φ ∈ lastSequent h γ := by
+  apply diamond_in_last_of_diamond_in_first h γ φ (γ.list.length - 1)
+  · rcases γ with ⟨ρ, ne, chain, max, head_cases, in_cone⟩
+    simp
+    grind
+  · convert hmem
+    simp only [firstSequent, MaximalPath.first]
+    have : 0 < γ.list.length := by have := γ.ne; grind
+    congr
+    rw [←List.getElem_zero_eq_head]
+    · congr
+      grind
+    · grind
+  · rcases γ with ⟨ρ, ne, chain, max, head_cases, in_cone⟩
+    simp
+    grind
+  · convert (maximal_path_starts_in_prover_turn γ)
+    simp only [MaximalPath.first]
+    have : 0 < γ.list.length := by have := γ.ne; grind
+    rw [←List.getElem_zero_eq_head]
+    · congr
+      grind
+    · grind
+
 /-- Helper for `◇` case of `builder_win_strong`. -/
 lemma formula_in_successor_of_diamond_formula_in {Γ : Sequent}
     {strat : Strategy coalgebraGame Builder} (h : winning strat (startPos Γ))
@@ -1341,7 +1362,9 @@ lemma formula_in_successor_of_diamond_formula_in {Γ : Sequent}
       have := max (Sum.inr R, Γ :: Γs, Rs)
       simp only [nonBoxMove, isBox, Bool.not_eq_true, not_and, Bool.not_eq_false] at this
       apply this
-      convert x_y
+      have last_eq : π.getLast ne = (Sum.inl Γ, Γs, Rs) := last_def
+      rw [last_eq]
+      exact x_y
     cases R <;> simp [RuleApp.isBox] at R_box
     rename_i Δ ψ ψ_in
     simp only [f] at R_f
@@ -1364,28 +1387,7 @@ lemma diamond_in_path_of_diamond_formula_in {Γ : Sequent}
   case tail γ _ _ rel ih =>
     apply diamond_in_of_move_move_diamond_in
       (maximal_path_ends_in_prover_turn h _) (maximal_path_starts_in_prover_turn _) rel φ
-    apply diamond_in_last_of_diamond_in_first h _ φ (γ.list.length - 1)
-    · rcases γ with ⟨ρ, ne, chain, max, head_cases, in_cone⟩
-      simp
-      grind
-    · convert ih
-      simp only [firstSequent, MaximalPath.first]
-      have : 0 < γ.list.length := by have := γ.ne; grind
-      congr
-      rw [←List.getElem_zero_eq_head]
-      · congr
-        grind
-      · grind
-    · rcases γ with ⟨ρ, ne, chain, max, head_cases, in_cone⟩
-      simp
-      grind
-    · convert (maximal_path_starts_in_prover_turn γ)
-      simp only [MaximalPath.first]
-      have : 0 < γ.list.length := by have := γ.ne; grind
-      rw [←List.getElem_zero_eq_head]
-      · congr
-        grind
-      · grind
+    exact diamond_in_last_of_diamond_in_first_path h γ ih
 
 /-- Helper for `◇` case of `builder_win_strong`. -/
 lemma formula_in_path_of_diamond_formula_in {Γ : Sequent}
@@ -1398,28 +1400,7 @@ lemma formula_in_path_of_diamond_formula_in {Γ : Sequent}
   case tail γ π_γ γ_ρ =>
     have φ_in_γ := diamond_in_path_of_diamond_formula_in h π_γ φ φ_in
     apply formula_in_successor_of_diamond_formula_in h γ_ρ φ ?_
-    apply diamond_in_last_of_diamond_in_first h γ φ (γ.list.length - 1)
-    · rcases γ with ⟨ρ, ne, chain, max, head_cases, in_cone⟩
-      simp
-      grind
-    · convert φ_in_γ
-      simp only [firstSequent, MaximalPath.first]
-      have : 0 < γ.list.length := by have := γ.ne; grind
-      congr
-      rw [←List.getElem_zero_eq_head]
-      · congr
-        grind
-      · grind
-    · rcases γ with ⟨ρ, ne, chain, max, head_cases, in_cone⟩
-      simp
-      grind
-    · convert (maximal_path_starts_in_prover_turn γ)
-      simp only [MaximalPath.first]
-      have : 0 < γ.list.length := by have := γ.ne; grind
-      rw [←List.getElem_zero_eq_head]
-      · congr
-        grind
-      · grind
+    exact diamond_in_last_of_diamond_in_first_path h γ φ_in_γ
 
 /-- A terminal rule application cannot be available at the last node of a Builder-winning path. -/
 private lemma no_terminal_rule_app_at_last {Δ : Sequent} {strat : Strategy coalgebraGame Builder}
@@ -1619,8 +1600,9 @@ private lemma no_penultimate_prover_turn {Δ : Sequent} {strat : Strategy coalge
     List.IsChain.getElem chain (π.length - (0 + 1) - 1) (by omega)
   have helper_last : π[π.length - 1]'(by omega) = π.getLast ne := by grind
   have u₁_last' : nonBoxMove π[π.length - 2] (π.getLast ne) := by
-    convert u₁_last using 1
-    · simpa [eq2] using helper_last.symm
+    convert u₁_last using 2
+    · omega
+    · rw [← helper_last]; congr 1; omega
   rcases u₁_def : π[π.length - 2] with ⟨Γ | R, Γs, Rs⟩
   · have u₁_last_mem := move_iff_in_moves.1 u₁_last'.1
     rw [u₁_def] at u₁_last_mem
@@ -1751,7 +1733,8 @@ lemma builder_win_strong {Δ : Sequent} (strat : Strategy coalgebraGame Builder)
       have u₁_u₂ :
           nonBoxMove (Sum.inr R, Γ :: Γs, Rs)
             (π[π.length - (i + 1 + 1) - 1 + 1 + 1]'(by grind)) := by
-        convert u₁_u₂ -- dont understand why simp or rw doesn't do this
+        convert u₁_u₂ using 2 -- dont understand why simp or rw doesn't do this
+        exact u₁_def
       have u₁_u₂_mem := move_iff_in_moves.1 u₁_u₂.1
       change π[π.length - (i + 1 + 1) - 1 + 1 + 1] ∈
         Finset.filterMap

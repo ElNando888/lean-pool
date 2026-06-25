@@ -195,7 +195,7 @@ lemma _root_.Module.Basis.unipotentResidue_mk [IsFractionRing R K]
         (Submodule.Quotient.mk
           (p := (maximalIdeal R • ⊤ : Submodule R (b.toLattice (R := R)).M)) (b' i)) =
           b.toQuotient' (R := R) i := by
-      convert (b.toQuotient'_apply (R := R) i).symm using 1
+      exact (b.toQuotient'_apply (R := R) i).symm
     rw [hq]
     match i with
     | 0 =>
@@ -210,25 +210,12 @@ lemma _root_.Module.Basis.unipotentResidue_mk [IsFractionRing R K]
         Basis.transvectEquiv_apply₁, b']
       simp_rw [h0, h1]
       rfl
-  · let z : (b.toLattice (R := R)).M :=
-      ⟨(b.transvectEquiv x) ↑(0 : b.toSubmodule (R := R)),
-        b.transvectEquiv_apply_mem x 0⟩
-    have hmk0 :
-        (Submodule.Quotient.mk
-          (p := (maximalIdeal R • ⊤ : Submodule R (b.toLattice (R := R)).M))
-          (0 : (b.toLattice (R := R)).M)) = 0 := rfl
-    have hz : z = 0 := by
+  · have hz : (⟨(b.transvectEquiv x) (0 : b.toSubmodule (R := R)).val,
+        b.transvectEquiv_apply_mem x 0⟩ : (b.toLattice (R := R)).M) = 0 := by
       ext i
-      simp [z]
-    calc
-      (b.unipotentResidue x) (Submodule.Quotient.mk 0) =
-          (b.unipotentResidue x) (0 : (b.toLattice (R := R)).quotient) := by
-            rw [hmk0]
-            rfl
-      _ = 0 := map_zero (b.unipotentResidue x)
-      _ = Submodule.Quotient.mk z := by
-            rw [hz]
-            rfl
+      simp
+    rw [hz]
+    exact map_zero (b.unipotentResidue x)
   · intro u v _ _ hu hv
     calc
       (b.unipotentResidue x) (Submodule.Quotient.mk (u + v)) =
@@ -482,9 +469,8 @@ lemma _root_.BruhatTits.Lattice.mapIntermediate_ne_bot_of (L M : Lattice R)
   intro heq
   have : M.M = ϖ • L.M := by
     apply L.mapIntermediateSubmodule_inj_of _ _ h1
-    · apply le_of_lt
-      rw [maximalIdeal_smul_eq_uniformizer_smul _ hϖ]
-      exact h2
+    · rw [maximalIdeal_smul_eq_uniformizer_smul _ hϖ]
+      exact le_of_lt h2
     · exact Submodule.smul_le_self_of_tower ϖ L.M
     · rw [maximalIdeal_smul_eq_uniformizer_smul _ hϖ]
     · exact heq
@@ -506,8 +492,7 @@ lemma _root_.BruhatTits.Lattice.mapIntermediate_ne_top_of (L M : Lattice R)
   intro heq
   have : M.M = L.M := by
     apply L.mapIntermediateSubmodule_inj_of
-    · apply le_of_lt
-      exact h1
+    · exact le_of_lt h1
     · rw [maximalIdeal_smul_eq_uniformizer_smul _ hϖ]
       exact h2
     · rfl
@@ -566,7 +551,7 @@ lemma _root_.BruhatTits.Lattice.mapIntermediate_eq_span''
         apply b.ntwist₂_toSubmodule_le_ntwist₂_toSubmodule
         · simp
         · simp
-      · apply le_of_lt h1
+      · exact le_of_lt h1
       · rw [maximalIdeal_smul_eq_uniformizer_smul _ hϖ]
         exact le_of_lt h2
       · exact heq.symm
@@ -607,6 +592,8 @@ lemma mapIntermediate_unipotent_smul (b : Basis (Fin 2) K (Fin 2 → K)) (x : R)
     · rw [Lattice.mem_mapIntermediate]
       refine ⟨⟨m, hmL⟩, hm, rfl⟩
     · convert Basis.unipotentResidue_mk (R := R) b x (⟨m, hmL⟩ : b.toSubmodule (R := R)) using 1
+      · rfl
+      · rfl
   · rw [Submodule.map_le_iff_le_comap]
     intro y hy
     rw [(b.toLattice (R := R)).mem_mapIntermediate] at hy

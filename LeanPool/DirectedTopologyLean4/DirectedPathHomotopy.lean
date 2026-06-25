@@ -156,15 +156,12 @@ variable (F : Dihomotopy p₀ q₀) (G : Dihomotopy p₁ q₁) (s t : I) (ht : t
 lemma _root_.Dipath.Dihomotopy.hcomp_apply_half_left (ht : t = halfI) :
     (dihomToHom F).hcomp (dihomToHom G) (s, t) = F (s, 1) := by
   rw [Path.Homotopy.hcomp_apply]
-  have ht_coe : (t : ℝ) = 2⁻¹ := Subtype.coe_inj.mpr ht
-  have : (t : ℝ) ≤ 2⁻¹ := by linarith
-  simp [ht_coe]
+  simp [show (t : ℝ) = 2⁻¹ from Subtype.coe_inj.mpr ht]
 
 lemma _root_.Dipath.Dihomotopy.hcomp_apply_half_right (ht : t = halfI) :
     (dihomToHom F).hcomp (dihomToHom G) (s, t) = G (s, 0) := by
   rw [Path.Homotopy.hcomp_apply]
-  have ht_coe : (t : ℝ) = 2⁻¹ := Subtype.coe_inj.mpr ht
-  split_ifs <;> simp [ht_coe]
+  split_ifs <;> simp [show (t : ℝ) = 2⁻¹ from Subtype.coe_inj.mpr ht]
 
 lemma _root_.Dipath.Dihomotopy.hcomp_apply_left (ht : (t : ℝ) ≤ 2⁻¹) :
     (dihomToHom F).hcomp (dihomToHom G) (s, t) = F (s, ⟨2 * t, double_mem_I ht⟩) := by
@@ -177,9 +174,8 @@ lemma _root_.Dipath.Dihomotopy.hcomp_apply_right (ht : 2⁻¹ ≤ (t : ℝ)) :
         := by
   rw [Path.Homotopy.hcomp_apply]
   simp
-  split_ifs
-  · have : (t : ℝ) = 2⁻¹ := by linarith
-    simp [this]
+  split_ifs with h
+  · simp [show (t : ℝ) = 2⁻¹ by linarith]
   · rfl
 
 lemma _root_.Dipath.Dihomotopy.hcomp_first_case (F : Dihomotopy p₀ q₀) (G : Dihomotopy p₁ q₁)
@@ -202,13 +198,15 @@ lemma _root_.Dipath.Dihomotopy.hcomp_first_case (F : Dihomotopy p₀ q₀) (G : 
   have ht₀ : (t₀ : ℝ) ≤ 2⁻¹ := by
     have h_le : t₀ ≤ t₁ := directed_path_source_le_target γ_dipath.2
     exact le_trans (Subtype.coe_le_coe.mpr h_le) ht₁
-  convert (p'.cast (h s₀ t₀ ht₀) (h s₁ t₁ ht₁)).dipath_toPath
-  ext
-  simp only [Path.coe_toContinuousMap, ContinuousMap.toFun_eq_coe,
-    ContinuousMap.Homotopy.coe_toContinuousMap, ContinuousMap.HomotopyWith.coe_toHomotopy,
-    Path.map_coe, Function.comp_apply, coe_toDirectedMap,
-    DirectedMap.Dihomotopy.coe_to_directed_map, DirectedMap.DihomotopyWith.coe_to_dihomotopy]
-  exact h _ _ (le_trans (directed_path_bounded γ_dipath.2 _).2 ht₁)
+  have hpath : γ.map Γ.continuous_toFun = p'.cast (h s₀ t₀ ht₀) (h s₁ t₁ ht₁) := by
+    ext
+    simp only [Path.coe_toContinuousMap, ContinuousMap.toFun_eq_coe,
+      ContinuousMap.Homotopy.coe_toContinuousMap, ContinuousMap.HomotopyWith.coe_toHomotopy,
+      Path.map_coe, Function.comp_apply, coe_toDirectedMap,
+      DirectedMap.Dihomotopy.coe_to_directed_map, DirectedMap.DihomotopyWith.coe_to_dihomotopy]
+    exact h _ _ (le_trans (directed_path_bounded γ_dipath.2 _).2 ht₁)
+  rw [hpath]
+  exact (p'.cast (h s₀ t₀ ht₀) (h s₁ t₁ ht₁)).dipath_toPath
 
 
 lemma _root_.Dipath.Dihomotopy.hcomp_second_case (F : Dihomotopy p₀ q₀) (G : Dihomotopy p₁ q₁)
@@ -228,19 +226,20 @@ lemma _root_.Dipath.Dihomotopy.hcomp_second_case (F : Dihomotopy p₀ q₀) (G :
     rw [Path.Homotopy.hcomp_apply (dihomToHom F) (dihomToHom G) (s, t)]
     split_ifs with ht'
     · simp at ht'
-      have : ↑t = (2⁻¹ : ℝ) := by linarith
-      simp [this]
+      simp [show (t : ℝ) = 2⁻¹ by linarith]
     · rfl
   have ht₁ : 2⁻¹ ≤ (t₁ : ℝ) := by
     have h_le : t₀ ≤ t₁ := directed_path_source_le_target γ_dipath.2
     exact le_trans ht₀ (Subtype.coe_le_coe.mpr h_le)
-  convert (p'.cast (h s₀ t₀ ht₀) (h s₁ t₁ ht₁)).dipath_toPath
-  ext x
-  simp only [Path.coe_toContinuousMap, ContinuousMap.toFun_eq_coe,
-    ContinuousMap.Homotopy.coe_toContinuousMap, ContinuousMap.HomotopyWith.coe_toHomotopy,
-    Path.map_coe, Function.comp_apply, coe_toDirectedMap,
-    DirectedMap.Dihomotopy.coe_to_directed_map, DirectedMap.DihomotopyWith.coe_to_dihomotopy]
-  exact h (γ x).1 (γ x).2 (le_trans ht₀ (directed_path_bounded γ_dipath.2 _).1)
+  have hpath : γ.map Γ.continuous_toFun = p'.cast (h s₀ t₀ ht₀) (h s₁ t₁ ht₁) := by
+    ext x
+    simp only [Path.coe_toContinuousMap, ContinuousMap.toFun_eq_coe,
+      ContinuousMap.Homotopy.coe_toContinuousMap, ContinuousMap.HomotopyWith.coe_toHomotopy,
+      Path.map_coe, Function.comp_apply, coe_toDirectedMap,
+      DirectedMap.Dihomotopy.coe_to_directed_map, DirectedMap.DihomotopyWith.coe_to_dihomotopy]
+    exact h (γ x).1 (γ x).2 (le_trans ht₀ (directed_path_bounded γ_dipath.2 _).1)
+  rw [hpath]
+  exact (p'.cast (h s₀ t₀ ht₀) (h s₁ t₁ ht₁)).dipath_toPath
 
 /-- Suppose `p₀` and `q₀` are dipaths from `x` to `y`, `p₁` and `q₁` are dipaths from `y` to `z`.
 Furthermore, suppose `F : Dihomotopy p₀ q₀` and `G
@@ -285,7 +284,8 @@ def _root_.Dipath.Dihomotopy.hcomp (F : Dihomotopy p₀ q₀) (G : Dihomotopy p�
         (hcomp_apply_half_left F G (γ T).1 (γ T).2 hT_half)
     set r₂ := q₂.cast (hcomp_apply_half_right F G (γ T).1 (γ T).2 hT_half)
         (hcomp_apply_right F G s₁ t₁ (le_of_lt ht₁))
-    convert ((r₁.trans r₂).reparam φ φ₀ φ₁).dipath_toPath
+    suffices hpath : γ.map Γ.continuous_toFun = (r₁.trans r₂).reparam φ φ₀ φ₁ by
+      rw [hpath]; exact ((r₁.trans r₂).reparam φ φ₀ φ₁).dipath_toPath
     ext t
     have hr₁a₁ : r₁.toPath = a₁.toPath.map Γ.continuous_toFun := by
       ext x
@@ -438,15 +438,13 @@ def _root_.Dipath.Dihomotopy.transRefl (p : Dipath x y) :
     change (t : ℝ) ≤ Path.Homotopy.transReflReparamAux t
     unfold Path.Homotopy.transReflReparamAux
     split_ifs
-    · have : 0 ≤ (t : ℝ) := t.2.1
-      linarith
+    · linarith [t.2.1]
     · exact t.2.2
-  have hf₀ : f 0 = 0 := rfl
-  have hf₁ : f 1 = 1 := rfl
-  convert reparam p f g hf_le_g hf₀ hf₁
+  convert reparam p f g hf_le_g rfl rfl
     (Subtype.ext Path.Homotopy.transReflReparamAux_zero)
     (Subtype.ext Path.Homotopy.transReflReparamAux_one)
-  exact trans_refl_reparam_dipath p
+  · exact (Dipath.reparam_id p).symm
+  · exact trans_refl_reparam_dipath p
 
 /-- For any `p : Dipath x y`, there is a dihomotopy from `(Dipath.refl x).trans p` to `p`.
 -/
@@ -461,11 +459,10 @@ def _root_.Dipath.Dihomotopy.reflTrans (p : Dipath x y) :
     split_ifs
     · exact t.2.1
     · linarith [t.2.2]
-  have hg₀ : g 0 = 0 := rfl
-  have hg₁ : g 1 = 1 := rfl
   convert reparam p f g hf_le_g (Subtype.ext reflTransReparamAux_zero)
-    (Subtype.ext reflTransReparamAux_one) hg₀ hg₁
-  exact refl_trans_reparam_dipath p
+    (Subtype.ext reflTransReparamAux_one) rfl rfl
+  · exact refl_trans_reparam_dipath p
+  · exact (Dipath.reparam_id p).symm
 
 /-- For any `p : Dipath x y`, there is a homotopy from `(Dipath.refl x).trans p` to `q.trans
 (Dipath.refl y)`,
@@ -489,18 +486,15 @@ def _root_.Dipath.Dihomotopy.reflTransToReparamTransRefl (p : Dipath x y) (f : D
       · exact absurd hh h₁
       · exact absurd hh h₁
     · have hh : ¬(t : ℝ) ≤ 1/2 := by linarith
+      have h1 : (f ⟨(1 : ℝ), unitInterval.one_mem⟩ : ℝ) = 1 := by
+        rw [show (⟨(1 : ℝ), unitInterval.one_mem⟩ : I) = (1 : I) from rfl, hf₁]; rfl
+      have ht1 : (t : ℝ) ≤ 1 := t.2.2
       split_ifs with h₁ h₂
       · exact absurd h₁ hh
       · exact absurd h₁ hh
-      · have ht1 : (t : ℝ) ≤ 1 := t.2.2
-        have h1 : (f ⟨(1 : ℝ), unitInterval.one_mem⟩ : ℝ) = 1 := by
-          rw [show (⟨(1 : ℝ), unitInterval.one_mem⟩ : I) = (1 : I) from rfl, hf₁]; rfl
-        rw [h1]
+      · rw [h1]
         linarith
-      · have ht1 : (t : ℝ) ≤ 1 := t.2.2
-        have h1 : (f ⟨(1 : ℝ), unitInterval.one_mem⟩ : ℝ) = 1 := by
-          rw [show (⟨(1 : ℝ), unitInterval.one_mem⟩ : I) = (1 : I) from rfl, hf₁]; rfl
-        rw [h1]
+      · rw [h1]
         linarith
   have hφ₂₀ : φ₂ 0 = 0 := by
     change f ⟨Path.Homotopy.transReflReparamAux 0, _⟩ = 0

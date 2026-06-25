@@ -16,9 +16,8 @@ open Kripke
 open Geachean
 
 /-- Imported declaration from the Incompleteness formalization. -/
-abbrev _root_.LO.Modal.Kripke.SerialSymmetricFrameClass :
-    FrameClass :=
-  { F | Serial F ∧ Symmetric F }
+abbrev _root_.LO.Modal.Kripke.SerialSymmetricFrameClass : FrameClass :=
+  { F | Serial F ∧ IsSymmetric F }
 
 namespace Hilbert
 namespace KDB

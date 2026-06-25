@@ -63,12 +63,11 @@ theorem degree_lt_add {a b : R[X]} (ha : a ≠ 0) (hb : b ≠ 0) :
     (wronskian a b).degree ≤ max (a * derivative b).degree (derivative a * b).degree :=
       Polynomial.degree_sub_le _ _
     _ < a.degree + b.degree := by
-      rw [max_lt_iff]
-      refine ⟨?_, ?_⟩
-      · apply lt_of_le_of_lt (degree_mul_le a (derivative b))
+      refine max_lt_iff.mpr ⟨?_, ?_⟩
+      · refine lt_of_le_of_lt (degree_mul_le a (derivative b)) ?_
         rw [WithBot.add_lt_add_iff_left (degree_ne_bot ha)]
         exact Polynomial.degree_derivative_lt hb
-      · apply lt_of_le_of_lt (degree_mul_le (derivative a) b)
+      · refine lt_of_le_of_lt (degree_mul_le (derivative a) b) ?_
         rw [WithBot.add_lt_add_iff_right (degree_ne_bot hb)]
         exact Polynomial.degree_derivative_lt ha
 
@@ -79,11 +78,10 @@ theorem natDegree_lt_add {a b : R[X]} (hw : wronskian a b ≠ 0) :
     (wronskian a b).natDegree < a.natDegree + b.natDegree := by
   have ha : a ≠ 0 := by intro h; subst h; rw [wronskian_zero_left] at hw; exact hw rfl
   have hb : b ≠ 0 := by intro h; subst h; rw [wronskian_zero_right] at hw; exact hw rfl
-  rw [← WithBot.coe_lt_coe, WithBot.coe_add]
-  convert ← wronskian.degree_lt_add ha hb
-  · exact Polynomial.degree_eq_natDegree hw
-  · exact Polynomial.degree_eq_natDegree ha
-  · exact Polynomial.degree_eq_natDegree hb
+  have h := wronskian.degree_lt_add ha hb
+  rw [Polynomial.degree_eq_natDegree hw, Polynomial.degree_eq_natDegree ha,
+    Polynomial.degree_eq_natDegree hb] at h
+  exact_mod_cast h
 
 end wronskian
 

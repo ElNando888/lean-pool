@@ -30,7 +30,7 @@ namespace PointedLenHom
 def toHom (f : PointedLenHom S T) : S.1 ⟶ T.1 := f.toLenHom
 instance : FunLike (PointedLenHom S T) S.1 T.1 where
   coe f := f.toHom
-  coe_injective' _ _ h := PointedLenHom.ext <| LenHom.ext h
+  coe_injective _ _ h := PointedLenHom.ext <| LenHom.ext h
 instance : OrderHomClass (PointedLenHom S T) S.1 T.1 where
   map_rel f _ _ h := f.toOrderHom.monotone' h
 @[simp] lemma add_toHom (f : PointedLenHom S T) (x : S.1) :
@@ -45,8 +45,7 @@ instance : Category PointedTrees where
   comp_id _ := rfl
   assoc _ _ _ := rfl
 variable {S T : PointedTrees}
-@[ext] lemma ext' {f g : S ⟶ T} (h : f.toLenHom = g.toLenHom) : f = g :=
-  PointedLenHom.ext h
+@[ext] lemma ext' {f g : S ⟶ T} (h : f.toLenHom = g.toLenHom) : f = g := PointedLenHom.ext h
 @[simp] lemma rem_pointedLenHom : PointedLenHom S T = (S ⟶ T) := rfl
 @[simp] lemma rem_toLenHom' (f : S ⟶ T) x :
   DFunLike.coe (F := S.1 ⟶ T.1) f.toLenHom x = f.toHom x := rfl

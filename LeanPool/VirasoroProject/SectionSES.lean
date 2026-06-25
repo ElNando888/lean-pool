@@ -131,9 +131,9 @@ noncomputable def correctorHom {σ : W →* V}
     (hf : f.ker = ⊥) (hfg : f.range = g.ker) (hgσ : g.comp σ = MonoidHom.id _) :
     V →* U where
   toFun := @corrector U V W _ _ _ f g σ.toFun hfg
-    (by ext w; convert congrFun (congrArg DFunLike.coe hgσ) w)
+    (by ext w; simpa using congrFun (congrArg DFunLike.coe hgσ) w)
   map_one' := corrector_one hf hfg ..
-  map_mul' := corrector_mul hf hfg (by ext w; convert congrFun (congrArg DFunLike.coe hgσ) w)
+  map_mul' := corrector_mul hf hfg (by ext w; simpa using congrFun (congrArg DFunLike.coe hgσ) w)
 
 @[to_additive] lemma correctorHom_eq_iff {σ : W →* V}
     (hf : f.ker = ⊥) (hfg : f.range = g.ker) (hgσ : g.comp σ = MonoidHom.id _)
@@ -147,7 +147,7 @@ noncomputable def correctorHom {σ : W →* V}
     (hfg : f.range = g.ker) (hgσ : g.comp σ = MonoidHom.id _) {v : V} (hv : v ∈ g.ker) :
     f (correctorHom hf hfg hgσ v) = v := by
   apply image_corrector_eq_self_of_mem_ker hfg ?_ hv
-  ext w; convert congrFun (congrArg DFunLike.coe hgσ) w
+  ext w; simpa using congrFun (congrArg DFunLike.coe hgσ) w
 
 end MonoidHom
 
@@ -197,7 +197,7 @@ lemma correctorHom_smul (hf : f.toAddMonoidHom.ker = ⊥)
     (hgσ : g.toAddMonoidHom.comp σ.toAddMonoidHom = AddMonoidHom.id _) (c : 𝕜) (v : V) :
     correctorHom hf hfg hgσ (c • v) = c • correctorHom hf hfg hgσ v := by
   simp only [correctorHom, ZeroHom.toFun_eq_coe, toZeroHom_coe, toAddMonoidHom_coe]
-  have aux : ↑g ∘ σ = _root_.id := by ext w; convert congrFun (congrArg DFunLike.coe hgσ) w
+  have aux : ↑g ∘ σ = _root_.id := by ext w; simpa using congrFun (congrArg DFunLike.coe hgσ) w
   apply unique_corrector hf (c • v) _ _ (corrector_spec hfg aux (c • v))
   nth_rw 1 [corrector_spec hfg aux v]
   simp
@@ -209,7 +209,7 @@ noncomputable def corrector (hf : ker f = ⊥) (hfg : range f = ker g) (hgσ : g
   toFun := @AddMonoidHom.correctorHom U V W _ _ _ f g σ
       (congr_arg Submodule.toAddSubgroup hf)
       (congr_arg Submodule.toAddSubgroup hfg)
-      (by ext w; convert congrFun (congrArg DFunLike.coe hgσ) w)
+      (by ext w; simpa using congrFun (congrArg DFunLike.coe hgσ) w)
   map_add' := AddMonoidHom.map_add (AddMonoidHom.correctorHom _ _ _)
   map_smul' := by apply correctorHom_smul
 
@@ -217,21 +217,21 @@ noncomputable def corrector (hf : ker f = ⊥) (hfg : range f = ker g) (hgσ : g
 lemma corrector_spec (hf : ker f = ⊥) (hfg : range f = ker g) (hgσ : g ∘ₗ σ = 1) (v : V) :
     v = σ (g v) + f (corrector hf hfg hgσ v) :=
   @AddMonoidHom.corrector_spec U V W _ _ _ f g σ (congr_arg Submodule.toAddSubgroup hfg)
-    (by ext w; convert congrFun (congrArg DFunLike.coe hgσ) w) v
+    (by ext w; simpa using congrFun (congrArg DFunLike.coe hgσ) w) v
 
 lemma corrector_eq_iff (hf : ker f = ⊥) (hfg : range f = ker g) (hgσ : g ∘ₗ σ = 1) (v : V) (u : U) :
     corrector hf hfg hgσ v = u ↔ v = σ (g v) + f u := by
   apply AddMonoidHom.corrector_eq_iff
   · exact congr_arg Submodule.toAddSubgroup hf
   · exact congr_arg Submodule.toAddSubgroup hfg
-  · ext w; convert congrFun (congrArg DFunLike.coe hgσ) w
+  · ext w; simpa using congrFun (congrArg DFunLike.coe hgσ) w
 
 lemma image_corrector_eq_self_of_mem_ker {σ : W →ₗ[𝕜] V} (hf : ker f = ⊥)
     (hfg : range f = ker g) (hgσ : g ∘ₗ σ = 1) {v : V} (hv : v ∈ ker g) :
     f (corrector hf hfg hgσ v) = v :=
   @AddMonoidHom.image_correctorHom_eq_self_of_mem_ker U V W _ _ _ f g σ
     (congr_arg Submodule.toAddSubgroup hf) (congr_arg Submodule.toAddSubgroup hfg)
-    (by ext w; convert congrFun (congrArg DFunLike.coe hgσ) w) v hv
+    (by ext w; simpa using congrFun (congrArg DFunLike.coe hgσ) w) v hv
 
 end LinearMap
 
@@ -264,9 +264,7 @@ lemma ses_directSum_isInternal (hf : ker f = ⊥) (hfg : range f = ker g) (hgσ 
         obtain ⟨w, hw⟩ := M_le₀ v_in_M
         have gv_eq_w : g v = w := by simpa [← hw] using LinearMap.congr_fun hgσ w
         have v_eq_σgv : v = σ (g v) := by nth_rw 1 [← hw]; rw [← gv_eq_w]
-        calc  f ((corrector hf hfg hgσ) v)
-            = f 0         := by rw [(corrector_eq_iff hf hfg hgσ v 0).mpr (by simp [← v_eq_σgv])]
-          _ = 0           := map_zero f
+        rw [(corrector_eq_iff hf hfg hgσ v 0).mpr (by simp [← v_eq_σgv]), map_zero]
       rw [corrector_spec hf hfg hgσ v]
       simp [obs₁, obs₀]
     intro j M M_le M_le' v v_in_M

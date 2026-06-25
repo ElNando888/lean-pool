@@ -3,9 +3,8 @@ Copyright (c) 2026 Julius Marx. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Julius Marx
 -/
-import Lean
 
-import Lean.Elab.Tactic
+import Lean.Elab.Tactic.Basic
 import LeanPool.MRiscX.AbstractSyntax.Map
 import LeanPool.MRiscX.Semantics.MsTheory
 import LeanPool.MRiscX.Util.BasicTheorems
@@ -153,7 +152,6 @@ during the process. Those side goals generally are goals about the set provided
 (e.g. `L_W ≠ ∅`), which are trivial is most cases.
 -/
 elab "sapplySSeq''"
-                      -- &"P" &" := " P:term &", "
                       &"R" &" := "  R:term &", "
                       &"L_W" &" := "  L_w:term &", "
                       &"L_W'" &" := "  L_w':term &", "
@@ -282,21 +280,8 @@ elab "sapplySSeq'''"  &"R" &" := "  R:term &", "
 
 
 
--- /- apply specification and simp some trivial goals. Requires a hypothesis being
---    introduced as `h_pc` -/
--- elab "applySpecBasic" spec:term : tactic => do
---   evalTactic (← `(tactic | apply $spec ))
-
-
-
-
 /-- Discharge the routine side goals left after applying an instruction specification. -/
 elab "cleanupGoalsAfterSpec" : tactic => do
-  -- evalTactic (← `(tactic | first
-  --                         | simpSetEq; simp
-  --                         | simp  ))
-  -- evalTactic (← `(tactic | simp ))
-  -- evalTactic (← `(tactic | simp ))
   evalTactic (← `(tactic | simpSetEq))
   evalTactic (← `(tactic | repeat  simp))
   evalTactic (← `(tactic | simpCurrInstr ))
@@ -342,7 +327,6 @@ elab "applySpecDefault" spec:term : tactic => do
   evalTactic (← `(tactic | rw [← $(mkIdent `h_code')] ))
   evalTactic (← `(tactic | splitCondis in $(mkIdent `user_precondition) ))
   evalTactic (← `(tactic | repeat (apply $spec)))
-  -- evalTactic (← `(tactic | repeat (applySpecAndCleanup $spec)))
 
 
 
@@ -353,9 +337,6 @@ elab "applySpecForSecond" spec:term : tactic => do
   evalTactic (← `(tactic | intros $(mkIdent `user_precondition)))
   evalTactic (← `(tactic | splitCondis in $(mkIdent `user_precondition)))
   evalTactic (← `(tactic | apply $spec))
-  -- evalTactic (← `(tactic | applySpecAndCleanup $spec))
-  -- evalTactic (← `(tactic | try repeat (constructor <;> try assumption)))
-  -- evalTactic (← `(tactic | try repeat (simp)))
 
 
 /--

@@ -99,7 +99,7 @@ theorem nilMove_wordProd (nm : cs.NilMove) (l : List B) : π (cs.applyNilMove nm
       rw[wordProd_append]
       rw[h]
       have h_pair : cs.wordProd [i, i] = 1 := by
-        convert_to cs.wordProd ([i] ++ [i]) = 1
+        change cs.wordProd ([i] ++ [i]) = 1
         rw[wordProd_append]
         simp
       rw [h_pair, one_mul]
@@ -214,8 +214,7 @@ theorem alternatingWord_succ_ne_alternatingWord_eraseIdx [MatsumotoCondition cs]
     intro i j hp hij k hk
     have hp' : p < M i j := by linarith
     have hp'' : p < M j i := by
-      rw [M.symmetric]
-      exact hp'
+      rwa [M.symmetric]
     have zero_lt_p_succ : 0 < p + 1 := by linarith
     rw[alternatingWord_succ]
     nth_rewrite 2 [alternatingWord_succ]

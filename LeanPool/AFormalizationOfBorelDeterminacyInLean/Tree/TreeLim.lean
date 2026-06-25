@@ -155,13 +155,9 @@ def resEqAdj (k : ℕ) : constTree k ⊣ resEq k := Adjunction.mkOfUnitCounit {
           _ = List.replicate k (headD x) := by
             rw [← headD_nonempty x hxl]
       rw [LenHom.h_length_simp, hhead]
-      have htake :
-          List.take x.val.length (List.replicate k (headD x)) =
-            List.replicate (min x.val.length k) (headD x) :=
-        List.take_replicate
       calc
         List.take x.val.length (List.replicate k (headD x)) =
-            List.replicate (min x.val.length k) (headD x) := htake
+            List.replicate (min x.val.length k) (headD x) := List.take_replicate
         _ = List.replicate x.val.length (headD x) := by
           rw [min_eq_left (constTree_length x)]
         _ = x.val := eq_replicate_headD x
@@ -214,8 +210,10 @@ def limObj : tree (∀ j, (F.obj j).1) where
       simpa only [List.map_append, List.map_cons, List.map_nil] using h1 j)
     intro _ _ f; specialize h2 f; apply_fun List.take x.length at h2
     simp_rw [List.map_append, List.map_cons, List.map_nil, ← take_apply_val] at h2
-    convert h2 <;> simp only [List.length_map, le_refl, List.take_append_of_le_length,
-      ← List.map_take, List.take_length, take_coe]
+    convert h2 <;> first
+      | rfl
+      | simp only [List.length_map, le_refl, List.take_append_of_le_length,
+          ← List.map_take, List.take_length, take_coe]
 /-- Auxiliary declaration for the Borel determinacy formalization. -/
 def limCone : Limits.Cone F where
   pt := ⟨_, limObj F⟩
@@ -277,11 +275,11 @@ def isLimit : Limits.IsLimit (limCone F) where
     · exact (LenHom.h_length_simp f x).trans (LenHom.h_length_simp (isLimitLift F s) x).symm
     · intro j
       have hπ := congrArg (fun g : s.pt ⟶ F.obj j ↦ (g x).val) (h j)
-      have hright :
-          List.mapEval j ((isLimitLift F s).toFun x).val = ((s.π.app j) x).val :=
-        coneZip_mapEval F s x j
-      rw [hright]
+      rw [show List.mapEval j ((isLimitLift F s).toFun x).val = ((s.π.app j) x).val from
+        coneZip_mapEval F s x j]
       convert hπ using 1
+      · simp only [ConcreteCategory.comp_apply]; rfl
+      · rfl
 end «TreeLimits»
 
 lemma proj_fixing (F : ℕᵒᵖ ⥤ Trees) (k : ℕ)

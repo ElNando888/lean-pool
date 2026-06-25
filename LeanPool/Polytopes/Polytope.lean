@@ -62,9 +62,7 @@ lemma Closed_Hpolytope {H : Set (Halfspace E)} (hH_ : H.Finite) :
   exact Halfspace_closed Hi_
 
 lemma Hpolytope_same {H_ : Set (Halfspace E)} (hH_1 hH_2 : H_.Finite) :
-  Hpolytope hH_1 = Hpolytope hH_2 := by
-  unfold Hpolytope
-  rfl
+  Hpolytope hH_1 = Hpolytope hH_2 := rfl
 
 lemma mem_Hpolytope {H_ : Set (Halfspace E)} (hH_ : H_.Finite) (x : E) :
   x ∈ Hpolytope hH_ ↔ ∀ Hi, Hi ∈ H_ → Hi.f.1 x ≤ Hi.α := by
@@ -74,15 +72,13 @@ lemma mem_Hpolytope {H_ : Set (Halfspace E)} (hH_ : H_.Finite) (x : E) :
     unfold Hpolytope at h
     rw [Set.mem_sInter] at h
     specialize h Hi ⟨ Hi, HiH, rfl ⟩
-    rw [Halfspace_mem] at h
-    exact h
+    rwa [Halfspace_mem] at h
   · -- 2.
     unfold Hpolytope
     rw [Set.mem_sInter]
     rintro _ ⟨ Hi_, hHi_, rfl ⟩
     specialize h Hi_ hHi_
-    rw [Halfspace_mem]
-    exact h
+    rwa [Halfspace_mem]
 
 lemma empty_Hpolytope [Nontrivial E] :
   ∃ (H_ : Set (Halfspace E)) (hH_ : H_.Finite), Hpolytope hH_ = ∅ := by
@@ -103,7 +99,7 @@ lemma empty_Hpolytope [Nontrivial E] :
   intro h
   have h1 := h (Halfspace.mk f (-1)) (by simp)
   have h2 := h (Halfspace.mk (-f) (-1)) (by simp)
-  rw [unitSphereDual_neg, ContinuousLinearMap.neg_apply, neg_le, neg_neg] at h2
+  rw [unitSphereDual_neg, neg_apply, neg_le, neg_neg] at h2
   change f.1 x ≤ -1 at h1
   linarith
 
@@ -147,7 +143,7 @@ lemma hyperplane_Hpolytope : ∀ (f : {f : (StrongDual ℝ E) // norm f = 1}) (c
     intro h
     have h1 := h (Halfspace.mk f c) (by simp)
     have h2 := h (Halfspace.mk (-f) (-c)) (by simp)
-    rw [unitSphereDual_neg, ContinuousLinearMap.neg_apply, neg_le, neg_neg] at h2
+    rw [unitSphereDual_neg, neg_apply, neg_le, neg_neg] at h2
     change f.1 x ≤ c at h1
     exact le_antisymm h1 h2
   · -- 2.
@@ -155,7 +151,7 @@ lemma hyperplane_Hpolytope : ∀ (f : {f : (StrongDual ℝ E) // norm f = 1}) (c
     simp only [Set.mem_singleton_iff, Set.mem_insert_iff] at hHi
     rcases hHi with rfl | rfl
     · exact le_of_eq h
-    · rw [unitSphereDual_neg, ContinuousLinearMap.neg_apply, neg_le, neg_neg]
+    · rw [unitSphereDual_neg, neg_apply, neg_le, neg_neg]
       exact le_of_eq h.symm
 
 lemma inter_Hpolytope (H_1 H_2 : Set (Halfspace E)) (hH_1 : H_1.Finite) (hH_2 : H_2.Finite) :
@@ -192,8 +188,7 @@ lemma Hpolytope_translation {H_ : Set (Halfspace E)} (hH_ : H_.Finite) (x : E) :
   · -- 1.
     intro h Hi_ hHi_
     specialize h (halfspaceTranslation x Hi_) (Set.mem_image_of_mem _ hHi_)
-    rw [← SetLike.mem_coe, mem_halfspaceTranslation, sub_eq_add_neg] at h
-    exact h
+    rwa [← SetLike.mem_coe, mem_halfspaceTranslation, sub_eq_add_neg] at h
   · -- 2.
     intro h Hi_ hHi_
     rw [Set.mem_image] at hHi_

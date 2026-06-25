@@ -109,9 +109,7 @@ lemma divergentSet_invariant : f x ∈ divergentSet f φ ↔ x ∈ divergentSet 
       iSup_eq_top] at hx ⊢
     intro M hM
     cases M using EReal.rec with
-    | bot =>
-        use 0
-        apply EReal.bot_lt_coe
+    | bot => exact ⟨0, EReal.bot_lt_coe _⟩
     | top => contradiction
     | coe a =>
         rcases hx ↑(- φ x + a) (EReal.coe_lt_top _) with ⟨N, hN⟩
@@ -123,9 +121,7 @@ lemma divergentSet_invariant : f x ∈ divergentSet f φ ↔ x ∈ divergentSet 
       iSup_eq_top] at hx ⊢
     intro M hM
     cases M using EReal.rec with
-    | bot =>
-        use 0
-        apply EReal.bot_lt_coe
+    | bot => exact ⟨0, EReal.bot_lt_coe _⟩
     | top => contradiction
     | coe a =>
       rcases hx ↑(φ x + a) (EReal.coe_lt_top _) with ⟨N, hN⟩
@@ -138,9 +134,7 @@ lemma divergentSet_invariant : f x ∈ divergentSet f φ ↔ x ∈ divergentSet 
       | zero =>
         rcases hx ↑(birkhoffSum f φ 1 x) (EReal.coe_lt_top _) with ⟨N, hNN⟩
         cases N with
-        | zero =>
-          exfalso
-          exact (lt_self_iff_false _).mp hNN
+        | zero => exact absurd hNN (lt_irrefl _)
         | succ N =>
           use N
           norm_cast at hNN
@@ -189,7 +183,7 @@ lemma birkhoffAverage_tendsto_nonpos_of_not_mem_divergentSet
     (hx : x ∉ divergentSet f φ) :
     Tendsto (birkhoffAverage ℝ f φ · x) atTop nonneg := by
   /- it suffices to show there are upper bounds ≤ ε for all ε > 0 -/
-  simp only [tendsto_iInf, gt_iff_lt, tendsto_principal, Set.mem_Iio, eventually_atTop, ge_iff_le]
+  simp only [tendsto_iInf, gt_iff_lt, tendsto_principal, Set.mem_Iio, eventually_atTop]
   intro ε hε
   /- from `hx` hypothesis, the birkhoff sums are bounded above -/
   simp only [divergentSet, Set.mem_preimage, birkhoffSup, Set.mem_singleton_iff, iSup_eq_top,
@@ -205,8 +199,7 @@ lemma birkhoffAverage_tendsto_nonpos_of_not_mem_divergentSet
       /- use archimedian property of reals -/
       rcases Archimedean.arch M hε with ⟨N, hN⟩
       have upperBound (n : ℕ) (hn : N ≤ n) : birkhoffAverage ℝ f φ (n + 1) x < ε := by
-        have : M < (n + 1) • ε := by
-          exact hN.trans_lt <| smul_lt_smul_of_pos_right (Nat.lt_succ_of_le hn) hε
+        have : M < (n + 1) • ε := hN.trans_lt <| smul_lt_smul_of_pos_right (Nat.lt_succ_of_le hn) hε
         rw [nsmul_eq_mul] at this
         exact (inv_smul_lt_iff_of_pos (Nat.cast_pos.mpr (Nat.zero_lt_succ n))).mpr
           ((M_is_bound n).trans_lt this)
@@ -361,8 +354,8 @@ theorem birkhoffErgodicTheorem_aux {ε : ℝ} (hε : 0 < ε) (hf : MeasurePreser
   suffices ∀ (n : ℕ), 0 < n →
       birkhoffAverage ℝ f ψ n x =
         birkhoffAverage ℝ f φ n x - (invCondexp μ f φ x + ε) by
-    simp only [tendsto_iInf, gt_iff_lt, tendsto_principal, Set.mem_Iio, eventually_atTop,
-      ge_iff_le] at hx ⊢
+    simp only [tendsto_iInf, gt_iff_lt, tendsto_principal, Set.mem_Iio,
+      eventually_atTop] at hx ⊢
     intro r hr
     rcases hx r hr with ⟨n, hn⟩
     use n + 1
@@ -393,8 +386,8 @@ theorem birkhoffErgodicTheorem (hf : MeasurePreserving f μ μ) (hφ : Integrabl
     have p₂ := birkhoffErgodicTheorem_aux μ hδ hf hφ.neg hφ'.neg
     have : invCondexp μ f (-φ) =ᵐ[μ] -invCondexp μ f φ := condExp_neg _ _
     refine ((p₁.and p₂).and this).mono fun x ⟨⟨hx₁, hx₂⟩, hx₃⟩ => ?_
-    simp only [tendsto_iInf, gt_iff_lt, tendsto_principal, Set.mem_Iio, eventually_atTop,
-      ge_iff_le] at hx₁ hx₂ ⊢
+    simp only [tendsto_iInf, gt_iff_lt, tendsto_principal, Set.mem_Iio,
+      eventually_atTop] at hx₁ hx₂ ⊢
     rcases hx₁ δ hδ with ⟨n₁, hn₁⟩
     rcases hx₂ δ hδ with ⟨n₂, hn₂⟩
     simp_rw [δ] at hn₁ hn₂ ⊢
@@ -410,9 +403,8 @@ theorem birkhoffErgodicTheorem (hf : MeasurePreserving f μ μ) (hφ : Integrabl
       linarith
   refine this.mono fun x hx => Metric.tendsto_atTop.mpr fun ε hε => ?_
   rcases Archimedean.arch 1 hε with ⟨k, hk⟩
-  have hk' : 1 < (k + 1) • ε := by
-    exact hk.trans_lt <| smul_lt_smul_of_pos_right (lt_add_one k) hε
-  simp only [eventually_atTop, ge_iff_le, Subtype.forall, gt_iff_lt] at hx
+  have hk' : 1 < (k + 1) • ε := hk.trans_lt <| smul_lt_smul_of_pos_right (lt_add_one k) hε
+  simp only [eventually_atTop, Subtype.forall, gt_iff_lt] at hx
   rcases hx k.succ (Nat.zero_lt_succ k) with ⟨N, hN⟩
   use N
   intro n hn

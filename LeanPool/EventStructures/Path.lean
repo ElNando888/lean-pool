@@ -88,8 +88,7 @@ lemma path_comp_assoc {c₁ c₂ c₃ c₄ : Conf es}
   induction h₁₂ with
   | refl => rfl
   | step hEdge hPath ih =>
-    simp only [pathComp]
-    rw [ih]
+    simp only [pathComp, ih]
 
 /-- Trace of the path -/
 def trace {c₁ c₂ : Conf es} (hPath : Path es c₁ c₂) : List es.Event :=
@@ -248,7 +247,8 @@ lemma pathEquiv_refl {c₁ c₂ : Conf es} : ∀ p, @PathEquiv es c₁ c₂ p p 
   fun _ => TraceEquiv.refl _
 
 /-- Path equivalence is symmetric. -/
-lemma pathEquiv_symm {c₁ c₂ : Conf es} : Symmetric (@PathEquiv es c₁ c₂) :=
+lemma pathEquiv_symm {c₁ c₂ : Conf es} :
+    ∀ ⦃p₁ p₂⦄, @PathEquiv es c₁ c₂ p₁ p₂ → @PathEquiv es c₁ c₂ p₂ p₁ :=
   fun _ _ h => Trace.traceEquiv_symm es h
 
 /-- Path equivalence is transitive. -/
@@ -275,8 +275,7 @@ lemma trace_comp {c₁ c₂ c₃ : Conf es} (p₁₂ : Path es c₁ c₂) (p₂�
   induction p₁₂ with
   | refl => rfl
   | step hEdge hPath ih =>
-    simp only [pathComp, trace, ih]
-    rw [List.cons_append]
+    simp only [pathComp, trace, ih, List.cons_append]
 
 /-- Asynchronous path: paths quotiented by path equivalence. -/
 def Async (c₁ c₂ : Conf es) : Type _ :=

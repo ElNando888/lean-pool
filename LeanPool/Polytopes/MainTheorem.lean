@@ -103,11 +103,9 @@ lemma hxSegBallInterSeg : ∀ (x1 x2 : E) (ε : ℝ),
         apply div_le_div_of_nonneg_right (min_le_right _ _) (by norm_num)
       apply (convex_iff_segment_subset.mp <| convex_ball x ε)
       · apply key
-        rw [abs_of_neg ht1, neg_neg]
-        exact hmin
+        rwa [abs_of_neg ht1, neg_neg]
       · apply key
-        rw [abs_of_pos ht2]
-        exact hmin'
+        rwa [abs_of_pos ht2]
   · -- 2. the smaller segment is not a singleton
     rintro ⟨_, h2⟩
     have hvne : v ≠ 0 := sub_ne_zero_of_ne (Ne.symm hx12)
@@ -159,13 +157,13 @@ lemma ExtremePointsofHpolytope {H_ : Set (Halfspace E)} (hH_ : H_.Finite) :
         unfold Hpolytope at hxH
         have hxIcinterior : x ∈ ⋂₀ ((interior <| SetLike.coe ·) '' (H_ \ Hpolytope.I H_ x)) := by
           rintro HiS ⟨ Hi_, hHi_, rfl ⟩
-          rw [Set.mem_diff, Hpolytope.I_mem, IsClosed.frontier_eq <| Halfspace_closed Hi_,
-            Set.mem_diff] at hHi_
+          rw [Set.mem_sdiff, Hpolytope.I_mem, IsClosed.frontier_eq <| Halfspace_closed Hi_,
+            Set.mem_sdiff] at hHi_
           push Not at hHi_
           exact hHi_.2 hHi_.1 <| hxH Hi_ ⟨ Hi_, hHi_.1, rfl ⟩
         have hIcinteriorOpen :
             IsOpen (⋂₀ ((interior <| SetLike.coe ·) '' (H_ \ Hpolytope.I H_ x))) := by
-          apply Set.Finite.isOpen_sInter (Set.Finite.image _ (Set.Finite.diff hH_))
+          apply Set.Finite.isOpen_sInter (Set.Finite.image _ (Set.Finite.sdiff hH_))
           exact fun _ ⟨ Hi_, _, h ⟩ => h ▸ isOpen_interior
         rw [Metric.isOpen_iff] at hIcinteriorOpen
         exact hIcinteriorOpen x hxIcinterior
@@ -220,7 +218,7 @@ lemma ExtremePointsofHpolytope {H_ : Set (Halfspace E)} (hH_ : H_.Finite) :
         apply openSegment_subset_segment
         exact Set.mem_of_mem_inter_left hsub
       · have : Hi_ ∈ H_ \ Hpolytope.I H_ x := by
-          rw [Set.mem_diff]
+          rw [Set.mem_sdiff]
           exact ⟨ hHi_, hninI ⟩
         exact hmemballmemIc x1 (Set.mem_of_mem_inter_right hsub) Hi_ this
     · -- x2 ∈ Hpolytope hH_
@@ -230,7 +228,7 @@ lemma ExtremePointsofHpolytope {H_ : Set (Halfspace E)} (hH_ : H_.Finite) :
         apply openSegment_subset_segment
         exact Set.mem_of_mem_inter_left hsub
       · have : Hi_ ∈ H_ \ Hpolytope.I H_ x := by
-          rw [Set.mem_diff]
+          rw [Set.mem_sdiff]
           exact ⟨ hHi_, hninI ⟩
         exact hmemballmemIc x2 (Set.mem_of_mem_inter_right hsub) Hi_ this
   · -- 2.
@@ -250,8 +248,7 @@ lemma ExtremePointsofHpolytope {H_ : Set (Halfspace E)} (hH_ : H_.Finite) :
       have : x ∈ ({x} : Set E) := rfl
       rw [← hinterx, Set.mem_sInter] at this
       specialize this (frontier <| SetLike.coe Hi_) ⟨ Hi_, hHi_, rfl ⟩
-      rw [frontierHalfspace_Hyperplane, Set.mem_setOf] at this
-      exact this
+      rwa [frontierHalfspace_Hyperplane, Set.mem_setOf] at this
     clear hinterx hxH
     -- unpacking the fact that x1, x2 are in Hpolytope
     rw [mem_Hpolytope] at hx1 hx2
@@ -311,7 +308,7 @@ lemma DualOfVpolytope_compactHpolytope [FiniteDimensional ℝ E] {S : Set E} (hS
   use pointDual '' (Subtype.val ⁻¹' (S \ {0}))
   use (by
     apply Set.Finite.image
-    exact (Set.Finite.diff hS).preimage (Set.injOn_of_injective Subtype.val_injective))
+    exact (Set.Finite.sdiff hS).preimage (Set.injOn_of_injective Subtype.val_injective))
   apply subset_antisymm
   · -- hard direction
     -- take x from Hpolytope of nonzero elements of S
@@ -340,11 +337,10 @@ lemma DualOfVpolytope_compactHpolytope [FiniteDimensional ℝ E] {S : Set E} (hS
     rcases em (s = 0) with h | h
     · exact h ▸ pointDual_origin x'
     specialize hx (pointDual ⟨ s, h ⟩) (Set.mem_image_of_mem _ ?_)
-    · rw [Set.mem_preimage, Subtype.coe_mk, Set.mem_diff]
+    · rw [Set.mem_preimage, Subtype.coe_mk, Set.mem_sdiff]
       exact ⟨ hs, h ⟩
     rw [← Halfspace_mem, mem_pointDual, Subtype.coe_mk] at hx
-    rw [mem_pointDual, Subtype.coe_mk, real_inner_comm]
-    exact hx
+    rwa [mem_pointDual, Subtype.coe_mk, real_inner_comm]
   · -- easy direction, simply need to show it is set intersection of a smaller set
     apply Set.sInter_subset_sInter
     apply Set.image_mono
@@ -353,7 +349,7 @@ lemma DualOfVpolytope_compactHpolytope [FiniteDimensional ℝ E] {S : Set E} (hS
     · apply subset_trans (by simp) <| subset_convexHull _ _
     · rw [Subtype.range_coe_subtype]
       intro x hx
-      rw [Set.mem_diff, Set.mem_singleton_iff] at hx
+      rw [Set.mem_sdiff, Set.mem_singleton_iff] at hx
       rw [Set.mem_setOf]
       exact hx.2
 
@@ -387,14 +383,12 @@ lemma Vpolytope_of_Hpolytope : ∀ {H_ : Set (Halfspace E)} (hH_ : H_.Finite),
         rw [Finset.mem_coe, Finset.mem_powerset, ← Finset.coe_subset, hHfin, hIfin]
         exact Hpolytope.I_sub x
       · -- sInter of I H_ x is {x}
-        rw [← ExtremePointsofHpolytope hH_ x (extremePoints_subset hx)]
-        exact hx
+        rwa [← ExtremePointsofHpolytope hH_ x (extremePoints_subset hx)]
     have hgExFin : Set.Finite <| g '' (Set.extremePoints ℝ (Hpolytope hH_)) :=
       Set.Finite.subset hfPH hgfPH
     -- Since g is embedding, Set.extremePoints ℝ (Hpolytope hH_) is finite
     have := hgExFin.preimage_embedding g
-    rw [Function.Injective.preimage_image g.injective] at this
-    exact this
+    rwa [Function.Injective.preimage_image g.injective] at this
   have hcl : closure (convexHull ℝ ((Hpolytope hH_).extremePoints ℝ)) = Hpolytope hH_ :=
     closure_convexHull_extremePoints hHcpt (Convex_Hpolytope hH_)
   refine ⟨ (Hpolytope hH_).extremePoints ℝ, hExHFinite, ?_ ⟩
@@ -503,8 +497,7 @@ lemma Nonempty_iff_Nonempty_interior_in_direction {S : Set E} {s : E} (hs : s �
   rw [Set.nonempty_coe_sort, ← @convexHull_nonempty_iff ℝ,
     ← intrinsicInterior_nonempty (convex_convexHull ℝ S),
     intrinsicInterior, Set.image_nonempty, affineSpan_convexHull] at hS
-  rw [← AffineIsometryEquiv.coe_toHomeomorph, ← Homeomorph.image_interior, Set.image_nonempty]
-  exact hS
+  rwa [← AffineIsometryEquiv.coe_toHomeomorph, ← Homeomorph.image_interior, Set.image_nonempty]
 
 
 theorem MainTheoremOfPolytopes [Nontrivial E] :
@@ -577,8 +570,7 @@ theorem MainTheoremOfPolytopes [Nontrivial E] :
         change Subtype.val '' ((AffineIsometryEquiv.toHomeomorph
           (AffineIsometryEquiv.VSubconst ℝ s')) '' (Subtype.val ⁻¹' (convexHull ℝ) S)) + {s}
           = Vpolytope hS
-        rw [AffineIsometryEquiv.coe_toHomeomorph]
-        rw [InDown_eq_DownIn, Set.vsub_eq_sub]
+        rw [AffineIsometryEquiv.coe_toHomeomorph, InDown_eq_DownIn, Set.vsub_eq_sub]
         change ((↑) : SpanS.direction → E) ''
           (((↑) : SpanS.direction → E) ⁻¹' ((convexHull ℝ) S - {s})) + {s} = Vpolytope hS
         rw [Set.image_preimage_eq_inter_range, Subtype.range_coe_subtype,

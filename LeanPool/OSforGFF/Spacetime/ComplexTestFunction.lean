@@ -84,7 +84,7 @@ lemma ω_re_decompose_linear
         = t.re * Complex.reCLM (f x) - t.im * Complex.imCLM (f x)
           + s.re * Complex.reCLM (g x) - s.im * Complex.imCLM (g x)
     -- Evaluate pointwise scalar multiplication and addition
-    simp only [SchwartzMap.add_apply, SchwartzMap.smul_apply, smul_eq_mul, reCLM_apply,
+    simp only [add_apply, smul_apply, smul_eq_mul, reCLM_apply,
       add_re, mul_re, imCLM_apply]
     -- Switch CLMs to the scalar functions and finish with the algebraic identity
     change Complex.re (t * f x + s * g x)
@@ -120,7 +120,7 @@ lemma ω_im_decompose_linear
         = t.re * Complex.imCLM (f x) + t.im * Complex.reCLM (f x)
           + s.re * Complex.imCLM (g x) + s.im * Complex.reCLM (g x)
     -- Evaluate pointwise scalar multiplication and addition
-    simp only [SchwartzMap.add_apply, SchwartzMap.smul_apply, smul_eq_mul, imCLM_apply,
+    simp only [add_apply, smul_apply, smul_eq_mul, imCLM_apply,
       add_im, mul_im, reCLM_apply]
     -- Switch CLMs to scalar functions and finish with the algebraic identity
     change Complex.im (t * f x + s * g x)
@@ -202,18 +202,12 @@ lemma norm_compContinuousMultilinearMap_ofReal {n : ℕ} {E : Fin n → Type*}
   apply le_antisymm
   · calc ‖Complex.ofRealCLM.compContinuousMultilinearMap m‖
         ≤ ‖Complex.ofRealCLM‖ * ‖m‖ := ContinuousLinearMap.norm_compContinuousMultilinearMap_le _ _
-      _ = 1 * ‖m‖ := by rw [Complex.norm_ofRealCLM]
-      _ = ‖m‖ := one_mul _
-  · have h_nonneg : (0 : ℝ) ≤ ‖Complex.ofRealCLM.compContinuousMultilinearMap m‖ := norm_nonneg _
-    have h_bound : ∀ v, ‖m v‖ ≤ ‖Complex.ofRealCLM.compContinuousMultilinearMap m‖ * ∏ i, ‖v i‖ :=
-      by
-      intro v
-      have h_eq : ‖m v‖ = ‖(Complex.ofRealCLM.compContinuousMultilinearMap m) v‖ := by
-        simp only [ContinuousLinearMap.compContinuousMultilinearMap_coe, Function.comp_apply]
-        exact (Complex.norm_real (m v)).symm
-      rw [h_eq]
-      exact (Complex.ofRealCLM.compContinuousMultilinearMap m).le_opNorm v
-    exact ContinuousMultilinearMap.opNorm_le_bound h_nonneg h_bound
+      _ = ‖m‖ := by rw [Complex.norm_ofRealCLM, one_mul]
+  · refine ContinuousMultilinearMap.opNorm_le_bound (norm_nonneg _) (fun v => ?_)
+    rw [show ‖m v‖ = ‖(Complex.ofRealCLM.compContinuousMultilinearMap m) v‖ from by
+      simp only [ContinuousLinearMap.compContinuousMultilinearMap_coe, Function.comp_apply]
+      exact (Complex.norm_real (m v)).symm]
+    exact (Complex.ofRealCLM.compContinuousMultilinearMap m).le_opNorm v
 
 /-- The norm of the n-th iterated derivative of a Schwartz function composed with
     real→complex embedding equals the norm of the n-th iterated derivative of the
@@ -270,7 +264,7 @@ def toComplex (f : TestFunction) : TestFunctionℂ :=
 @[simp] lemma toComplex_smul (c : ℝ) (f : TestFunction) :
   toComplex (c • f) = (c : ℂ) • toComplex f := by
   ext x
-  simp only [toComplex_apply, SchwartzMap.smul_apply, smul_eq_mul, Complex.ofReal_mul]
+  simp only [toComplex_apply, smul_apply, smul_eq_mul, Complex.ofReal_mul]
 
 /-- The embedding of real Schwartz functions into complex Schwartz functions is a continuous
     ℝ-linear map. This follows from `SchwartzMap.mkCLM` since:
@@ -281,9 +275,9 @@ def toComplex (f : TestFunction) : TestFunctionℂ :=
 -/
 noncomputable def toComplexCLM : TestFunction →L[ℝ] TestFunctionℂ :=
   SchwartzMap.mkCLM (𝕜 := ℝ) (𝕜' := ℝ) (G := ℂ) (σ := RingHom.id ℝ) (fun f x => (f x : ℂ))
-    (fun f g x => by simp only [SchwartzMap.add_apply]; exact Complex.ofReal_add _ _)
+    (fun f g x => by simp only [add_apply]; exact Complex.ofReal_add _ _)
     (fun c f x => by
-      simp only [SchwartzMap.smul_apply, RingHom.id_apply]
+      simp only [smul_apply, RingHom.id_apply]
       change (((c • f x : ℝ) : ℂ)) = c • ((f x : ℝ) : ℂ)
       rw [smul_eq_mul, Complex.ofReal_mul, ← Complex.real_smul])
     (fun f => ContDiff.comp Complex.ofRealCLM.contDiff f.smooth')
@@ -344,18 +338,16 @@ noncomputable def conjSchwartz {E : Type*} [NormedAddCommGroup E] [NormedSpace �
       simp only [Function.comp_def] at this
       exact this
     rw [h_deriv]
-    have h_norm : ‖(Complex.conjCLE : ℂ →L[ℝ] ℂ).compContinuousMultilinearMap (iteratedFDeriv ℝ n f
-      x)‖ ≤
-        ‖iteratedFDeriv ℝ n f x‖ := by
+    have h_norm : ‖(Complex.conjCLE : ℂ →L[ℝ] ℂ).compContinuousMultilinearMap
+        (iteratedFDeriv ℝ n f x)‖ ≤ ‖iteratedFDeriv ℝ n f x‖ :=
       calc ‖(Complex.conjCLE : ℂ →L[ℝ] ℂ).compContinuousMultilinearMap (iteratedFDeriv ℝ n f x)‖
           ≤ ‖(Complex.conjCLE : ℂ →L[ℝ] ℂ)‖ * ‖iteratedFDeriv ℝ n f x‖ :=
             ContinuousLinearMap.norm_compContinuousMultilinearMap_le _ _
-        _ = 1 * ‖iteratedFDeriv ℝ n f x‖ := by rw [Complex.conjCLE_norm]
-        _ = ‖iteratedFDeriv ℝ n f x‖ := one_mul _
-    calc ‖x‖ ^ k * ‖(Complex.conjCLE : ℂ →L[ℝ] ℂ).compContinuousMultilinearMap (iteratedFDeriv ℝ n
-      f x)‖
-        ≤ ‖x‖ ^ k * ‖iteratedFDeriv ℝ n f x‖ := by
-          apply mul_le_mul_of_nonneg_left h_norm (pow_nonneg (norm_nonneg _) _)
+        _ = ‖iteratedFDeriv ℝ n f x‖ := by rw [Complex.conjCLE_norm, one_mul]
+    calc ‖x‖ ^ k * ‖(Complex.conjCLE : ℂ →L[ℝ] ℂ).compContinuousMultilinearMap
+          (iteratedFDeriv ℝ n f x)‖
+        ≤ ‖x‖ ^ k * ‖iteratedFDeriv ℝ n f x‖ :=
+          mul_le_mul_of_nonneg_left h_norm (pow_nonneg (norm_nonneg _) _)
       _ ≤ C := hC x
 }
 
@@ -395,7 +387,7 @@ lemma distributionPairingℂ_real_conj (ω : FieldConfiguration) (f : TestFuncti
   have h_conj_im : (complexTestFunctionDecompose (conjSchwartz f)).2 =
       -(complexTestFunctionDecompose f).2 := by
     ext x
-    simp only [complex_testfunction_decompose_snd_apply, SchwartzMap.neg_apply]
+    simp only [complex_testfunction_decompose_snd_apply, neg_apply]
     change (starRingEnd ℂ (f x)).im = -(f x).im
     exact Complex.conj_im (f x)
   rw [h_conj_re, h_conj_im]

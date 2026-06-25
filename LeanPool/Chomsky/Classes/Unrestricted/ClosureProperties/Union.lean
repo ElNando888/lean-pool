@@ -91,12 +91,7 @@ def lg₁ : LiftedGrammar T :=
     )
     (by
       rintro r ⟨rin, n₁, rnt⟩
-      rw [show (unionGrammar g₁ g₂).rules =
-        ⟨[], none, [], [Symbol.nonterminal (some ◄g₁.initial)]⟩ ::
-        ⟨[], none, [], [Symbol.nonterminal (some ▶g₂.initial)]⟩ ::
-        (g₁.rules.map (liftRule (some ∘ Sum.inl)) ++
-          g₂.rules.map (liftRule (some ∘ Sum.inr))) from rfl] at rin
-      rw [List.mem_cons, List.mem_cons] at rin
+      rw [unionGrammar_rules, List.mem_cons, List.mem_cons] at rin
       obtain req₁ | req₂ | rin₃ := rin
       on_goal 3 => obtain rin₁ | rin₂ := List.mem_append.mp rin₃
       · exfalso
@@ -142,12 +137,7 @@ def lg₂ : LiftedGrammar T :=
     )
     (by
       rintro r ⟨rin, n₁, rnt⟩
-      rw [show (unionGrammar g₁ g₂).rules =
-        ⟨[], none, [], [Symbol.nonterminal (some ◄g₁.initial)]⟩ ::
-        ⟨[], none, [], [Symbol.nonterminal (some ▶g₂.initial)]⟩ ::
-        (g₁.rules.map (liftRule (some ∘ Sum.inl)) ++
-          g₂.rules.map (liftRule (some ∘ Sum.inr))) from rfl] at rin
-      rw [List.mem_cons, List.mem_cons] at rin
+      rw [unionGrammar_rules, List.mem_cons, List.mem_cons] at rin
       obtain req₁ | req₂ | rin₃ := rin
       on_goal 3 => obtain rin₁ | rin₂ := List.mem_append.mp rin₃
       · exfalso
@@ -165,6 +155,13 @@ def lg₂ : LiftedGrammar T :=
     )
 
 
+private lemma good_initial_singleton {G : LiftedGrammar T} {a : Symbol T G.g.nt}
+    (ha : GoodLetter a) :
+  GoodString [a] := by
+  intro b hb
+  rw [List.mem_singleton] at hb
+  exact hb ▸ ha
+
 lemma in_L₁_or_L₂_of_in_union {w : List T}
     (hwgg : w ∈ (unionGrammar g₁ g₂).language) :
   w ∈ g₁.language ∨ w ∈ g₂.language :=
@@ -175,9 +172,7 @@ by
   rcases hggw with hggw₁ | hggw₂
   · exfalso
     have zeroth := congr_arg (·[0]?) hggw₁
-    cases w
-    · simp at zeroth
-    · simp at zeroth
+    cases w <;> simp at zeroth
   rcases hggw₂ with ⟨i, ⟨r, rin, u, v, bef, aft⟩, deri⟩
   have uv_nil : u = [] ∧ v = [] := by
     have bef_len := congr_arg List.length bef
@@ -205,43 +200,31 @@ by
     rw [aft] at deri
     left
     change g₁.Derives _ _
-    have sinked := sink_deri lg₁ deri
-    clear * - sinked
-    specialize sinked (by
-        rw [GoodString]
-        intro a ha
-        cases ha with
-        | head => exact ⟨g₁.initial, rfl⟩
-        | tail _ h => exact (List.not_mem_nil h).elim)
+    have sinked := sink_deri lg₁ deri (good_initial_singleton ⟨g₁.initial, rfl⟩)
     convert sinked
-    unfold sinkString
-    exact filterMap_sinkSymbol_terminals lg₁.sinkNt w
+    all_goals first
+      | rfl
+      | (unfold sinkString
+         exact heq_of_eq (filterMap_sinkSymbol_terminals lg₁.sinkNt w))
   · rw [req₂] at aft
     dsimp only at aft
     rw [aft] at deri
     right
     change g₂.Derives _ _
-    have sinked := sink_deri lg₂ deri
-    clear * - sinked
-    specialize sinked (by
-        rw [GoodString]
-        intro a ha
-        cases ha with
-        | head => exact ⟨g₂.initial, rfl⟩
-        | tail _ h => exact (List.not_mem_nil h).elim)
+    have sinked := sink_deri lg₂ deri (good_initial_singleton ⟨g₂.initial, rfl⟩)
     convert sinked
-    unfold sinkString
-    exact filterMap_sinkSymbol_terminals lg₂.sinkNt w
+    all_goals first
+      | rfl
+      | (unfold sinkString
+         exact heq_of_eq (filterMap_sinkSymbol_terminals lg₂.sinkNt w))
   · exfalso
     rcases List.mem_map.mp rin₁ with ⟨r₁, -, r_of_r₁⟩
-    rw [← r_of_r₁] at same_nt
-    rw [unionGrammar_initial] at same_nt
+    rw [← r_of_r₁, unionGrammar_initial] at same_nt
     simp only [liftRule, Function.comp_apply] at same_nt
     exact absurd same_nt (Option.some_ne_none _).symm
   · exfalso
     rcases List.mem_map.mp rin₂ with ⟨r₂, -, r_of_r₂⟩
-    rw [← r_of_r₂] at same_nt
-    rw [unionGrammar_initial] at same_nt
+    rw [← r_of_r₂, unionGrammar_initial] at same_nt
     simp only [liftRule, Function.comp_apply] at same_nt
     exact absurd same_nt (Option.some_ne_none _).symm
 
@@ -253,8 +236,12 @@ by
   · refine ⟨⟨[], none, [], [Symbol.nonterminal (some ◄g₁.initial)]⟩, ?_, [], [], rfl, rfl⟩
     apply List.mem_cons_self
   convert lift_deri lg₁ hwg
-  symm
-  apply List.map_map
+  all_goals first
+    | rfl
+    | (apply heq_of_eq
+       change _ = List.map (liftSymbol _) (w.map Symbol.terminal)
+       rw [List.map_map]
+       rfl)
 
 lemma in_union_of_in_L₂ {w : List T} (hwg : w ∈ g₂.language) :
   w ∈ (unionGrammar g₁ g₂).language :=
@@ -264,8 +251,12 @@ by
     apply List.mem_cons_of_mem
     apply List.mem_cons_self
   convert lift_deri lg₂ hwg
-  symm
-  apply List.map_map
+  all_goals first
+    | rfl
+    | (apply heq_of_eq
+       change _ = List.map (liftSymbol _) (w.map Symbol.terminal)
+       rw [List.map_map]
+       rfl)
 
 /-- The class of grammar-generated languages is closed under union. -/
 theorem GG_of_GG_u_GG (L₁ : Language T) (L₂ : Language T) :

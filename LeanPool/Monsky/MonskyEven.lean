@@ -54,11 +54,8 @@ lemma isCover_iff (X : Set ℝ²) (S : Set Triangle)
   simp only [isDisjointCover, isCover, isDisjointPolygonSet, ne_eq, covers, disjointSet,
     and_congr_right_iff]
   intro _
-  constructor
-  · intro h Δ₁ Δ₂ hΔ₁ hΔ₂ hneq
-    exact h Δ₁ hΔ₁ Δ₂ hΔ₂ hneq
-  · intro h Δ₁ hΔ₁ Δ₂ hΔ₂ hneq
-    exact h Δ₁ Δ₂ hΔ₁ hΔ₂ hneq
+  exact ⟨fun h Δ₁ Δ₂ hΔ₁ hΔ₂ hneq ↦ h Δ₁ hΔ₁ Δ₂ hΔ₂ hneq,
+    fun h Δ₁ hΔ₁ Δ₂ hΔ₂ hneq ↦ h Δ₁ Δ₂ hΔ₁ hΔ₂ hneq⟩
 
 lemma disjoint_aux {α β : Type} (S₁ S₂ : Set α) (f : α → Set β) (h₁ : disjointSet S₁ f)
     (h₂ : disjointSet S₂ f)
@@ -151,9 +148,9 @@ lemma zig_zag_cover_size_aux (n : ℕ) :
   constructor <;> (
     rw [Finset.card_image_of_injective]
     · exact card_fin n
-    · convert Function.Injective.comp translate_injective ?_
-      intro s _ hsame
+    · intro s s' hsame
       have hn : (n : ℝ) ≠ 0 := fun h ↦ Fin.elim0 (Fin.cast ((Nat.cast_eq_zero).1 h) s)
+      have hsame := translate_injective hsame
       simp_all only [div_eq_div_iff hn hn, mul_eq_mul_right_iff, or_false, Nat.cast_inj]
       exact Fin.eq_of_val_eq hsame
     )
@@ -346,7 +343,8 @@ lemma zig_zag_covers_square {n : ℕ} (hn : n ≠ 0)
               try linarith [hx 0 ]
             )
             convert sub_nonneg.2 (le_of_lt (Nat.lt_floor_add_one (↑n * x 1))) using 1
-            ring
+            · rfl
+            · ring
           · rw [translateTriangle_det, scaleTriangle_det, mul_ne_zero_iff_right]
             · simp only [one_div, ne_eq, inv_eq_zero, Nat.cast_eq_zero, hn, not_false_eq_true]
             · simp [det, Δ₀']

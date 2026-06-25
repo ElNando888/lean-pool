@@ -162,7 +162,7 @@ lemma det_fallingFactorial_eq_det_vandermonde (c : Fin (k + 1) → ℕ) :
       simp only [Polynomial.C_1, one_mul] at h_comb ⊢
       refine ⟨?_, ?_, ?_⟩
       · ext i j
-        simp? +decide [Matrix.mul_apply]
+        simp +decide only [fallingFactorialMatrix, Matrix.of_apply, map_natCast, Matrix.mul_apply]
         convert h_comb i j using 1
         rw [Finset.sum_subset (Finset.range_mono (Nat.succ_le_succ (Fin.is_le j)))]
         · rw [Finset.sum_range]
@@ -232,10 +232,7 @@ lemma fallingFactorial_eq_factorial_div (n k : ℕ) :
           simp_all only [not_le]
           rw [Finset.prod_eq_zero_iff]
           simp_all only [mem_range]
-          apply Exists.intro
-          · apply And.intro
-            · exact hk
-            · simp_all only [tsub_self]
+          exact ⟨n, hk, by simp⟩
 
 /-- Symmetric group sum expression C = ∑_{σ∈S_{k + 1}} (-1)^{sign(σ)} * m! / ∏ᵢ (cᵢ - σ(i))!
     Corrected to use proper sign and handle 0 case. -/
@@ -264,7 +261,8 @@ lemma symmetricSumFixed_eq_expectedValue (c : Fin (k + 1) → ℕ) (m : ℕ) :
           erw [Matrix.det_vandermonde]
           rw [Finset.prod_comm]
           simp +decide [Finset.prod_ite, Finset.filter_lt_eq_Ioi]
-        convert h_vandermonde_det (fun i => c i) using 1
+        convert h_vandermonde_det (fun i => c i) using 2 with i j
+        simp [vandermondeMatrix]
       unfold expectedValue
       simp_all only [Fin.val_fin_lt]
     unfold symmetricSumFixed
@@ -541,7 +539,7 @@ lemma coeff_term (c : Fin (k + 1) → ℕ) (m : ℕ) (σ : Equiv.Perm (Fin (k + 
           unfold toFinsupp at a
           simp_all only [ne_eq, Finsupp.coe_mk]
           linarith
-        rw [Finset.prod_eq_prod_diff_singleton_mul <| Finset.mem_univ w]
+        rw [Finset.prod_eq_prod_sdiff_singleton_mul <| Finset.mem_univ w]
         rw [MvPolynomial.coeff_mul]
         have fwd : LE.le (α := ℕ) (snd w : ℕ) (σ w : Fin (k + 1)).1 := le_of_lt h_snd_w
         have fwd_1 : c w ≤ (σ w).1 := le_of_lt h
@@ -616,4 +614,6 @@ theorem Vandermonde_coefficient_formula (c : Fin (k + 1) → ℕ) (m : ℕ)
   rw [h_coeff]
   rw [Finset.sum_congr rfl fun σ _ => by rw [coeff_term c m σ h_sum]]
   norm_num +zetaDelta at *
-  convert symmetricSumFixed_eq_expectedValue c m using 1
+  rw [← symmetricSumFixed_eq_expectedValue c m]
+  unfold symmetricSumFixed
+  norm_num +zetaDelta

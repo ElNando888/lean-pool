@@ -24,17 +24,6 @@ algebras in this case according to our definition.
 -/
 universe u v w
 open Module
--- class IsCentralSimple
---     (K : Type u) [Field K] (D : Type v) [Ring D] [Algebra K D] : Prop where
---   is_central : Subalgebra.center K D ≤ ⊥
---   [is_simple : IsSimpleRing D]
--- lemma IsCentralSimple.center_eq
---     (K D : Type*) [Field K] [Ring D] [Algebra K D] [IsCentralSimple K D] :
---     Subalgebra.center K D = ⊥ :=
---   le_antisymm IsCentralSimple.is_central <| by
---     rintro _ ⟨x, rfl⟩
---     rw [Subalgebra.mem_center_iff]
---     exact (Algebra.commutes' x · |>.symm)
 variable (K : Type u) [Field K]
 open Matrix in
 instance MatrixRing.isCentral (ι : Type) [Fintype ι] [Nonempty ι] [DecidableEq ι] :
@@ -287,7 +276,7 @@ instance _root_.IsCentralSimple.TensorProduct.nontrivial
     Algebra.TensorProduct.map (Algebra.ofId _ _) (.id _ _)
   have hf : Function.Injective f := Module.Flat.rTensor_preserves_injective_linearMap _
     (algebraMap K A).injective
-  have r' : f 0 = f 1 := by convert r; simp [f]
+  have r' : f 0 = f 1 := by rw [map_zero, map_one]; exact r
   specialize hf r'
   apply_fun Algebra.TensorProduct.lid K B at hf
   simp only [map_zero, map_one] at hf
