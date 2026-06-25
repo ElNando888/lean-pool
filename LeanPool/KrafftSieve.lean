@@ -39,18 +39,21 @@ to guarantee the existence of Twin Primes. The ultimate results are captured by:
 * `krafft_sieve_guarantee_with_mu_min`: The Krafft Sieve Guarantee holds if $\mu_{min}(n) < 1$.
 * `Krafft_Sufficiency`: Defines the exact set of conditions for the sieve to be considered
   successful.
-* `resonance_lt_mainTerm`: Establishes the core inequality where the main term dominates the
-  error/resonance terms.
 
 ### Major Analytical Building Blocks
 
-To reach the main results, several key analytical and structural theorems are developed:
+* `krafft_sieve_guarantee`: A generic formulation proving that the existence of a valid weight
+  function satisfying the variance constraints guarantees the discovery of Twin Primes.
+
+### Independent Analytical Results
+
+The following independent results provide structural motivation and spectral analysis of the sieve:
+* `resonance_lt_mainTerm`: Establishes the core inequality where the main term dominates the
+  error/resonance terms.
 * `third_harmonic_extraction`: Extracts the critical third harmonic frequency from the Fourier
   domain analysis of the weighted hit counts.
 * `parseval_identity`: Links the variance of the survivor distribution strictly to the sum of
   the squared magnitudes of its non-zero Fourier coefficients.
 * `W_truly_multi`: Constructs the multi-dimensional optimal weight function crucial for driving
   down the physical variance.
-* `krafft_sieve_guarantee`: A generic formulation proving that the existence of a valid weight
-  function satisfying the variance constraints guarantees the discovery of Twin Primes.
 -/

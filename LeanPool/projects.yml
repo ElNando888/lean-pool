@@ -3003,7 +3003,7 @@ projects:
       - "20P05"
   - slug: krafftsieve
     title: "A Conditional Sieve Criterion for Twin Primes via Krafft Geometry"
-    summary: Formalizes a conditional sieve criterion for the Twin Prime Conjecture. Proves that if the Rayleigh-Ritz quotient over the orthogonal unit sphere satisfies muMin < 1, then a twin prime pair must exist. This establishes a hard analytic link between discrete prime gaps and continuous variational optimization.
+    summary: Introduces an original conditional sieve criterion for the Twin Prime Conjecture. Using a centered modular alignment (termed the Krafft alignment), proves that if the Rayleigh-Ritz quotient over the orthogonal unit sphere satisfies muMin < 1, then a twin prime pair must exist in the corresponding interval.
     branch: analytic number theory
     entry_module: LeanPool.KrafftSieve
     authors:
@@ -3015,8 +3015,6 @@ projects:
     main_declarations:
       - KrafftSieve.mu_min_lt_one_implies_tpc
     main_results:
-      - declaration: KrafftSieve.resonance_lt_mainTerm
-        informal: Establishes the spectral deficit theorem, showing that the suppression capacity of any purely one-dimensional character weight system is strictly less than the principal density term.
       - declaration: KrafftSieve.krafft_sieve_guarantee_with_mu_min
         informal: Proves that muMin n < 1 is a sufficient condition for the existence of a twin prime pair in the corresponding interval.
       - declaration: KrafftSieve.mu_min_lt_one_implies_tpc
