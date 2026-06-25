@@ -10,6 +10,7 @@ import LeanPool.KrafftSieve.ThirdHarmonic
 import LeanPool.KrafftSieve.Variance
 import LeanPool.KrafftSieve.SelbergWeights
 import LeanPool.KrafftSieve.OptimalWeights
+import LeanPool.KrafftSieve.MainTheorem
 
 /-!
 # Reduction of the Twin Prime Conjecture via Krafft Geometry
@@ -17,7 +18,7 @@ import LeanPool.KrafftSieve.OptimalWeights
 Source: doi:10.5281/zenodo.19763833
 Authors: Fernando Portela
 Status: verified
-Main declarations: `KrafftSieve.krafft_sieve_guarantee`, `KrafftSieve.resonance_lt_mainTerm`
+Main declarations: `KrafftSieve.mu_min_lt_one_implies_tpc`, `KrafftSieve.krafft_sieve_guarantee`
 Tags: analytic-number-theory, sieve-theory, twin-primes, optimization
 MSC: 11N05, 11N35
 -/
@@ -32,9 +33,10 @@ Twin Prime Conjecture, utilizing the Krafft Geometry.
 
 The formalization culminates in establishing the sufficiency conditions for the Krafft Sieve
 to guarantee the existence of Twin Primes. The ultimate results are captured by:
+* `KrafftSieve.mu_min_lt_one_implies_tpc`: If there are infinitely many intervals where the
+  multidimensional optimal weight achieves a ratio strictly less than 1, then there are
+  infinitely many twin primes.
 * `krafft_sieve_guarantee_with_mu_min`: The Krafft Sieve Guarantee holds if $\mu_{min}(n) < 1$.
-* `krafft_sieve_guarantee`: A generic formulation proving that the existence of a valid weight
-  function satisfying the variance constraints guarantees the discovery of Twin Primes.
 * `Krafft_Sufficiency`: Defines the exact set of conditions for the sieve to be considered
   successful.
 * `resonance_lt_mainTerm`: Establishes the core inequality where the main term dominates the
@@ -49,4 +51,6 @@ To reach the main results, several key analytical and structural theorems are de
   the squared magnitudes of its non-zero Fourier coefficients.
 * `W_truly_multi`: Constructs the multi-dimensional optimal weight function crucial for driving
   down the physical variance.
+* `krafft_sieve_guarantee`: A generic formulation proving that the existence of a valid weight
+  function satisfying the variance constraints guarantees the discovery of Twin Primes.
 -/
