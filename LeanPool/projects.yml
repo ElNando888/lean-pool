@@ -3002,8 +3002,8 @@ projects:
     msc:
       - "20P05"
   - slug: krafftsieve
-    title: "Reduction of the Twin Prime Conjecture via Krafft Geometry"
-    summary: Formalizes a rigorous reduction of the Twin Prime Conjecture. Proves the unconditional theorem that if the Rayleigh-Ritz quotient over the orthogonal unit sphere satisfies muMin < 1, then a twin prime pair must exist. This establishes a hard analytic link between discrete prime gaps and continuous variational optimization.
+    title: "A Conditional Sieve Criterion for Twin Primes via Krafft Geometry"
+    summary: Formalizes a conditional sieve criterion for the Twin Prime Conjecture. Proves that if the Rayleigh-Ritz quotient over the orthogonal unit sphere satisfies muMin < 1, then a twin prime pair must exist. This establishes a hard analytic link between discrete prime gaps and continuous variational optimization.
     branch: analytic number theory
     entry_module: LeanPool.KrafftSieve
     authors:
@@ -3018,7 +3018,7 @@ projects:
       - declaration: KrafftSieve.resonance_lt_mainTerm
         informal: Establishes the spectral deficit theorem, showing that the suppression capacity of any purely one-dimensional character weight system is strictly less than the principal density term.
       - declaration: KrafftSieve.krafft_sieve_guarantee_with_mu_min
-        informal: Analytically reduces the discrete twin prime guarantee to demonstrating that the minimum of the continuous Rayleigh-Ritz quotient over the orthogonal unit sphere is strictly less than 1.
+        informal: Proves that muMin n < 1 is a sufficient condition for the existence of a twin prime pair in the corresponding interval.
       - declaration: KrafftSieve.mu_min_lt_one_implies_tpc
         informal: If there are infinitely many intervals where the optimal multidimensional weight achieves a ratio strictly less than 1, then there are infinitely many twin primes.
     tags:

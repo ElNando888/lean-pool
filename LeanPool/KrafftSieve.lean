@@ -13,7 +13,7 @@ import LeanPool.KrafftSieve.OptimalWeights
 import LeanPool.KrafftSieve.MainTheorem
 
 /-!
-# Reduction of the Twin Prime Conjecture via Krafft Geometry
+# A Conditional Sieve Criterion for Twin Primes via Krafft Geometry
 
 Source: doi:10.5281/zenodo.19763833
 Authors: Fernando Portela
