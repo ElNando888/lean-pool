@@ -846,11 +846,11 @@ import LeanPool.Isoperimetric.PrekopaLeindler
 import LeanPool.KrafftSieve
 import LeanPool.KrafftSieve.Basic
 import LeanPool.KrafftSieve.Defs
+import LeanPool.KrafftSieve.MainTheorem
 import LeanPool.KrafftSieve.OptimalWeights
 import LeanPool.KrafftSieve.SelbergWeights
 import LeanPool.KrafftSieve.ThirdHarmonic
 import LeanPool.KrafftSieve.Variance
-import LeanPool.KrafftSieve.MainTheorem
 import LeanPool.LatticeTriangle
 import LeanPool.LatticeTriangle.Solution
 import LeanPool.Lean4GlCoalgebras
