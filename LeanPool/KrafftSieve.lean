@@ -31,8 +31,12 @@ Twin Prime Conjecture, utilizing the Krafft Geometry.
 
 ### Main Results
 
-The formalization culminates in establishing the sufficiency conditions for the Krafft Sieve
-to guarantee the existence of Twin Primes. The ultimate results are captured by:
+This project's headline result is **conditional**: it reduces the Twin Prime Conjecture to a
+spectral hypothesis on the Rayleigh quotient $\mu_{min}(n)$. The hypothesis $\mu_{min}(n) < 1$
+is **not** established here for any $n$; indeed `resonance_lt_mainTerm` formalizes the
+parity-barrier deficit showing the one-dimensional sieve cannot beat the main term. The value
+of this formalization is in the verified sieve machinery, not a claim of progress on the
+conjecture itself. The conditional results are captured by:
 * `KrafftSieve.mu_min_lt_one_implies_tpc`: If there are infinitely many intervals where the
   multidimensional optimal weight achieves a ratio strictly less than 1, then there are
   infinitely many twin primes.

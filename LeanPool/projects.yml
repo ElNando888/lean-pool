@@ -3018,7 +3018,7 @@ projects:
       - declaration: KrafftSieve.krafft_sieve_guarantee_with_mu_min
         informal: Proves that muMin n < 1 is a sufficient condition for the existence of a twin prime pair in the corresponding interval.
       - declaration: KrafftSieve.mu_min_lt_one_implies_tpc
-        informal: If there are infinitely many intervals where the optimal multidimensional weight achieves a ratio strictly less than 1, then there are infinitely many twin primes.
+        informal: If there are infinitely many intervals where the optimal multidimensional weight achieves a ratio strictly less than 1, then there are infinitely many twin primes. This is a conditional reduction; the hypothesis muMin n < 1 is not established here for any n.
     tags:
       - analytic-number-theory
       - sieve-theory
