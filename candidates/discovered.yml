@@ -372,6 +372,38 @@ github:
     tree_truncated: false
     query_matches:
     - language:Lean created:>=2026-07-24 fork:false archived:false
+  aaslyan/finitedmc:
+    url: https://github.com/aaslyan/FiniteDMC
+    first_seen_at: '2026-08-02T15:20:39+00:00'
+    full_name: aaslyan/FiniteDMC
+    description: 'Lean 4 formalization of the channel coding theorem for finite discrete memoryless
+      channels: achievability below capacity and the weak converse, proved with no sorry.'
+    signal: high
+    score: 9
+    reasons:
+    - Lake/Lean project files
+    - 9 Lean files
+    - about 2955 Lean LOC
+    - Lake manifest
+    - Apache-2.0
+    - 'domain terms: formalization, mathlib, probability'
+    stars: 0
+    license: Apache-2.0
+    topics: []
+    language: Lean
+    created_at: '2026-08-02T03:13:25Z'
+    updated_at: '2026-08-02T04:26:02Z'
+    pushed_at: '2026-08-02T04:25:53Z'
+    default_branch: main
+    has_lakefile: true
+    has_toolchain: true
+    has_manifest: true
+    has_readme: true
+    lean_file_count: 9
+    estimated_lean_loc: 2955
+    tree_truncated: false
+    query_matches:
+    - '"Lean 4" created:>=2026-08-01 fork:false archived:false'
   aaslyan/friedberg-muchnik-lean:
     url: https://github.com/aaslyan/friedberg-muchnik-lean
     first_seen_at: '2026-07-26T15:30:10+00:00'
@@ -3105,6 +3137,38 @@ github:
     tree_truncated: false
     query_matches:
     - language:Lean created:>=2026-07-24 fork:false archived:false
+  arex1337/erdos-263-lean:
+    url: https://github.com/arex1337/erdos-263-lean
+    first_seen_at: '2026-08-02T15:20:39+00:00'
+    full_name: arex1337/erdos-263-lean
+    description: ''
+    signal: high
+    score: 6
+    reasons:
+    - Lake/Lean project files
+    - 11 Lean files
+    - about 6120 Lean LOC
+    - Lake manifest
+    - Apache-2.0
+    - 'domain terms: formalization, mathlib, proof'
+    - 'tool terms: search'
+    stars: 0
+    license: Apache-2.0
+    topics: []
+    language: Lean
+    created_at: '2026-08-01T07:52:38Z'
+    updated_at: '2026-08-02T14:31:23Z'
+    pushed_at: '2026-08-02T14:31:20Z'
+    default_branch: main
+    has_lakefile: true
+    has_toolchain: true
+    has_manifest: true
+    has_readme: true
+    lean_file_count: 11
+    estimated_lean_loc: 6120
+    tree_truncated: false
+    query_matches:
+    - language:Lean created:>=2026-08-01 fork:false archived:false
   arij-aziz/5to9:
     url: https://github.com/Arij-Aziz/5to9
     first_seen_at: '2026-06-29T17:12:39+00:00'
@@ -6451,6 +6515,49 @@ github:
     tree_truncated: false
     query_matches:
     - mathlib created:>=2026-06-28 fork:false archived:false
+  chanyuxu/domain-theory-book-formalization:
+    url: https://github.com/ChanYuxu/domain-theory-book-formalization
+    first_seen_at: '2026-08-02T15:20:39+00:00'
+    full_name: ChanYuxu/domain-theory-book-formalization
+    description: Lean 4 formalization of Abramsky--Jung Domain Theory with an interactive
+      TeX-to-Lean reader
+    signal: low
+    score: 2
+    reasons:
+    - Lake/Lean project files
+    - 56 Lean files
+    - about 45538 Lean LOC
+    - Lake manifest
+    - license unknown
+    - 'domain terms: formalization, mathlib, proof'
+    - 'tool terms: editor, repl'
+    - 'educational terms: book'
+    stars: 0
+    license: null
+    topics:
+    - domain-theory
+    - formalization
+    - latex
+    - lean4
+    - mathlib
+    - pdfjs
+    language: Lean
+    created_at: '2026-08-02T11:44:20Z'
+    updated_at: '2026-08-02T12:09:00Z'
+    pushed_at: '2026-08-02T12:02:50Z'
+    default_branch: main
+    has_lakefile: true
+    has_toolchain: true
+    has_manifest: true
+    has_readme: true
+    lean_file_count: 56
+    estimated_lean_loc: 45538
+    tree_truncated: false
+    query_matches:
+    - '"Lean 4" created:>=2026-08-01 fork:false archived:false'
+    - language:Lean created:>=2026-08-01 fork:false archived:false
+    - mathlib created:>=2026-08-01 fork:false archived:false
+    - topic:lean4 created:>=2026-08-01 fork:false archived:false
   chdarcy/markowitzformalization:
     url: https://github.com/chdarcy/MarkowitzFormalization
     first_seen_at: '2026-06-26T16:29:15+00:00'
@@ -10753,6 +10860,36 @@ github:
     tree_truncated: false
     query_matches:
     - '"Lean 4" created:>=2026-07-20 fork:false archived:false'
+  digama0/lean4lean-model:
+    url: https://github.com/digama0/lean4lean-model
+    first_seen_at: '2026-08-02T15:20:39+00:00'
+    full_name: digama0/lean4lean-model
+    description: Lean4lean theorems depending on mathlib
+    signal: high
+    score: 6
+    reasons:
+    - Lake/Lean project files
+    - 2 Lean files
+    - Lake manifest
+    - license unknown
+    - 'domain terms: formalization, mathlib, theorem'
+    stars: 2
+    license: null
+    topics: []
+    language: Lean
+    created_at: '2026-08-02T04:13:32Z'
+    updated_at: '2026-08-02T14:40:21Z'
+    pushed_at: '2026-08-02T04:13:37Z'
+    default_branch: master
+    has_lakefile: true
+    has_toolchain: true
+    has_manifest: true
+    has_readme: true
+    lean_file_count: 2
+    estimated_lean_loc: 55
+    tree_truncated: false
+    query_matches:
+    - '"Lean 4" created:>=2026-08-01 fork:false archived:false'
   dijkstracula/lean-ltl-frp:
     url: https://github.com/dijkstracula/lean-ltl-frp
     first_seen_at: '2026-07-25T15:19:50+00:00'
@@ -11656,6 +11793,44 @@ github:
     query_matches:
     - language:Lean created:>=2026-06-27 fork:false archived:false
     - topic:lean4 created:>=2026-06-27 fork:false archived:false
+  edisonymy/erdos-lean-research:
+    url: https://github.com/edisonymy/erdos-lean-research
+    first_seen_at: '2026-08-02T15:20:39+00:00'
+    full_name: edisonymy/erdos-lean-research
+    description: AI-assisted reproducible SAT, exact-search, and Lean research on open Erdos
+      problems; no full solution claimed.
+    signal: low
+    score: 1
+    reasons:
+    - 3 Lean files
+    - about 191 Lean LOC
+    - license unknown
+    - 'domain terms: combinatorics, graph, proof'
+    - 'tool terms: repl, search'
+    stars: 0
+    license: null
+    topics:
+    - combinatorics
+    - computational-mathematics
+    - erdos-problems
+    - formal-verification
+    - graph-theory
+    - lean4
+    - sat-solving
+    language: Python
+    created_at: '2026-08-01T10:58:07Z'
+    updated_at: '2026-08-02T08:56:48Z'
+    pushed_at: '2026-08-02T15:09:07Z'
+    default_branch: main
+    has_lakefile: false
+    has_toolchain: false
+    has_manifest: false
+    has_readme: true
+    lean_file_count: 3
+    estimated_lean_loc: 191
+    tree_truncated: false
+    query_matches:
+    - topic:lean4 created:>=2026-08-01 fork:false archived:false
   edouardbonnet/chi-boundedness-lnc-merge-width:
     url: https://github.com/EdouardBonnet/chi-boundedness-lnc-merge-width
     first_seen_at: '2026-07-24T15:44:06+00:00'
@@ -12515,6 +12690,36 @@ github:
     tree_truncated: false
     query_matches:
     - mathlib created:>=2026-07-22 fork:false archived:false
+  endrazine/lean-cve-poc:
+    url: https://github.com/endrazine/lean-cve-poc
+    first_seen_at: '2026-08-02T15:20:39+00:00'
+    full_name: endrazine/lean-cve-poc
+    description: Example of proving "0 = 1" using a vulnerability in the Lean 4 kernel.
+    signal: high
+    score: 6
+    reasons:
+    - Lake/Lean project files
+    - 2 Lean files
+    - about 129 Lean LOC
+    - license unknown
+    - 'domain terms: proof, verified'
+    stars: 0
+    license: null
+    topics: []
+    language: Lean
+    created_at: '2026-08-02T02:07:10Z'
+    updated_at: '2026-08-02T02:11:23Z'
+    pushed_at: '2026-08-02T02:11:19Z'
+    default_branch: main
+    has_lakefile: true
+    has_toolchain: true
+    has_manifest: false
+    has_readme: true
+    lean_file_count: 2
+    estimated_lean_loc: 129
+    tree_truncated: false
+    query_matches:
+    - '"Lean 4" created:>=2026-08-01 fork:false archived:false'
   engineeringsoftware/mgql:
     url: https://github.com/EngineeringSoftware/mgql
     first_seen_at: '2026-07-24T15:44:06+00:00'
@@ -12581,6 +12786,37 @@ github:
     - '"Lean 4" created:>=2026-07-20 fork:false archived:false'
     - language:Lean created:>=2026-07-20 fork:false archived:false
     - mathlib created:>=2026-07-20 fork:false archived:false
+  eppie/oeis-proofs:
+    url: https://github.com/Eppie/oeis-proofs
+    first_seen_at: '2026-08-02T15:20:39+00:00'
+    full_name: Eppie/oeis-proofs
+    description: Proofs of open OEIS conjectures, with Lean 4 formalizations and independent
+      verification scripts
+    signal: low
+    score: 2
+    reasons:
+    - 21 Lean files
+    - about 6342 Lean LOC
+    - license unknown
+    - 'domain terms: formalization, mathlib, proof'
+    - 'tool terms: search'
+    stars: 0
+    license: null
+    topics: []
+    language: Lean
+    created_at: '2026-08-01T21:19:49Z'
+    updated_at: '2026-08-01T21:29:46Z'
+    pushed_at: '2026-08-01T21:29:42Z'
+    default_branch: main
+    has_lakefile: false
+    has_toolchain: false
+    has_manifest: false
+    has_readme: true
+    lean_file_count: 21
+    estimated_lean_loc: 6342
+    tree_truncated: false
+    query_matches:
+    - '"Lean 4" created:>=2026-08-01 fork:false archived:false'
   epsilon-less-than-0/grid-homology-lean:
     url: https://github.com/epsilon-less-than-0/grid-homology-lean
     first_seen_at: '2026-07-21T15:52:55+00:00'
@@ -12808,6 +13044,38 @@ github:
     tree_truncated: false
     query_matches:
     - language:Lean created:>=2026-07-22 fork:false archived:false
+  ericlisg/erdos550-lean:
+    url: https://github.com/ericlisg/erdos550-lean
+    first_seen_at: '2026-08-02T15:20:39+00:00'
+    full_name: ericlisg/erdos550-lean
+    description: "Full unconditional Lean 4 formalisation of Erd\u0151s Problem 550 via the\
+      \ direct off-Tur\xE1n method"
+    signal: high
+    score: 8
+    reasons:
+    - Lake/Lean project files
+    - 137 Lean files
+    - about 34219 Lean LOC
+    - Lake manifest
+    - license unknown
+    - 'domain terms: formalisation, graph, mathlib'
+    stars: 0
+    license: null
+    topics: []
+    language: Lean
+    created_at: '2026-08-02T03:00:47Z'
+    updated_at: '2026-08-02T05:32:26Z'
+    pushed_at: '2026-08-02T05:32:14Z'
+    default_branch: main
+    has_lakefile: true
+    has_toolchain: true
+    has_manifest: true
+    has_readme: true
+    lean_file_count: 137
+    estimated_lean_loc: 34219
+    tree_truncated: false
+    query_matches:
+    - '"Lean 4" created:>=2026-08-01 fork:false archived:false'
   ericlisg/erdos731:
     url: https://github.com/ericlisg/erdos731
     first_seen_at: '2026-07-26T15:30:10+00:00'
@@ -13081,6 +13349,40 @@ github:
     tree_truncated: false
     query_matches:
     - language:Lean created:>=2026-07-23 fork:false archived:false
+  evolvingprograms/erdos-simonovits-degeneracy:
+    url: https://github.com/EvolvingPrograms/erdos-simonovits-degeneracy
+    first_seen_at: '2026-08-02T15:20:39+00:00'
+    full_name: EvolvingPrograms/erdos-simonovits-degeneracy
+    description: "The Erd\u0151s\u2013Simonovits degeneracy conjecture fails at every level\
+      \ \u2014 complete Lean 4 formalization (Erd\u0151s problem #146, every r \u2265 2, with\
+      \ the sharp asymptotic law at Gibbs weight e)"
+    signal: high
+    score: 8
+    reasons:
+    - Lake/Lean project files
+    - 24 Lean files
+    - about 43898 Lean LOC
+    - Lake manifest
+    - license unknown
+    - 'domain terms: formalization, graph, mathlib'
+    stars: 4
+    license: null
+    topics: []
+    language: Lean
+    created_at: '2026-08-01T23:37:24Z'
+    updated_at: '2026-08-02T14:06:03Z'
+    pushed_at: '2026-08-02T14:05:55Z'
+    default_branch: main
+    has_lakefile: true
+    has_toolchain: true
+    has_manifest: true
+    has_readme: true
+    lean_file_count: 24
+    estimated_lean_loc: 43898
+    tree_truncated: false
+    query_matches:
+    - '"Lean 4" created:>=2026-08-01 fork:false archived:false'
+    - language:Lean created:>=2026-08-01 fork:false archived:false
   evolvingtech/etc-fp-bitexact:
     url: https://github.com/evolvingtech/etc-fp-bitexact
     first_seen_at: '2026-07-02T16:16:41+00:00'
@@ -13611,6 +13913,33 @@ github:
     query_matches:
     - '"Lean 4" created:>=2026-06-29 fork:false archived:false'
     - language:Lean created:>=2026-06-29 fork:false archived:false
+  fizikzedenin-kodlari/jasminlean:
+    url: https://github.com/fizikzedenin-kodlari/Jasminlean
+    first_seen_at: '2026-08-02T15:20:39+00:00'
+    full_name: fizikzedenin-kodlari/Jasminlean
+    description: ''
+    signal: low
+    score: 1
+    reasons:
+    - 1 Lean files
+    - license unknown
+    stars: 0
+    license: null
+    topics: []
+    language: Lean
+    created_at: '2026-08-02T12:56:21Z'
+    updated_at: '2026-08-02T12:58:07Z'
+    pushed_at: '2026-08-02T12:58:03Z'
+    default_branch: main
+    has_lakefile: false
+    has_toolchain: false
+    has_manifest: false
+    has_readme: true
+    lean_file_count: 1
+    estimated_lean_loc: 11
+    tree_truncated: false
+    query_matches:
+    - language:Lean created:>=2026-08-01 fork:false archived:false
   fizikzedenin-kodlari/mathematicsinlean:
     url: https://github.com/fizikzedenin-kodlari/MathematicsInLean
     first_seen_at: '2026-06-29T17:12:39+00:00'
@@ -27912,6 +28241,1131 @@ github:
     tree_truncated: false
     query_matches:
     - mathlib created:>=2026-07-31 fork:false archived:false
+  hautevillehouse/congruence-subgroup-problems-theorem-canonical-lane-mathlib:
+    url: https://github.com/HautevilleHouse/congruence-subgroup-problems-theorem-canonical-lane-mathlib
+    first_seen_at: '2026-08-02T15:20:39+00:00'
+    full_name: HautevilleHouse/congruence-subgroup-problems-theorem-canonical-lane-mathlib
+    description: ''
+    signal: medium
+    score: 4
+    reasons:
+    - Lake/Lean project files
+    - 3 Lean files
+    - license NOASSERTION
+    - 'domain terms: mathlib, theorem'
+    stars: 0
+    license: NOASSERTION
+    topics: []
+    language: Lean
+    created_at: '2026-08-02T11:27:39Z'
+    updated_at: '2026-08-02T11:27:47Z'
+    pushed_at: '2026-08-02T11:27:43Z'
+    default_branch: main
+    has_lakefile: false
+    has_toolchain: true
+    has_manifest: false
+    has_readme: false
+    lean_file_count: 3
+    estimated_lean_loc: 32
+    tree_truncated: false
+    query_matches:
+    - mathlib created:>=2026-08-01 fork:false archived:false
+  hautevillehouse/congruences-modular-p-adic-modular-foundation-canonical-lane-mathlib:
+    url: https://github.com/HautevilleHouse/congruences-modular-p-adic-modular-foundation-canonical-lane-mathlib
+    first_seen_at: '2026-08-02T15:20:39+00:00'
+    full_name: HautevilleHouse/congruences-modular-p-adic-modular-foundation-canonical-lane-mathlib
+    description: ''
+    signal: medium
+    score: 4
+    reasons:
+    - Lake/Lean project files
+    - 3 Lean files
+    - license NOASSERTION
+    - 'domain terms: mathlib, modular'
+    stars: 0
+    license: NOASSERTION
+    topics: []
+    language: Lean
+    created_at: '2026-08-02T11:27:45Z'
+    updated_at: '2026-08-02T11:27:55Z'
+    pushed_at: '2026-08-02T11:27:49Z'
+    default_branch: main
+    has_lakefile: false
+    has_toolchain: true
+    has_manifest: false
+    has_readme: false
+    lean_file_count: 3
+    estimated_lean_loc: 34
+    tree_truncated: false
+    query_matches:
+    - mathlib created:>=2026-08-01 fork:false archived:false
+  hautevillehouse/congruences-modular-p-adic-modular-lemma-canonical-lane-mathlib:
+    url: https://github.com/HautevilleHouse/congruences-modular-p-adic-modular-lemma-canonical-lane-mathlib
+    first_seen_at: '2026-08-02T15:20:39+00:00'
+    full_name: HautevilleHouse/congruences-modular-p-adic-modular-lemma-canonical-lane-mathlib
+    description: ''
+    signal: medium
+    score: 4
+    reasons:
+    - Lake/Lean project files
+    - 3 Lean files
+    - license NOASSERTION
+    - 'domain terms: mathlib, modular'
+    stars: 0
+    license: NOASSERTION
+    topics: []
+    language: Lean
+    created_at: '2026-08-02T11:27:49Z'
+    updated_at: '2026-08-02T11:27:56Z'
+    pushed_at: '2026-08-02T11:27:52Z'
+    default_branch: main
+    has_lakefile: false
+    has_toolchain: true
+    has_manifest: false
+    has_readme: false
+    lean_file_count: 3
+    estimated_lean_loc: 33
+    tree_truncated: false
+    query_matches:
+    - mathlib created:>=2026-08-01 fork:false archived:false
+  hautevillehouse/congruences-modular-p-adic-modular-theorem-canonical-lane-mathlib:
+    url: https://github.com/HautevilleHouse/congruences-modular-p-adic-modular-theorem-canonical-lane-mathlib
+    first_seen_at: '2026-08-02T15:20:39+00:00'
+    full_name: HautevilleHouse/congruences-modular-p-adic-modular-theorem-canonical-lane-mathlib
+    description: ''
+    signal: medium
+    score: 4
+    reasons:
+    - Lake/Lean project files
+    - 3 Lean files
+    - license NOASSERTION
+    - 'domain terms: mathlib, modular, theorem'
+    stars: 0
+    license: NOASSERTION
+    topics: []
+    language: Lean
+    created_at: '2026-08-02T11:27:53Z'
+    updated_at: '2026-08-02T11:28:12Z'
+    pushed_at: '2026-08-02T11:27:57Z'
+    default_branch: main
+    has_lakefile: false
+    has_toolchain: true
+    has_manifest: false
+    has_readme: false
+    lean_file_count: 3
+    estimated_lean_loc: 33
+    tree_truncated: false
+    query_matches:
+    - mathlib created:>=2026-08-01 fork:false archived:false
+  hautevillehouse/conjugacy-classes-groups-lemma-canonical-lane-mathlib:
+    url: https://github.com/HautevilleHouse/conjugacy-classes-groups-lemma-canonical-lane-mathlib
+    first_seen_at: '2026-08-02T15:20:39+00:00'
+    full_name: HautevilleHouse/conjugacy-classes-groups-lemma-canonical-lane-mathlib
+    description: ''
+    signal: medium
+    score: 4
+    reasons:
+    - Lake/Lean project files
+    - 3 Lean files
+    - license NOASSERTION
+    - 'domain terms: mathlib'
+    stars: 0
+    license: NOASSERTION
+    topics: []
+    language: Lean
+    created_at: '2026-08-02T11:27:58Z'
+    updated_at: '2026-08-02T11:28:18Z'
+    pushed_at: '2026-08-02T11:28:04Z'
+    default_branch: main
+    has_lakefile: false
+    has_toolchain: true
+    has_manifest: false
+    has_readme: false
+    lean_file_count: 3
+    estimated_lean_loc: 31
+    tree_truncated: false
+    query_matches:
+    - mathlib created:>=2026-08-01 fork:false archived:false
+  hautevillehouse/conjugacy-classes-groups-theorem-canonical-lane-mathlib:
+    url: https://github.com/HautevilleHouse/conjugacy-classes-groups-theorem-canonical-lane-mathlib
+    first_seen_at: '2026-08-02T15:20:39+00:00'
+    full_name: HautevilleHouse/conjugacy-classes-groups-theorem-canonical-lane-mathlib
+    description: ''
+    signal: medium
+    score: 4
+    reasons:
+    - Lake/Lean project files
+    - 3 Lean files
+    - license NOASSERTION
+    - 'domain terms: mathlib, theorem'
+    stars: 0
+    license: NOASSERTION
+    topics: []
+    language: Lean
+    created_at: '2026-08-02T11:28:05Z'
+    updated_at: '2026-08-02T11:33:42Z'
+    pushed_at: '2026-08-02T11:33:30Z'
+    default_branch: main
+    has_lakefile: false
+    has_toolchain: true
+    has_manifest: false
+    has_readme: false
+    lean_file_count: 3
+    estimated_lean_loc: 32
+    tree_truncated: false
+    query_matches:
+    - language:Lean created:>=2026-08-01 fork:false archived:false
+    - mathlib created:>=2026-08-01 fork:false archived:false
+  hautevillehouse/conjugate-functions-conjugate-series-singular-foundation-canonical-lane-mathlib:
+    url: https://github.com/HautevilleHouse/conjugate-functions-conjugate-series-singular-foundation-canonical-lane-mathlib
+    first_seen_at: '2026-08-02T15:20:39+00:00'
+    full_name: HautevilleHouse/conjugate-functions-conjugate-series-singular-foundation-canonical-lane-mathlib
+    description: ''
+    signal: medium
+    score: 4
+    reasons:
+    - Lake/Lean project files
+    - 3 Lean files
+    - license NOASSERTION
+    - 'domain terms: mathlib'
+    stars: 0
+    license: NOASSERTION
+    topics: []
+    language: Lean
+    created_at: '2026-08-02T11:28:27Z'
+    updated_at: '2026-08-02T11:31:01Z'
+    pushed_at: '2026-08-02T11:30:42Z'
+    default_branch: main
+    has_lakefile: false
+    has_toolchain: true
+    has_manifest: false
+    has_readme: false
+    lean_file_count: 3
+    estimated_lean_loc: 36
+    tree_truncated: false
+    query_matches:
+    - mathlib created:>=2026-08-01 fork:false archived:false
+  hautevillehouse/conjugate-functions-conjugate-series-singular-lemma-canonical-lane-mathlib:
+    url: https://github.com/HautevilleHouse/conjugate-functions-conjugate-series-singular-lemma-canonical-lane-mathlib
+    first_seen_at: '2026-08-02T15:20:39+00:00'
+    full_name: HautevilleHouse/conjugate-functions-conjugate-series-singular-lemma-canonical-lane-mathlib
+    description: ''
+    signal: medium
+    score: 4
+    reasons:
+    - Lake/Lean project files
+    - 3 Lean files
+    - license NOASSERTION
+    - 'domain terms: mathlib'
+    stars: 0
+    license: NOASSERTION
+    topics: []
+    language: Lean
+    created_at: '2026-08-02T11:28:45Z'
+    updated_at: '2026-08-02T11:31:01Z'
+    pushed_at: '2026-08-02T11:30:51Z'
+    default_branch: main
+    has_lakefile: false
+    has_toolchain: true
+    has_manifest: false
+    has_readme: false
+    lean_file_count: 3
+    estimated_lean_loc: 35
+    tree_truncated: false
+    query_matches:
+    - mathlib created:>=2026-08-01 fork:false archived:false
+  hautevillehouse/conjugate-functions-conjugate-series-singular-theorem-canonical-lane-mathlib:
+    url: https://github.com/HautevilleHouse/conjugate-functions-conjugate-series-singular-theorem-canonical-lane-mathlib
+    first_seen_at: '2026-08-02T15:20:39+00:00'
+    full_name: HautevilleHouse/conjugate-functions-conjugate-series-singular-theorem-canonical-lane-mathlib
+    description: ''
+    signal: medium
+    score: 4
+    reasons:
+    - Lake/Lean project files
+    - 3 Lean files
+    - license NOASSERTION
+    - 'domain terms: mathlib, theorem'
+    stars: 0
+    license: NOASSERTION
+    topics: []
+    language: Lean
+    created_at: '2026-08-02T11:29:04Z'
+    updated_at: '2026-08-02T11:31:15Z'
+    pushed_at: '2026-08-02T11:30:55Z'
+    default_branch: main
+    has_lakefile: false
+    has_toolchain: true
+    has_manifest: false
+    has_readme: false
+    lean_file_count: 3
+    estimated_lean_loc: 36
+    tree_truncated: false
+    query_matches:
+    - mathlib created:>=2026-08-01 fork:false archived:false
+  hautevillehouse/connections-harmonic-functions-differential-equations-foundation-canonical-lane-mathlib:
+    url: https://github.com/HautevilleHouse/connections-harmonic-functions-differential-equations-foundation-canonical-lane-mathlib
+    first_seen_at: '2026-08-02T15:20:39+00:00'
+    full_name: HautevilleHouse/connections-harmonic-functions-differential-equations-foundation-canonical-lane-mathlib
+    description: ''
+    signal: medium
+    score: 4
+    reasons:
+    - Lake/Lean project files
+    - 3 Lean files
+    - license NOASSERTION
+    - 'domain terms: mathlib'
+    stars: 0
+    license: NOASSERTION
+    topics: []
+    language: Lean
+    created_at: '2026-08-02T11:29:23Z'
+    updated_at: '2026-08-02T11:31:18Z'
+    pushed_at: '2026-08-02T11:30:58Z'
+    default_branch: main
+    has_lakefile: false
+    has_toolchain: true
+    has_manifest: false
+    has_readme: false
+    lean_file_count: 3
+    estimated_lean_loc: 38
+    tree_truncated: false
+    query_matches:
+    - mathlib created:>=2026-08-01 fork:false archived:false
+  hautevillehouse/connections-harmonic-functions-differential-equations-lemma-canonical-lane-mathlib:
+    url: https://github.com/HautevilleHouse/connections-harmonic-functions-differential-equations-lemma-canonical-lane-mathlib
+    first_seen_at: '2026-08-02T15:20:39+00:00'
+    full_name: HautevilleHouse/connections-harmonic-functions-differential-equations-lemma-canonical-lane-mathlib
+    description: ''
+    signal: medium
+    score: 4
+    reasons:
+    - Lake/Lean project files
+    - 3 Lean files
+    - license NOASSERTION
+    - 'domain terms: mathlib'
+    stars: 0
+    license: NOASSERTION
+    topics: []
+    language: Lean
+    created_at: '2026-08-02T11:29:42Z'
+    updated_at: '2026-08-02T11:31:13Z'
+    pushed_at: '2026-08-02T11:31:01Z'
+    default_branch: main
+    has_lakefile: false
+    has_toolchain: true
+    has_manifest: false
+    has_readme: false
+    lean_file_count: 3
+    estimated_lean_loc: 37
+    tree_truncated: false
+    query_matches:
+    - language:Lean created:>=2026-08-01 fork:false archived:false
+    - mathlib created:>=2026-08-01 fork:false archived:false
+  hautevillehouse/connections-harmonic-functions-differential-equations-theorem-canonical-lane-mathlib:
+    url: https://github.com/HautevilleHouse/connections-harmonic-functions-differential-equations-theorem-canonical-lane-mathlib
+    first_seen_at: '2026-08-02T15:20:39+00:00'
+    full_name: HautevilleHouse/connections-harmonic-functions-differential-equations-theorem-canonical-lane-mathlib
+    description: ''
+    signal: medium
+    score: 4
+    reasons:
+    - Lake/Lean project files
+    - 3 Lean files
+    - license NOASSERTION
+    - 'domain terms: mathlib, theorem'
+    stars: 0
+    license: NOASSERTION
+    topics: []
+    language: Lean
+    created_at: '2026-08-02T11:30:00Z'
+    updated_at: '2026-08-02T11:31:23Z'
+    pushed_at: '2026-08-02T11:31:03Z'
+    default_branch: main
+    has_lakefile: false
+    has_toolchain: true
+    has_manifest: false
+    has_readme: false
+    lean_file_count: 3
+    estimated_lean_loc: 37
+    tree_truncated: false
+    query_matches:
+    - language:Lean created:>=2026-08-01 fork:false archived:false
+    - mathlib created:>=2026-08-01 fork:false archived:false
+  hautevillehouse/connections-hopf-algebras-combinatorics-foundation-canonical-lane-mathlib:
+    url: https://github.com/HautevilleHouse/connections-hopf-algebras-combinatorics-foundation-canonical-lane-mathlib
+    first_seen_at: '2026-08-02T15:20:39+00:00'
+    full_name: HautevilleHouse/connections-hopf-algebras-combinatorics-foundation-canonical-lane-mathlib
+    description: ''
+    signal: medium
+    score: 4
+    reasons:
+    - Lake/Lean project files
+    - 3 Lean files
+    - license NOASSERTION
+    - 'domain terms: algebra, combinatorics, mathlib'
+    stars: 0
+    license: NOASSERTION
+    topics: []
+    language: Lean
+    created_at: '2026-08-02T11:30:21Z'
+    updated_at: '2026-08-02T11:30:38Z'
+    pushed_at: '2026-08-02T11:30:25Z'
+    default_branch: main
+    has_lakefile: false
+    has_toolchain: true
+    has_manifest: false
+    has_readme: false
+    lean_file_count: 3
+    estimated_lean_loc: 35
+    tree_truncated: false
+    query_matches:
+    - mathlib created:>=2026-08-01 fork:false archived:false
+  hautevillehouse/connections-hopf-algebras-combinatorics-lemma-canonical-lane-mathlib:
+    url: https://github.com/HautevilleHouse/connections-hopf-algebras-combinatorics-lemma-canonical-lane-mathlib
+    first_seen_at: '2026-08-02T15:20:39+00:00'
+    full_name: HautevilleHouse/connections-hopf-algebras-combinatorics-lemma-canonical-lane-mathlib
+    description: ''
+    signal: medium
+    score: 4
+    reasons:
+    - Lake/Lean project files
+    - 3 Lean files
+    - license NOASSERTION
+    - 'domain terms: algebra, combinatorics, mathlib'
+    stars: 0
+    license: NOASSERTION
+    topics: []
+    language: Lean
+    created_at: '2026-08-02T11:30:25Z'
+    updated_at: '2026-08-02T11:30:59Z'
+    pushed_at: '2026-08-02T11:30:29Z'
+    default_branch: main
+    has_lakefile: false
+    has_toolchain: true
+    has_manifest: false
+    has_readme: false
+    lean_file_count: 3
+    estimated_lean_loc: 34
+    tree_truncated: false
+    query_matches:
+    - mathlib created:>=2026-08-01 fork:false archived:false
+  hautevillehouse/connections-hopf-algebras-combinatorics-theorem-canonical-lane-mathlib:
+    url: https://github.com/HautevilleHouse/connections-hopf-algebras-combinatorics-theorem-canonical-lane-mathlib
+    first_seen_at: '2026-08-02T15:20:39+00:00'
+    full_name: HautevilleHouse/connections-hopf-algebras-combinatorics-theorem-canonical-lane-mathlib
+    description: ''
+    signal: medium
+    score: 4
+    reasons:
+    - Lake/Lean project files
+    - 3 Lean files
+    - license NOASSERTION
+    - 'domain terms: algebra, combinatorics, mathlib'
+    stars: 0
+    license: NOASSERTION
+    topics: []
+    language: Lean
+    created_at: '2026-08-02T11:30:30Z'
+    updated_at: '2026-08-02T11:30:42Z'
+    pushed_at: '2026-08-02T11:30:33Z'
+    default_branch: main
+    has_lakefile: false
+    has_toolchain: true
+    has_manifest: false
+    has_readme: false
+    lean_file_count: 3
+    estimated_lean_loc: 34
+    tree_truncated: false
+    query_matches:
+    - mathlib created:>=2026-08-01 fork:false archived:false
+  hautevillehouse/connections-hypergeometric-functions-groups-algebras-foundation-canonical-lane-mathlib:
+    url: https://github.com/HautevilleHouse/connections-hypergeometric-functions-groups-algebras-foundation-canonical-lane-mathlib
+    first_seen_at: '2026-08-02T15:20:39+00:00'
+    full_name: HautevilleHouse/connections-hypergeometric-functions-groups-algebras-foundation-canonical-lane-mathlib
+    description: ''
+    signal: medium
+    score: 4
+    reasons:
+    - Lake/Lean project files
+    - 3 Lean files
+    - license NOASSERTION
+    - 'domain terms: algebra, mathlib'
+    stars: 0
+    license: NOASSERTION
+    topics: []
+    language: Lean
+    created_at: '2026-08-02T11:30:35Z'
+    updated_at: '2026-08-02T11:30:54Z'
+    pushed_at: '2026-08-02T11:30:41Z'
+    default_branch: main
+    has_lakefile: false
+    has_toolchain: true
+    has_manifest: false
+    has_readme: false
+    lean_file_count: 3
+    estimated_lean_loc: 38
+    tree_truncated: false
+    query_matches:
+    - mathlib created:>=2026-08-01 fork:false archived:false
+  hautevillehouse/connections-hypergeometric-functions-groups-algebras-lemma-canonical-lane-mathlib:
+    url: https://github.com/HautevilleHouse/connections-hypergeometric-functions-groups-algebras-lemma-canonical-lane-mathlib
+    first_seen_at: '2026-08-02T15:20:39+00:00'
+    full_name: HautevilleHouse/connections-hypergeometric-functions-groups-algebras-lemma-canonical-lane-mathlib
+    description: ''
+    signal: medium
+    score: 4
+    reasons:
+    - Lake/Lean project files
+    - 3 Lean files
+    - license NOASSERTION
+    - 'domain terms: algebra, mathlib'
+    stars: 0
+    license: NOASSERTION
+    topics: []
+    language: Lean
+    created_at: '2026-08-02T11:30:42Z'
+    updated_at: '2026-08-02T11:31:03Z'
+    pushed_at: '2026-08-02T11:30:50Z'
+    default_branch: main
+    has_lakefile: false
+    has_toolchain: true
+    has_manifest: false
+    has_readme: false
+    lean_file_count: 3
+    estimated_lean_loc: 37
+    tree_truncated: false
+    query_matches:
+    - mathlib created:>=2026-08-01 fork:false archived:false
+  hautevillehouse/connections-hypergeometric-functions-groups-algebras-theorem-canonical-lane-mathlib:
+    url: https://github.com/HautevilleHouse/connections-hypergeometric-functions-groups-algebras-theorem-canonical-lane-mathlib
+    first_seen_at: '2026-08-02T15:20:39+00:00'
+    full_name: HautevilleHouse/connections-hypergeometric-functions-groups-algebras-theorem-canonical-lane-mathlib
+    description: ''
+    signal: medium
+    score: 4
+    reasons:
+    - Lake/Lean project files
+    - 3 Lean files
+    - license NOASSERTION
+    - 'domain terms: algebra, mathlib, theorem'
+    stars: 0
+    license: NOASSERTION
+    topics: []
+    language: Lean
+    created_at: '2026-08-02T11:30:52Z'
+    updated_at: '2026-08-02T11:31:11Z'
+    pushed_at: '2026-08-02T11:30:55Z'
+    default_branch: main
+    has_lakefile: false
+    has_toolchain: true
+    has_manifest: false
+    has_readme: false
+    lean_file_count: 3
+    estimated_lean_loc: 37
+    tree_truncated: false
+    query_matches:
+    - mathlib created:>=2026-08-01 fork:false archived:false
+  hautevillehouse/connections-lemma-canonical-lane-mathlib:
+    url: https://github.com/HautevilleHouse/connections-lemma-canonical-lane-mathlib
+    first_seen_at: '2026-08-02T15:20:39+00:00'
+    full_name: HautevilleHouse/connections-lemma-canonical-lane-mathlib
+    description: ''
+    signal: medium
+    score: 4
+    reasons:
+    - Lake/Lean project files
+    - 3 Lean files
+    - license NOASSERTION
+    - 'domain terms: mathlib'
+    stars: 0
+    license: NOASSERTION
+    topics: []
+    language: Lean
+    created_at: '2026-08-02T11:30:56Z'
+    updated_at: '2026-08-02T11:31:14Z'
+    pushed_at: '2026-08-02T11:30:59Z'
+    default_branch: main
+    has_lakefile: false
+    has_toolchain: true
+    has_manifest: false
+    has_readme: false
+    lean_file_count: 3
+    estimated_lean_loc: 29
+    tree_truncated: false
+    query_matches:
+    - language:Lean created:>=2026-08-01 fork:false archived:false
+    - mathlib created:>=2026-08-01 fork:false archived:false
+  hautevillehouse/connections-logic-set-theory-lemma-canonical-lane-mathlib:
+    url: https://github.com/HautevilleHouse/connections-logic-set-theory-lemma-canonical-lane-mathlib
+    first_seen_at: '2026-08-02T15:20:39+00:00'
+    full_name: HautevilleHouse/connections-logic-set-theory-lemma-canonical-lane-mathlib
+    description: ''
+    signal: medium
+    score: 4
+    reasons:
+    - Lake/Lean project files
+    - 3 Lean files
+    - license NOASSERTION
+    - 'domain terms: logic, mathlib'
+    stars: 0
+    license: NOASSERTION
+    topics: []
+    language: Lean
+    created_at: '2026-08-02T11:31:00Z'
+    updated_at: '2026-08-02T11:31:18Z'
+    pushed_at: '2026-08-02T11:31:03Z'
+    default_branch: main
+    has_lakefile: false
+    has_toolchain: true
+    has_manifest: false
+    has_readme: false
+    lean_file_count: 3
+    estimated_lean_loc: 32
+    tree_truncated: false
+    query_matches:
+    - language:Lean created:>=2026-08-01 fork:false archived:false
+    - mathlib created:>=2026-08-01 fork:false archived:false
+  hautevillehouse/connections-logic-set-theory-theorem-canonical-lane-mathlib:
+    url: https://github.com/HautevilleHouse/connections-logic-set-theory-theorem-canonical-lane-mathlib
+    first_seen_at: '2026-08-02T15:20:39+00:00'
+    full_name: HautevilleHouse/connections-logic-set-theory-theorem-canonical-lane-mathlib
+    description: ''
+    signal: medium
+    score: 4
+    reasons:
+    - Lake/Lean project files
+    - 3 Lean files
+    - license NOASSERTION
+    - 'domain terms: logic, mathlib, theorem'
+    stars: 0
+    license: NOASSERTION
+    topics: []
+    language: Lean
+    created_at: '2026-08-02T11:31:04Z'
+    updated_at: '2026-08-02T11:31:27Z'
+    pushed_at: '2026-08-02T11:31:07Z'
+    default_branch: main
+    has_lakefile: false
+    has_toolchain: true
+    has_manifest: false
+    has_readme: false
+    lean_file_count: 3
+    estimated_lean_loc: 32
+    tree_truncated: false
+    query_matches:
+    - language:Lean created:>=2026-08-01 fork:false archived:false
+    - mathlib created:>=2026-08-01 fork:false archived:false
+  hautevillehouse/connections-semigroups-homological-algebra-category-foundation-canonical-lane-mathlib:
+    url: https://github.com/HautevilleHouse/connections-semigroups-homological-algebra-category-foundation-canonical-lane-mathlib
+    first_seen_at: '2026-08-02T15:20:39+00:00'
+    full_name: HautevilleHouse/connections-semigroups-homological-algebra-category-foundation-canonical-lane-mathlib
+    description: ''
+    signal: medium
+    score: 4
+    reasons:
+    - Lake/Lean project files
+    - 3 Lean files
+    - license NOASSERTION
+    - 'domain terms: algebra, category, logic'
+    stars: 0
+    license: NOASSERTION
+    topics: []
+    language: Lean
+    created_at: '2026-08-02T11:31:08Z'
+    updated_at: '2026-08-02T11:31:42Z'
+    pushed_at: '2026-08-02T11:31:12Z'
+    default_branch: main
+    has_lakefile: false
+    has_toolchain: true
+    has_manifest: false
+    has_readme: false
+    lean_file_count: 3
+    estimated_lean_loc: 37
+    tree_truncated: false
+    query_matches:
+    - language:Lean created:>=2026-08-01 fork:false archived:false
+    - mathlib created:>=2026-08-01 fork:false archived:false
+  hautevillehouse/connections-semigroups-homological-algebra-category-lemma-canonical-lane-mathlib:
+    url: https://github.com/HautevilleHouse/connections-semigroups-homological-algebra-category-lemma-canonical-lane-mathlib
+    first_seen_at: '2026-08-02T15:20:39+00:00'
+    full_name: HautevilleHouse/connections-semigroups-homological-algebra-category-lemma-canonical-lane-mathlib
+    description: ''
+    signal: medium
+    score: 4
+    reasons:
+    - Lake/Lean project files
+    - 3 Lean files
+    - license NOASSERTION
+    - 'domain terms: algebra, category, logic'
+    stars: 0
+    license: NOASSERTION
+    topics: []
+    language: Lean
+    created_at: '2026-08-02T11:31:14Z'
+    updated_at: '2026-08-02T11:31:37Z'
+    pushed_at: '2026-08-02T11:31:17Z'
+    default_branch: main
+    has_lakefile: false
+    has_toolchain: true
+    has_manifest: false
+    has_readme: false
+    lean_file_count: 3
+    estimated_lean_loc: 36
+    tree_truncated: false
+    query_matches:
+    - language:Lean created:>=2026-08-01 fork:false archived:false
+    - mathlib created:>=2026-08-01 fork:false archived:false
+  hautevillehouse/connections-semigroups-homological-algebra-category-theorem-canonical-lane-mathlib:
+    url: https://github.com/HautevilleHouse/connections-semigroups-homological-algebra-category-theorem-canonical-lane-mathlib
+    first_seen_at: '2026-08-02T15:20:39+00:00'
+    full_name: HautevilleHouse/connections-semigroups-homological-algebra-category-theorem-canonical-lane-mathlib
+    description: ''
+    signal: medium
+    score: 4
+    reasons:
+    - Lake/Lean project files
+    - 3 Lean files
+    - license NOASSERTION
+    - 'domain terms: algebra, category, logic'
+    stars: 0
+    license: NOASSERTION
+    topics: []
+    language: Lean
+    created_at: '2026-08-02T11:31:18Z'
+    updated_at: '2026-08-02T11:31:38Z'
+    pushed_at: '2026-08-02T11:31:22Z'
+    default_branch: main
+    has_lakefile: false
+    has_toolchain: true
+    has_manifest: false
+    has_readme: false
+    lean_file_count: 3
+    estimated_lean_loc: 37
+    tree_truncated: false
+    query_matches:
+    - language:Lean created:>=2026-08-01 fork:false archived:false
+    - mathlib created:>=2026-08-01 fork:false archived:false
+  hautevillehouse/connections-theorem-canonical-lane-mathlib:
+    url: https://github.com/HautevilleHouse/connections-theorem-canonical-lane-mathlib
+    first_seen_at: '2026-08-02T15:20:39+00:00'
+    full_name: HautevilleHouse/connections-theorem-canonical-lane-mathlib
+    description: ''
+    signal: medium
+    score: 4
+    reasons:
+    - Lake/Lean project files
+    - 3 Lean files
+    - license NOASSERTION
+    - 'domain terms: mathlib, theorem'
+    stars: 0
+    license: NOASSERTION
+    topics: []
+    language: Lean
+    created_at: '2026-08-02T11:31:22Z'
+    updated_at: '2026-08-02T11:31:44Z'
+    pushed_at: '2026-08-02T11:31:26Z'
+    default_branch: main
+    has_lakefile: false
+    has_toolchain: true
+    has_manifest: false
+    has_readme: false
+    lean_file_count: 3
+    estimated_lean_loc: 29
+    tree_truncated: false
+    query_matches:
+    - language:Lean created:>=2026-08-01 fork:false archived:false
+    - mathlib created:>=2026-08-01 fork:false archived:false
+  hautevillehouse/connectivity-lemma-canonical-lane-mathlib:
+    url: https://github.com/HautevilleHouse/connectivity-lemma-canonical-lane-mathlib
+    first_seen_at: '2026-08-02T15:20:39+00:00'
+    full_name: HautevilleHouse/connectivity-lemma-canonical-lane-mathlib
+    description: ''
+    signal: medium
+    score: 4
+    reasons:
+    - Lake/Lean project files
+    - 3 Lean files
+    - license NOASSERTION
+    - 'domain terms: mathlib'
+    stars: 0
+    license: NOASSERTION
+    topics: []
+    language: Lean
+    created_at: '2026-08-02T11:31:27Z'
+    updated_at: '2026-08-02T11:31:47Z'
+    pushed_at: '2026-08-02T11:31:30Z'
+    default_branch: main
+    has_lakefile: false
+    has_toolchain: true
+    has_manifest: false
+    has_readme: false
+    lean_file_count: 3
+    estimated_lean_loc: 29
+    tree_truncated: false
+    query_matches:
+    - language:Lean created:>=2026-08-01 fork:false archived:false
+    - mathlib created:>=2026-08-01 fork:false archived:false
+  hautevillehouse/connectivity-theorem-canonical-lane-mathlib:
+    url: https://github.com/HautevilleHouse/connectivity-theorem-canonical-lane-mathlib
+    first_seen_at: '2026-08-02T15:20:39+00:00'
+    full_name: HautevilleHouse/connectivity-theorem-canonical-lane-mathlib
+    description: ''
+    signal: medium
+    score: 4
+    reasons:
+    - Lake/Lean project files
+    - 3 Lean files
+    - license NOASSERTION
+    - 'domain terms: mathlib, theorem'
+    stars: 0
+    license: NOASSERTION
+    topics: []
+    language: Lean
+    created_at: '2026-08-02T11:31:31Z'
+    updated_at: '2026-08-02T11:31:58Z'
+    pushed_at: '2026-08-02T11:31:34Z'
+    default_branch: main
+    has_lakefile: false
+    has_toolchain: true
+    has_manifest: false
+    has_readme: false
+    lean_file_count: 3
+    estimated_lean_loc: 29
+    tree_truncated: false
+    query_matches:
+    - language:Lean created:>=2026-08-01 fork:false archived:false
+    - mathlib created:>=2026-08-01 fork:false archived:false
+  hautevillehouse/consensus-lemma-canonical-lane-mathlib:
+    url: https://github.com/HautevilleHouse/consensus-lemma-canonical-lane-mathlib
+    first_seen_at: '2026-08-02T15:20:39+00:00'
+    full_name: HautevilleHouse/consensus-lemma-canonical-lane-mathlib
+    description: ''
+    signal: medium
+    score: 4
+    reasons:
+    - Lake/Lean project files
+    - 3 Lean files
+    - license NOASSERTION
+    - 'domain terms: mathlib'
+    stars: 0
+    license: NOASSERTION
+    topics: []
+    language: Lean
+    created_at: '2026-08-02T11:31:35Z'
+    updated_at: '2026-08-02T11:32:08Z'
+    pushed_at: '2026-08-02T11:31:38Z'
+    default_branch: main
+    has_lakefile: false
+    has_toolchain: true
+    has_manifest: false
+    has_readme: false
+    lean_file_count: 3
+    estimated_lean_loc: 28
+    tree_truncated: false
+    query_matches:
+    - language:Lean created:>=2026-08-01 fork:false archived:false
+    - mathlib created:>=2026-08-01 fork:false archived:false
+  hautevillehouse/consensus-theorem-canonical-lane-mathlib:
+    url: https://github.com/HautevilleHouse/consensus-theorem-canonical-lane-mathlib
+    first_seen_at: '2026-08-02T15:20:39+00:00'
+    full_name: HautevilleHouse/consensus-theorem-canonical-lane-mathlib
+    description: ''
+    signal: medium
+    score: 4
+    reasons:
+    - Lake/Lean project files
+    - 3 Lean files
+    - license NOASSERTION
+    - 'domain terms: mathlib, theorem'
+    stars: 0
+    license: NOASSERTION
+    topics: []
+    language: Lean
+    created_at: '2026-08-02T11:31:39Z'
+    updated_at: '2026-08-02T11:31:55Z'
+    pushed_at: '2026-08-02T11:31:43Z'
+    default_branch: main
+    has_lakefile: false
+    has_toolchain: true
+    has_manifest: false
+    has_readme: false
+    lean_file_count: 3
+    estimated_lean_loc: 29
+    tree_truncated: false
+    query_matches:
+    - language:Lean created:>=2026-08-01 fork:false archived:false
+    - mathlib created:>=2026-08-01 fork:false archived:false
+  hautevillehouse/consistency-independence-results-foundation-canonical-lane-mathlib:
+    url: https://github.com/HautevilleHouse/consistency-independence-results-foundation-canonical-lane-mathlib
+    first_seen_at: '2026-08-02T15:20:39+00:00'
+    full_name: HautevilleHouse/consistency-independence-results-foundation-canonical-lane-mathlib
+    description: ''
+    signal: medium
+    score: 4
+    reasons:
+    - Lake/Lean project files
+    - 3 Lean files
+    - license NOASSERTION
+    - 'domain terms: mathlib'
+    stars: 0
+    license: NOASSERTION
+    topics: []
+    language: Lean
+    created_at: '2026-08-02T11:31:44Z'
+    updated_at: '2026-08-02T11:32:05Z'
+    pushed_at: '2026-08-02T11:31:48Z'
+    default_branch: main
+    has_lakefile: false
+    has_toolchain: true
+    has_manifest: false
+    has_readme: false
+    lean_file_count: 3
+    estimated_lean_loc: 34
+    tree_truncated: false
+    query_matches:
+    - language:Lean created:>=2026-08-01 fork:false archived:false
+    - mathlib created:>=2026-08-01 fork:false archived:false
+  hautevillehouse/consistency-independence-results-lemma-canonical-lane-mathlib:
+    url: https://github.com/HautevilleHouse/consistency-independence-results-lemma-canonical-lane-mathlib
+    first_seen_at: '2026-08-02T15:20:39+00:00'
+    full_name: HautevilleHouse/consistency-independence-results-lemma-canonical-lane-mathlib
+    description: ''
+    signal: medium
+    score: 4
+    reasons:
+    - Lake/Lean project files
+    - 3 Lean files
+    - license NOASSERTION
+    - 'domain terms: mathlib'
+    stars: 0
+    license: NOASSERTION
+    topics: []
+    language: Lean
+    created_at: '2026-08-02T11:31:49Z'
+    updated_at: '2026-08-02T11:32:00Z'
+    pushed_at: '2026-08-02T11:31:53Z'
+    default_branch: main
+    has_lakefile: false
+    has_toolchain: true
+    has_manifest: false
+    has_readme: false
+    lean_file_count: 3
+    estimated_lean_loc: 33
+    tree_truncated: false
+    query_matches:
+    - language:Lean created:>=2026-08-01 fork:false archived:false
+    - mathlib created:>=2026-08-01 fork:false archived:false
+  hautevillehouse/consistency-independence-results-theorem-canonical-lane-mathlib:
+    url: https://github.com/HautevilleHouse/consistency-independence-results-theorem-canonical-lane-mathlib
+    first_seen_at: '2026-08-02T15:20:39+00:00'
+    full_name: HautevilleHouse/consistency-independence-results-theorem-canonical-lane-mathlib
+    description: ''
+    signal: medium
+    score: 4
+    reasons:
+    - Lake/Lean project files
+    - 3 Lean files
+    - license NOASSERTION
+    - 'domain terms: mathlib, theorem'
+    stars: 0
+    license: NOASSERTION
+    topics: []
+    language: Lean
+    created_at: '2026-08-02T11:31:55Z'
+    updated_at: '2026-08-02T11:32:08Z'
+    pushed_at: '2026-08-02T11:31:59Z'
+    default_branch: main
+    has_lakefile: false
+    has_toolchain: true
+    has_manifest: false
+    has_readme: false
+    lean_file_count: 3
+    estimated_lean_loc: 33
+    tree_truncated: false
+    query_matches:
+    - language:Lean created:>=2026-08-01 fork:false archived:false
+    - mathlib created:>=2026-08-01 fork:false archived:false
+  hautevillehouse/constrained-dynamics-dirac-s-theory-foundation-canonical-lane-mathlib:
+    url: https://github.com/HautevilleHouse/constrained-dynamics-dirac-s-theory-foundation-canonical-lane-mathlib
+    first_seen_at: '2026-08-02T15:20:39+00:00'
+    full_name: HautevilleHouse/constrained-dynamics-dirac-s-theory-foundation-canonical-lane-mathlib
+    description: ''
+    signal: medium
+    score: 4
+    reasons:
+    - Lake/Lean project files
+    - 3 Lean files
+    - license NOASSERTION
+    - 'domain terms: mathlib'
+    stars: 0
+    license: NOASSERTION
+    topics: []
+    language: Lean
+    created_at: '2026-08-02T11:32:00Z'
+    updated_at: '2026-08-02T11:32:20Z'
+    pushed_at: '2026-08-02T11:32:05Z'
+    default_branch: main
+    has_lakefile: false
+    has_toolchain: true
+    has_manifest: false
+    has_readme: false
+    lean_file_count: 3
+    estimated_lean_loc: 34
+    tree_truncated: false
+    query_matches:
+    - language:Lean created:>=2026-08-01 fork:false archived:false
+    - mathlib created:>=2026-08-01 fork:false archived:false
+  hautevillehouse/constrained-dynamics-dirac-s-theory-lemma-canonical-lane-mathlib:
+    url: https://github.com/HautevilleHouse/constrained-dynamics-dirac-s-theory-lemma-canonical-lane-mathlib
+    first_seen_at: '2026-08-02T15:20:39+00:00'
+    full_name: HautevilleHouse/constrained-dynamics-dirac-s-theory-lemma-canonical-lane-mathlib
+    description: ''
+    signal: medium
+    score: 4
+    reasons:
+    - Lake/Lean project files
+    - 3 Lean files
+    - license NOASSERTION
+    - 'domain terms: mathlib'
+    stars: 0
+    license: NOASSERTION
+    topics: []
+    language: Lean
+    created_at: '2026-08-02T11:32:06Z'
+    updated_at: '2026-08-02T11:32:21Z'
+    pushed_at: '2026-08-02T11:32:12Z'
+    default_branch: main
+    has_lakefile: false
+    has_toolchain: true
+    has_manifest: false
+    has_readme: false
+    lean_file_count: 3
+    estimated_lean_loc: 33
+    tree_truncated: false
+    query_matches:
+    - language:Lean created:>=2026-08-01 fork:false archived:false
+    - mathlib created:>=2026-08-01 fork:false archived:false
+  hautevillehouse/constrained-dynamics-dirac-s-theory-theorem-canonical-lane-mathlib:
+    url: https://github.com/HautevilleHouse/constrained-dynamics-dirac-s-theory-theorem-canonical-lane-mathlib
+    first_seen_at: '2026-08-02T15:20:39+00:00'
+    full_name: HautevilleHouse/constrained-dynamics-dirac-s-theory-theorem-canonical-lane-mathlib
+    description: ''
+    signal: medium
+    score: 4
+    reasons:
+    - Lake/Lean project files
+    - 3 Lean files
+    - license NOASSERTION
+    - 'domain terms: mathlib, theorem'
+    stars: 0
+    license: NOASSERTION
+    topics: []
+    language: Lean
+    created_at: '2026-08-02T11:32:13Z'
+    updated_at: '2026-08-02T11:32:34Z'
+    pushed_at: '2026-08-02T11:32:17Z'
+    default_branch: main
+    has_lakefile: false
+    has_toolchain: true
+    has_manifest: false
+    has_readme: false
+    lean_file_count: 3
+    estimated_lean_loc: 34
+    tree_truncated: false
+    query_matches:
+    - language:Lean created:>=2026-08-01 fork:false archived:false
+    - mathlib created:>=2026-08-01 fork:false archived:false
+  hautevillehouse/constructive-mathematics-lemma-canonical-lane-mathlib:
+    url: https://github.com/HautevilleHouse/constructive-mathematics-lemma-canonical-lane-mathlib
+    first_seen_at: '2026-08-02T15:20:39+00:00'
+    full_name: HautevilleHouse/constructive-mathematics-lemma-canonical-lane-mathlib
+    description: ''
+    signal: medium
+    score: 4
+    reasons:
+    - Lake/Lean project files
+    - 3 Lean files
+    - license NOASSERTION
+    - 'domain terms: mathlib'
+    stars: 0
+    license: NOASSERTION
+    topics: []
+    language: Lean
+    created_at: '2026-08-02T11:32:18Z'
+    updated_at: '2026-08-02T11:32:47Z'
+    pushed_at: '2026-08-02T11:32:21Z'
+    default_branch: main
+    has_lakefile: false
+    has_toolchain: true
+    has_manifest: false
+    has_readme: false
+    lean_file_count: 3
+    estimated_lean_loc: 31
+    tree_truncated: false
+    query_matches:
+    - language:Lean created:>=2026-08-01 fork:false archived:false
+    - mathlib created:>=2026-08-01 fork:false archived:false
+  hautevillehouse/constructive-mathematics-theorem-canonical-lane-mathlib:
+    url: https://github.com/HautevilleHouse/constructive-mathematics-theorem-canonical-lane-mathlib
+    first_seen_at: '2026-08-02T15:20:39+00:00'
+    full_name: HautevilleHouse/constructive-mathematics-theorem-canonical-lane-mathlib
+    description: ''
+    signal: medium
+    score: 4
+    reasons:
+    - Lake/Lean project files
+    - 3 Lean files
+    - license NOASSERTION
+    - 'domain terms: mathlib, theorem'
+    stars: 0
+    license: NOASSERTION
+    topics: []
+    language: Lean
+    created_at: '2026-08-02T11:32:22Z'
+    updated_at: '2026-08-02T11:32:30Z'
+    pushed_at: '2026-08-02T11:32:26Z'
+    default_branch: main
+    has_lakefile: false
+    has_toolchain: true
+    has_manifest: false
+    has_readme: false
+    lean_file_count: 3
+    estimated_lean_loc: 32
+    tree_truncated: false
+    query_matches:
+    - language:Lean created:>=2026-08-01 fork:false archived:false
+    - mathlib created:>=2026-08-01 fork:false archived:false
+  hautevillehouse/constructive-operator-theory-lemma-canonical-lane-mathlib:
+    url: https://github.com/HautevilleHouse/constructive-operator-theory-lemma-canonical-lane-mathlib
+    first_seen_at: '2026-08-02T15:20:39+00:00'
+    full_name: HautevilleHouse/constructive-operator-theory-lemma-canonical-lane-mathlib
+    description: ''
+    signal: medium
+    score: 4
+    reasons:
+    - Lake/Lean project files
+    - 3 Lean files
+    - license NOASSERTION
+    - 'domain terms: mathlib'
+    stars: 0
+    license: NOASSERTION
+    topics: []
+    language: Lean
+    created_at: '2026-08-02T11:32:26Z'
+    updated_at: '2026-08-02T11:32:39Z'
+    pushed_at: '2026-08-02T11:32:31Z'
+    default_branch: main
+    has_lakefile: false
+    has_toolchain: true
+    has_manifest: false
+    has_readme: false
+    lean_file_count: 3
+    estimated_lean_loc: 32
+    tree_truncated: false
+    query_matches:
+    - language:Lean created:>=2026-08-01 fork:false archived:false
+    - mathlib created:>=2026-08-01 fork:false archived:false
   hautevillehouse/currents-lemma-canonical-lane-mathlib:
     url: https://github.com/HautevilleHouse/currents-lemma-canonical-lane-mathlib
     first_seen_at: '2026-07-30T16:00:07+00:00'
@@ -33799,6 +35253,96 @@ github:
     tree_truncated: false
     query_matches:
     - mathlib created:>=2026-07-27 fork:false archived:false
+  hautevillehouse/existence-theories-problems-abstract-spaces-foundation-canonical-lane-mathlib:
+    url: https://github.com/HautevilleHouse/existence-theories-problems-abstract-spaces-foundation-canonical-lane-mathlib
+    first_seen_at: '2026-08-02T15:20:39+00:00'
+    full_name: HautevilleHouse/existence-theories-problems-abstract-spaces-foundation-canonical-lane-mathlib
+    description: ''
+    signal: medium
+    score: 4
+    reasons:
+    - Lake/Lean project files
+    - 3 Lean files
+    - license NOASSERTION
+    - 'domain terms: mathlib'
+    stars: 0
+    license: NOASSERTION
+    topics: []
+    language: Lean
+    created_at: '2026-08-02T11:32:32Z'
+    updated_at: '2026-08-02T11:32:45Z'
+    pushed_at: '2026-08-02T11:32:37Z'
+    default_branch: main
+    has_lakefile: false
+    has_toolchain: true
+    has_manifest: false
+    has_readme: false
+    lean_file_count: 3
+    estimated_lean_loc: 36
+    tree_truncated: false
+    query_matches:
+    - language:Lean created:>=2026-08-01 fork:false archived:false
+    - mathlib created:>=2026-08-01 fork:false archived:false
+  hautevillehouse/existence-theories-problems-abstract-spaces-lemma-canonical-lane-mathlib:
+    url: https://github.com/HautevilleHouse/existence-theories-problems-abstract-spaces-lemma-canonical-lane-mathlib
+    first_seen_at: '2026-08-02T15:20:39+00:00'
+    full_name: HautevilleHouse/existence-theories-problems-abstract-spaces-lemma-canonical-lane-mathlib
+    description: ''
+    signal: medium
+    score: 4
+    reasons:
+    - Lake/Lean project files
+    - 3 Lean files
+    - license NOASSERTION
+    - 'domain terms: mathlib'
+    stars: 0
+    license: NOASSERTION
+    topics: []
+    language: Lean
+    created_at: '2026-08-02T11:32:38Z'
+    updated_at: '2026-08-02T11:32:50Z'
+    pushed_at: '2026-08-02T11:32:42Z'
+    default_branch: main
+    has_lakefile: false
+    has_toolchain: true
+    has_manifest: false
+    has_readme: false
+    lean_file_count: 3
+    estimated_lean_loc: 35
+    tree_truncated: false
+    query_matches:
+    - language:Lean created:>=2026-08-01 fork:false archived:false
+    - mathlib created:>=2026-08-01 fork:false archived:false
+  hautevillehouse/existence-theories-problems-abstract-spaces-theorem-canonical-lane-mathlib:
+    url: https://github.com/HautevilleHouse/existence-theories-problems-abstract-spaces-theorem-canonical-lane-mathlib
+    first_seen_at: '2026-08-02T15:20:39+00:00'
+    full_name: HautevilleHouse/existence-theories-problems-abstract-spaces-theorem-canonical-lane-mathlib
+    description: ''
+    signal: medium
+    score: 4
+    reasons:
+    - Lake/Lean project files
+    - 3 Lean files
+    - license NOASSERTION
+    - 'domain terms: mathlib, theorem'
+    stars: 0
+    license: NOASSERTION
+    topics: []
+    language: Lean
+    created_at: '2026-08-02T11:32:43Z'
+    updated_at: '2026-08-02T11:32:55Z'
+    pushed_at: '2026-08-02T11:32:47Z'
+    default_branch: main
+    has_lakefile: false
+    has_toolchain: true
+    has_manifest: false
+    has_readme: false
+    lean_file_count: 3
+    estimated_lean_loc: 35
+    tree_truncated: false
+    query_matches:
+    - language:Lean created:>=2026-08-01 fork:false archived:false
+    - mathlib created:>=2026-08-01 fork:false archived:false
   hautevillehouse/existence-uniqueness-regularity-theory-compressible-canonical-lane-mathlib:
     url: https://github.com/HautevilleHouse/existence-uniqueness-regularity-theory-compressible-canonical-lane-mathlib
     first_seen_at: '2026-07-28T16:15:21+00:00'
@@ -33828,6 +35372,96 @@ github:
     tree_truncated: false
     query_matches:
     - mathlib created:>=2026-07-27 fork:false archived:false
+  hautevillehouse/existence-uniqueness-regularity-theory-compressible-foundation-canonical-lane-mathlib:
+    url: https://github.com/HautevilleHouse/existence-uniqueness-regularity-theory-compressible-foundation-canonical-lane-mathlib
+    first_seen_at: '2026-08-02T15:20:39+00:00'
+    full_name: HautevilleHouse/existence-uniqueness-regularity-theory-compressible-foundation-canonical-lane-mathlib
+    description: ''
+    signal: medium
+    score: 4
+    reasons:
+    - Lake/Lean project files
+    - 3 Lean files
+    - license NOASSERTION
+    - 'domain terms: mathlib'
+    stars: 0
+    license: NOASSERTION
+    topics: []
+    language: Lean
+    created_at: '2026-08-02T11:32:48Z'
+    updated_at: '2026-08-02T11:33:01Z'
+    pushed_at: '2026-08-02T11:32:51Z'
+    default_branch: main
+    has_lakefile: false
+    has_toolchain: true
+    has_manifest: false
+    has_readme: false
+    lean_file_count: 3
+    estimated_lean_loc: 37
+    tree_truncated: false
+    query_matches:
+    - language:Lean created:>=2026-08-01 fork:false archived:false
+    - mathlib created:>=2026-08-01 fork:false archived:false
+  hautevillehouse/existence-uniqueness-regularity-theory-compressible-lemma-canonical-lane-mathlib:
+    url: https://github.com/HautevilleHouse/existence-uniqueness-regularity-theory-compressible-lemma-canonical-lane-mathlib
+    first_seen_at: '2026-08-02T15:20:39+00:00'
+    full_name: HautevilleHouse/existence-uniqueness-regularity-theory-compressible-lemma-canonical-lane-mathlib
+    description: ''
+    signal: medium
+    score: 4
+    reasons:
+    - Lake/Lean project files
+    - 3 Lean files
+    - license NOASSERTION
+    - 'domain terms: mathlib'
+    stars: 0
+    license: NOASSERTION
+    topics: []
+    language: Lean
+    created_at: '2026-08-02T11:32:52Z'
+    updated_at: '2026-08-02T11:33:11Z'
+    pushed_at: '2026-08-02T11:32:56Z'
+    default_branch: main
+    has_lakefile: false
+    has_toolchain: true
+    has_manifest: false
+    has_readme: false
+    lean_file_count: 3
+    estimated_lean_loc: 36
+    tree_truncated: false
+    query_matches:
+    - language:Lean created:>=2026-08-01 fork:false archived:false
+    - mathlib created:>=2026-08-01 fork:false archived:false
+  hautevillehouse/existence-uniqueness-regularity-theory-compressible-theorem-canonical-lane-mathlib:
+    url: https://github.com/HautevilleHouse/existence-uniqueness-regularity-theory-compressible-theorem-canonical-lane-mathlib
+    first_seen_at: '2026-08-02T15:20:39+00:00'
+    full_name: HautevilleHouse/existence-uniqueness-regularity-theory-compressible-theorem-canonical-lane-mathlib
+    description: ''
+    signal: medium
+    score: 4
+    reasons:
+    - Lake/Lean project files
+    - 3 Lean files
+    - license NOASSERTION
+    - 'domain terms: mathlib, theorem'
+    stars: 0
+    license: NOASSERTION
+    topics: []
+    language: Lean
+    created_at: '2026-08-02T11:32:57Z'
+    updated_at: '2026-08-02T11:33:25Z'
+    pushed_at: '2026-08-02T11:33:02Z'
+    default_branch: main
+    has_lakefile: false
+    has_toolchain: true
+    has_manifest: false
+    has_readme: false
+    lean_file_count: 3
+    estimated_lean_loc: 37
+    tree_truncated: false
+    query_matches:
+    - language:Lean created:>=2026-08-01 fork:false archived:false
+    - mathlib created:>=2026-08-01 fork:false archived:false
   hautevillehouse/existence-uniqueness-regularity-theory-incompressible-canonical-lane-mathlib:
     url: https://github.com/HautevilleHouse/existence-uniqueness-regularity-theory-incompressible-canonical-lane-mathlib
     first_seen_at: '2026-07-28T16:15:21+00:00'
@@ -33857,6 +35491,96 @@ github:
     tree_truncated: false
     query_matches:
     - mathlib created:>=2026-07-27 fork:false archived:false
+  hautevillehouse/existence-uniqueness-regularity-theory-incompressible-foundation-canonical-lane-mathlib:
+    url: https://github.com/HautevilleHouse/existence-uniqueness-regularity-theory-incompressible-foundation-canonical-lane-mathlib
+    first_seen_at: '2026-08-02T15:20:39+00:00'
+    full_name: HautevilleHouse/existence-uniqueness-regularity-theory-incompressible-foundation-canonical-lane-mathlib
+    description: ''
+    signal: medium
+    score: 4
+    reasons:
+    - Lake/Lean project files
+    - 3 Lean files
+    - license NOASSERTION
+    - 'domain terms: mathlib'
+    stars: 0
+    license: NOASSERTION
+    topics: []
+    language: Lean
+    created_at: '2026-08-02T11:33:04Z'
+    updated_at: '2026-08-02T11:33:26Z'
+    pushed_at: '2026-08-02T11:33:08Z'
+    default_branch: main
+    has_lakefile: false
+    has_toolchain: true
+    has_manifest: false
+    has_readme: false
+    lean_file_count: 3
+    estimated_lean_loc: 38
+    tree_truncated: false
+    query_matches:
+    - language:Lean created:>=2026-08-01 fork:false archived:false
+    - mathlib created:>=2026-08-01 fork:false archived:false
+  hautevillehouse/existence-uniqueness-regularity-theory-incompressible-lemma-canonical-lane-mathlib:
+    url: https://github.com/HautevilleHouse/existence-uniqueness-regularity-theory-incompressible-lemma-canonical-lane-mathlib
+    first_seen_at: '2026-08-02T15:20:39+00:00'
+    full_name: HautevilleHouse/existence-uniqueness-regularity-theory-incompressible-lemma-canonical-lane-mathlib
+    description: ''
+    signal: medium
+    score: 4
+    reasons:
+    - Lake/Lean project files
+    - 3 Lean files
+    - license NOASSERTION
+    - 'domain terms: mathlib'
+    stars: 0
+    license: NOASSERTION
+    topics: []
+    language: Lean
+    created_at: '2026-08-02T11:33:10Z'
+    updated_at: '2026-08-02T11:33:23Z'
+    pushed_at: '2026-08-02T11:33:18Z'
+    default_branch: main
+    has_lakefile: false
+    has_toolchain: true
+    has_manifest: false
+    has_readme: false
+    lean_file_count: 3
+    estimated_lean_loc: 37
+    tree_truncated: false
+    query_matches:
+    - language:Lean created:>=2026-08-01 fork:false archived:false
+    - mathlib created:>=2026-08-01 fork:false archived:false
+  hautevillehouse/existence-uniqueness-regularity-theory-incompressible-theorem-canonical-lane-mathlib:
+    url: https://github.com/HautevilleHouse/existence-uniqueness-regularity-theory-incompressible-theorem-canonical-lane-mathlib
+    first_seen_at: '2026-08-02T15:20:39+00:00'
+    full_name: HautevilleHouse/existence-uniqueness-regularity-theory-incompressible-theorem-canonical-lane-mathlib
+    description: ''
+    signal: medium
+    score: 4
+    reasons:
+    - Lake/Lean project files
+    - 3 Lean files
+    - license NOASSERTION
+    - 'domain terms: mathlib, theorem'
+    stars: 0
+    license: NOASSERTION
+    topics: []
+    language: Lean
+    created_at: '2026-08-02T11:33:20Z'
+    updated_at: '2026-08-02T11:33:31Z'
+    pushed_at: '2026-08-02T11:33:25Z'
+    default_branch: main
+    has_lakefile: false
+    has_toolchain: true
+    has_manifest: false
+    has_readme: false
+    lean_file_count: 3
+    estimated_lean_loc: 37
+    tree_truncated: false
+    query_matches:
+    - language:Lean created:>=2026-08-01 fork:false archived:false
+    - mathlib created:>=2026-08-01 fork:false archived:false
   hautevillehouse/exotic-index-theories-manifolds-canonical-lane-mathlib:
     url: https://github.com/HautevilleHouse/exotic-index-theories-manifolds-canonical-lane-mathlib
     first_seen_at: '2026-07-28T16:15:21+00:00'
@@ -33886,6 +35610,66 @@ github:
     tree_truncated: false
     query_matches:
     - mathlib created:>=2026-07-27 fork:false archived:false
+  hautevillehouse/exotic-index-theories-manifolds-foundation-canonical-lane-mathlib:
+    url: https://github.com/HautevilleHouse/exotic-index-theories-manifolds-foundation-canonical-lane-mathlib
+    first_seen_at: '2026-08-02T15:20:39+00:00'
+    full_name: HautevilleHouse/exotic-index-theories-manifolds-foundation-canonical-lane-mathlib
+    description: ''
+    signal: medium
+    score: 4
+    reasons:
+    - Lake/Lean project files
+    - 3 Lean files
+    - license NOASSERTION
+    - 'domain terms: mathlib'
+    stars: 0
+    license: NOASSERTION
+    topics: []
+    language: Lean
+    created_at: '2026-08-02T11:33:27Z'
+    updated_at: '2026-08-02T11:33:45Z'
+    pushed_at: '2026-08-02T11:33:31Z'
+    default_branch: main
+    has_lakefile: false
+    has_toolchain: true
+    has_manifest: false
+    has_readme: false
+    lean_file_count: 3
+    estimated_lean_loc: 33
+    tree_truncated: false
+    query_matches:
+    - language:Lean created:>=2026-08-01 fork:false archived:false
+    - mathlib created:>=2026-08-01 fork:false archived:false
+  hautevillehouse/exotic-index-theories-manifolds-lemma-canonical-lane-mathlib:
+    url: https://github.com/HautevilleHouse/exotic-index-theories-manifolds-lemma-canonical-lane-mathlib
+    first_seen_at: '2026-08-02T15:20:39+00:00'
+    full_name: HautevilleHouse/exotic-index-theories-manifolds-lemma-canonical-lane-mathlib
+    description: ''
+    signal: medium
+    score: 4
+    reasons:
+    - Lake/Lean project files
+    - 3 Lean files
+    - license NOASSERTION
+    - 'domain terms: mathlib'
+    stars: 0
+    license: NOASSERTION
+    topics: []
+    language: Lean
+    created_at: '2026-08-02T11:33:32Z'
+    updated_at: '2026-08-02T11:33:53Z'
+    pushed_at: '2026-08-02T11:33:36Z'
+    default_branch: main
+    has_lakefile: false
+    has_toolchain: true
+    has_manifest: false
+    has_readme: false
+    lean_file_count: 3
+    estimated_lean_loc: 32
+    tree_truncated: false
+    query_matches:
+    - language:Lean created:>=2026-08-01 fork:false archived:false
+    - mathlib created:>=2026-08-01 fork:false archived:false
   hautevillehouse/expander-graphs-canonical-lane-mathlib:
     url: https://github.com/HautevilleHouse/expander-graphs-canonical-lane-mathlib
     first_seen_at: '2026-07-28T16:15:21+00:00'
@@ -34208,6 +35992,728 @@ github:
     tree_truncated: false
     query_matches:
     - mathlib created:>=2026-07-27 fork:false archived:false
+  hautevillehouse/extension-functions-analytic-objects-cr-lemma-canonical-lane-mathlib:
+    url: https://github.com/HautevilleHouse/extension-functions-analytic-objects-cr-lemma-canonical-lane-mathlib
+    first_seen_at: '2026-08-02T15:20:39+00:00'
+    full_name: HautevilleHouse/extension-functions-analytic-objects-cr-lemma-canonical-lane-mathlib
+    description: ''
+    signal: medium
+    score: 4
+    reasons:
+    - Lake/Lean project files
+    - 3 Lean files
+    - license NOASSERTION
+    - 'domain terms: mathlib'
+    stars: 0
+    license: NOASSERTION
+    topics: []
+    language: Lean
+    created_at: '2026-08-02T13:27:19Z'
+    updated_at: '2026-08-02T13:27:36Z'
+    pushed_at: '2026-08-02T13:27:30Z'
+    default_branch: main
+    has_lakefile: false
+    has_toolchain: true
+    has_manifest: false
+    has_readme: false
+    lean_file_count: 3
+    estimated_lean_loc: 34
+    tree_truncated: false
+    query_matches:
+    - language:Lean created:>=2026-08-01 fork:false archived:false
+    - mathlib created:>=2026-08-01 fork:false archived:false
+  hautevillehouse/extension-functions-analytic-objects-cr-theorem-canonical-lane-mathlib:
+    url: https://github.com/HautevilleHouse/extension-functions-analytic-objects-cr-theorem-canonical-lane-mathlib
+    first_seen_at: '2026-08-02T15:20:39+00:00'
+    full_name: HautevilleHouse/extension-functions-analytic-objects-cr-theorem-canonical-lane-mathlib
+    description: ''
+    signal: medium
+    score: 4
+    reasons:
+    - Lake/Lean project files
+    - 3 Lean files
+    - license NOASSERTION
+    - 'domain terms: mathlib, theorem'
+    stars: 0
+    license: NOASSERTION
+    topics: []
+    language: Lean
+    created_at: '2026-08-02T13:27:31Z'
+    updated_at: '2026-08-02T13:28:28Z'
+    pushed_at: '2026-08-02T13:27:37Z'
+    default_branch: main
+    has_lakefile: false
+    has_toolchain: true
+    has_manifest: false
+    has_readme: false
+    lean_file_count: 3
+    estimated_lean_loc: 34
+    tree_truncated: false
+    query_matches:
+    - language:Lean created:>=2026-08-01 fork:false archived:false
+    - mathlib created:>=2026-08-01 fork:false archived:false
+  hautevillehouse/extension-maps-lemma-canonical-lane-mathlib:
+    url: https://github.com/HautevilleHouse/extension-maps-lemma-canonical-lane-mathlib
+    first_seen_at: '2026-08-02T15:20:39+00:00'
+    full_name: HautevilleHouse/extension-maps-lemma-canonical-lane-mathlib
+    description: ''
+    signal: medium
+    score: 4
+    reasons:
+    - Lake/Lean project files
+    - 3 Lean files
+    - license NOASSERTION
+    - 'domain terms: mathlib'
+    stars: 0
+    license: NOASSERTION
+    topics: []
+    language: Lean
+    created_at: '2026-08-02T13:27:38Z'
+    updated_at: '2026-08-02T13:28:33Z'
+    pushed_at: '2026-08-02T13:27:42Z'
+    default_branch: main
+    has_lakefile: false
+    has_toolchain: true
+    has_manifest: false
+    has_readme: false
+    lean_file_count: 3
+    estimated_lean_loc: 29
+    tree_truncated: false
+    query_matches:
+    - language:Lean created:>=2026-08-01 fork:false archived:false
+    - mathlib created:>=2026-08-01 fork:false archived:false
+  hautevillehouse/extension-maps-theorem-canonical-lane-mathlib:
+    url: https://github.com/HautevilleHouse/extension-maps-theorem-canonical-lane-mathlib
+    first_seen_at: '2026-08-02T15:20:39+00:00'
+    full_name: HautevilleHouse/extension-maps-theorem-canonical-lane-mathlib
+    description: ''
+    signal: medium
+    score: 4
+    reasons:
+    - Lake/Lean project files
+    - 3 Lean files
+    - license NOASSERTION
+    - 'domain terms: mathlib, theorem'
+    stars: 0
+    license: NOASSERTION
+    topics: []
+    language: Lean
+    created_at: '2026-08-02T13:27:43Z'
+    updated_at: '2026-08-02T13:28:04Z'
+    pushed_at: '2026-08-02T13:27:47Z'
+    default_branch: main
+    has_lakefile: false
+    has_toolchain: true
+    has_manifest: false
+    has_readme: false
+    lean_file_count: 3
+    estimated_lean_loc: 30
+    tree_truncated: false
+    query_matches:
+    - language:Lean created:>=2026-08-01 fork:false archived:false
+    - mathlib created:>=2026-08-01 fork:false archived:false
+  hautevillehouse/extension-theory-commutative-rings-foundation-canonical-lane-mathlib:
+    url: https://github.com/HautevilleHouse/extension-theory-commutative-rings-foundation-canonical-lane-mathlib
+    first_seen_at: '2026-08-02T15:20:39+00:00'
+    full_name: HautevilleHouse/extension-theory-commutative-rings-foundation-canonical-lane-mathlib
+    description: ''
+    signal: medium
+    score: 4
+    reasons:
+    - Lake/Lean project files
+    - 3 Lean files
+    - license NOASSERTION
+    - 'domain terms: mathlib'
+    stars: 0
+    license: NOASSERTION
+    topics: []
+    language: Lean
+    created_at: '2026-08-02T13:27:48Z'
+    updated_at: '2026-08-02T13:28:01Z'
+    pushed_at: '2026-08-02T13:27:52Z'
+    default_branch: main
+    has_lakefile: false
+    has_toolchain: true
+    has_manifest: false
+    has_readme: false
+    lean_file_count: 3
+    estimated_lean_loc: 34
+    tree_truncated: false
+    query_matches:
+    - language:Lean created:>=2026-08-01 fork:false archived:false
+    - mathlib created:>=2026-08-01 fork:false archived:false
+  hautevillehouse/extension-theory-commutative-rings-lemma-canonical-lane-mathlib:
+    url: https://github.com/HautevilleHouse/extension-theory-commutative-rings-lemma-canonical-lane-mathlib
+    first_seen_at: '2026-08-02T15:20:39+00:00'
+    full_name: HautevilleHouse/extension-theory-commutative-rings-lemma-canonical-lane-mathlib
+    description: ''
+    signal: medium
+    score: 4
+    reasons:
+    - Lake/Lean project files
+    - 3 Lean files
+    - license NOASSERTION
+    - 'domain terms: mathlib'
+    stars: 0
+    license: NOASSERTION
+    topics: []
+    language: Lean
+    created_at: '2026-08-02T13:27:53Z'
+    updated_at: '2026-08-02T13:28:11Z'
+    pushed_at: '2026-08-02T13:27:55Z'
+    default_branch: main
+    has_lakefile: false
+    has_toolchain: true
+    has_manifest: false
+    has_readme: false
+    lean_file_count: 3
+    estimated_lean_loc: 33
+    tree_truncated: false
+    query_matches:
+    - language:Lean created:>=2026-08-01 fork:false archived:false
+    - mathlib created:>=2026-08-01 fork:false archived:false
+  hautevillehouse/extension-theory-commutative-rings-theorem-canonical-lane-mathlib:
+    url: https://github.com/HautevilleHouse/extension-theory-commutative-rings-theorem-canonical-lane-mathlib
+    first_seen_at: '2026-08-02T15:20:39+00:00'
+    full_name: HautevilleHouse/extension-theory-commutative-rings-theorem-canonical-lane-mathlib
+    description: ''
+    signal: medium
+    score: 4
+    reasons:
+    - Lake/Lean project files
+    - 3 Lean files
+    - license NOASSERTION
+    - 'domain terms: mathlib, theorem'
+    stars: 0
+    license: NOASSERTION
+    topics: []
+    language: Lean
+    created_at: '2026-08-02T13:27:57Z'
+    updated_at: '2026-08-02T13:28:52Z'
+    pushed_at: '2026-08-02T13:28:02Z'
+    default_branch: main
+    has_lakefile: false
+    has_toolchain: true
+    has_manifest: false
+    has_readme: false
+    lean_file_count: 3
+    estimated_lean_loc: 33
+    tree_truncated: false
+    query_matches:
+    - language:Lean created:>=2026-08-01 fork:false archived:false
+    - mathlib created:>=2026-08-01 fork:false archived:false
+  hautevillehouse/extensions-abelian-groups-lemma-canonical-lane-mathlib:
+    url: https://github.com/HautevilleHouse/extensions-abelian-groups-lemma-canonical-lane-mathlib
+    first_seen_at: '2026-08-02T15:20:39+00:00'
+    full_name: HautevilleHouse/extensions-abelian-groups-lemma-canonical-lane-mathlib
+    description: ''
+    signal: medium
+    score: 4
+    reasons:
+    - Lake/Lean project files
+    - 3 Lean files
+    - license NOASSERTION
+    - 'domain terms: mathlib'
+    stars: 0
+    license: NOASSERTION
+    topics: []
+    language: Lean
+    created_at: '2026-08-02T13:28:03Z'
+    updated_at: '2026-08-02T13:28:37Z'
+    pushed_at: '2026-08-02T13:28:12Z'
+    default_branch: main
+    has_lakefile: false
+    has_toolchain: true
+    has_manifest: false
+    has_readme: false
+    lean_file_count: 3
+    estimated_lean_loc: 31
+    tree_truncated: false
+    query_matches:
+    - language:Lean created:>=2026-08-01 fork:false archived:false
+    - mathlib created:>=2026-08-01 fork:false archived:false
+  hautevillehouse/extensions-abelian-groups-theorem-canonical-lane-mathlib:
+    url: https://github.com/HautevilleHouse/extensions-abelian-groups-theorem-canonical-lane-mathlib
+    first_seen_at: '2026-08-02T15:20:39+00:00'
+    full_name: HautevilleHouse/extensions-abelian-groups-theorem-canonical-lane-mathlib
+    description: ''
+    signal: medium
+    score: 4
+    reasons:
+    - Lake/Lean project files
+    - 3 Lean files
+    - license NOASSERTION
+    - 'domain terms: mathlib, theorem'
+    stars: 0
+    license: NOASSERTION
+    topics: []
+    language: Lean
+    created_at: '2026-08-02T13:28:15Z'
+    updated_at: '2026-08-02T13:28:38Z'
+    pushed_at: '2026-08-02T13:28:26Z'
+    default_branch: main
+    has_lakefile: false
+    has_toolchain: true
+    has_manifest: false
+    has_readme: false
+    lean_file_count: 3
+    estimated_lean_loc: 32
+    tree_truncated: false
+    query_matches:
+    - language:Lean created:>=2026-08-01 fork:false archived:false
+    - mathlib created:>=2026-08-01 fork:false archived:false
+  hautevillehouse/extensions-associative-rings-ideals-foundation-canonical-lane-mathlib:
+    url: https://github.com/HautevilleHouse/extensions-associative-rings-ideals-foundation-canonical-lane-mathlib
+    first_seen_at: '2026-08-02T15:20:39+00:00'
+    full_name: HautevilleHouse/extensions-associative-rings-ideals-foundation-canonical-lane-mathlib
+    description: ''
+    signal: medium
+    score: 4
+    reasons:
+    - Lake/Lean project files
+    - 3 Lean files
+    - license NOASSERTION
+    - 'domain terms: mathlib'
+    stars: 0
+    license: NOASSERTION
+    topics: []
+    language: Lean
+    created_at: '2026-08-02T13:28:28Z'
+    updated_at: '2026-08-02T13:28:51Z'
+    pushed_at: '2026-08-02T13:28:36Z'
+    default_branch: main
+    has_lakefile: false
+    has_toolchain: true
+    has_manifest: false
+    has_readme: false
+    lean_file_count: 3
+    estimated_lean_loc: 34
+    tree_truncated: false
+    query_matches:
+    - language:Lean created:>=2026-08-01 fork:false archived:false
+    - mathlib created:>=2026-08-01 fork:false archived:false
+  hautevillehouse/extensions-associative-rings-ideals-lemma-canonical-lane-mathlib:
+    url: https://github.com/HautevilleHouse/extensions-associative-rings-ideals-lemma-canonical-lane-mathlib
+    first_seen_at: '2026-08-02T15:20:39+00:00'
+    full_name: HautevilleHouse/extensions-associative-rings-ideals-lemma-canonical-lane-mathlib
+    description: ''
+    signal: medium
+    score: 4
+    reasons:
+    - Lake/Lean project files
+    - 3 Lean files
+    - license NOASSERTION
+    - 'domain terms: mathlib'
+    stars: 0
+    license: NOASSERTION
+    topics: []
+    language: Lean
+    created_at: '2026-08-02T13:28:38Z'
+    updated_at: '2026-08-02T13:29:29Z'
+    pushed_at: '2026-08-02T13:28:53Z'
+    default_branch: main
+    has_lakefile: false
+    has_toolchain: true
+    has_manifest: false
+    has_readme: false
+    lean_file_count: 3
+    estimated_lean_loc: 33
+    tree_truncated: false
+    query_matches:
+    - language:Lean created:>=2026-08-01 fork:false archived:false
+    - mathlib created:>=2026-08-01 fork:false archived:false
+  hautevillehouse/extensions-associative-rings-ideals-theorem-canonical-lane-mathlib:
+    url: https://github.com/HautevilleHouse/extensions-associative-rings-ideals-theorem-canonical-lane-mathlib
+    first_seen_at: '2026-08-02T15:20:39+00:00'
+    full_name: HautevilleHouse/extensions-associative-rings-ideals-theorem-canonical-lane-mathlib
+    description: ''
+    signal: medium
+    score: 4
+    reasons:
+    - Lake/Lean project files
+    - 3 Lean files
+    - license NOASSERTION
+    - 'domain terms: mathlib, theorem'
+    stars: 0
+    license: NOASSERTION
+    topics: []
+    language: Lean
+    created_at: '2026-08-02T13:28:55Z'
+    updated_at: '2026-08-02T13:29:17Z'
+    pushed_at: '2026-08-02T13:29:04Z'
+    default_branch: main
+    has_lakefile: false
+    has_toolchain: true
+    has_manifest: false
+    has_readme: false
+    lean_file_count: 3
+    estimated_lean_loc: 34
+    tree_truncated: false
+    query_matches:
+    - language:Lean created:>=2026-08-01 fork:false archived:false
+    - mathlib created:>=2026-08-01 fork:false archived:false
+  hautevillehouse/extensions-spaces-compactifications-supercompactifications-completions-lemma-canonical-lane-mathlib:
+    url: https://github.com/HautevilleHouse/extensions-spaces-compactifications-supercompactifications-completions-lemma-canonical-lane-mathlib
+    first_seen_at: '2026-08-02T15:20:39+00:00'
+    full_name: HautevilleHouse/extensions-spaces-compactifications-supercompactifications-completions-lemma-canonical-lane-mathlib
+    description: ''
+    signal: medium
+    score: 4
+    reasons:
+    - Lake/Lean project files
+    - 3 Lean files
+    - license NOASSERTION
+    - 'domain terms: mathlib'
+    stars: 0
+    license: NOASSERTION
+    topics: []
+    language: Lean
+    created_at: '2026-08-02T13:29:07Z'
+    updated_at: '2026-08-02T13:29:21Z'
+    pushed_at: '2026-08-02T13:29:14Z'
+    default_branch: main
+    has_lakefile: false
+    has_toolchain: true
+    has_manifest: false
+    has_readme: false
+    lean_file_count: 3
+    estimated_lean_loc: 40
+    tree_truncated: false
+    query_matches:
+    - language:Lean created:>=2026-08-01 fork:false archived:false
+    - mathlib created:>=2026-08-01 fork:false archived:false
+  hautevillehouse/extensive-distributive-adhesive-categories-foundation-canonical-lane-mathlib:
+    url: https://github.com/HautevilleHouse/extensive-distributive-adhesive-categories-foundation-canonical-lane-mathlib
+    first_seen_at: '2026-08-02T15:20:39+00:00'
+    full_name: HautevilleHouse/extensive-distributive-adhesive-categories-foundation-canonical-lane-mathlib
+    description: ''
+    signal: medium
+    score: 4
+    reasons:
+    - Lake/Lean project files
+    - 3 Lean files
+    - license NOASSERTION
+    - 'domain terms: mathlib'
+    stars: 0
+    license: NOASSERTION
+    topics: []
+    language: Lean
+    created_at: '2026-08-02T13:29:19Z'
+    updated_at: '2026-08-02T13:29:49Z'
+    pushed_at: '2026-08-02T13:29:34Z'
+    default_branch: main
+    has_lakefile: false
+    has_toolchain: true
+    has_manifest: false
+    has_readme: false
+    lean_file_count: 3
+    estimated_lean_loc: 36
+    tree_truncated: false
+    query_matches:
+    - language:Lean created:>=2026-08-01 fork:false archived:false
+    - mathlib created:>=2026-08-01 fork:false archived:false
+  hautevillehouse/extensive-distributive-adhesive-categories-lemma-canonical-lane-mathlib:
+    url: https://github.com/HautevilleHouse/extensive-distributive-adhesive-categories-lemma-canonical-lane-mathlib
+    first_seen_at: '2026-08-02T15:20:39+00:00'
+    full_name: HautevilleHouse/extensive-distributive-adhesive-categories-lemma-canonical-lane-mathlib
+    description: ''
+    signal: medium
+    score: 4
+    reasons:
+    - Lake/Lean project files
+    - 3 Lean files
+    - license NOASSERTION
+    - 'domain terms: mathlib'
+    stars: 0
+    license: NOASSERTION
+    topics: []
+    language: Lean
+    created_at: '2026-08-02T13:29:39Z'
+    updated_at: '2026-08-02T13:30:01Z'
+    pushed_at: '2026-08-02T13:29:46Z'
+    default_branch: main
+    has_lakefile: false
+    has_toolchain: true
+    has_manifest: false
+    has_readme: false
+    lean_file_count: 3
+    estimated_lean_loc: 35
+    tree_truncated: false
+    query_matches:
+    - language:Lean created:>=2026-08-01 fork:false archived:false
+    - mathlib created:>=2026-08-01 fork:false archived:false
+  hautevillehouse/extensive-distributive-adhesive-categories-theorem-canonical-lane-mathlib:
+    url: https://github.com/HautevilleHouse/extensive-distributive-adhesive-categories-theorem-canonical-lane-mathlib
+    first_seen_at: '2026-08-02T15:20:39+00:00'
+    full_name: HautevilleHouse/extensive-distributive-adhesive-categories-theorem-canonical-lane-mathlib
+    description: ''
+    signal: medium
+    score: 4
+    reasons:
+    - Lake/Lean project files
+    - 3 Lean files
+    - license NOASSERTION
+    - 'domain terms: mathlib, theorem'
+    stars: 0
+    license: NOASSERTION
+    topics: []
+    language: Lean
+    created_at: '2026-08-02T13:29:48Z'
+    updated_at: '2026-08-02T13:29:59Z'
+    pushed_at: '2026-08-02T13:29:55Z'
+    default_branch: main
+    has_lakefile: false
+    has_toolchain: true
+    has_manifest: false
+    has_readme: false
+    lean_file_count: 3
+    estimated_lean_loc: 35
+    tree_truncated: false
+    query_matches:
+    - language:Lean created:>=2026-08-01 fork:false archived:false
+    - mathlib created:>=2026-08-01 fork:false archived:false
+  hautevillehouse/exterior-algebra-grassmann-algebras-foundation-canonical-lane-mathlib:
+    url: https://github.com/HautevilleHouse/exterior-algebra-grassmann-algebras-foundation-canonical-lane-mathlib
+    first_seen_at: '2026-08-02T15:20:39+00:00'
+    full_name: HautevilleHouse/exterior-algebra-grassmann-algebras-foundation-canonical-lane-mathlib
+    description: ''
+    signal: medium
+    score: 4
+    reasons:
+    - Lake/Lean project files
+    - 3 Lean files
+    - license NOASSERTION
+    - 'domain terms: algebra, mathlib'
+    stars: 0
+    license: NOASSERTION
+    topics: []
+    language: Lean
+    created_at: '2026-08-02T13:30:01Z'
+    updated_at: '2026-08-02T13:30:36Z'
+    pushed_at: '2026-08-02T13:30:14Z'
+    default_branch: main
+    has_lakefile: false
+    has_toolchain: true
+    has_manifest: false
+    has_readme: false
+    lean_file_count: 3
+    estimated_lean_loc: 34
+    tree_truncated: false
+    query_matches:
+    - language:Lean created:>=2026-08-01 fork:false archived:false
+    - mathlib created:>=2026-08-01 fork:false archived:false
+  hautevillehouse/exterior-algebra-grassmann-algebras-lemma-canonical-lane-mathlib:
+    url: https://github.com/HautevilleHouse/exterior-algebra-grassmann-algebras-lemma-canonical-lane-mathlib
+    first_seen_at: '2026-08-02T15:20:39+00:00'
+    full_name: HautevilleHouse/exterior-algebra-grassmann-algebras-lemma-canonical-lane-mathlib
+    description: ''
+    signal: medium
+    score: 4
+    reasons:
+    - Lake/Lean project files
+    - 3 Lean files
+    - license NOASSERTION
+    - 'domain terms: algebra, mathlib'
+    stars: 0
+    license: NOASSERTION
+    topics: []
+    language: Lean
+    created_at: '2026-08-02T13:30:15Z'
+    updated_at: '2026-08-02T13:30:34Z'
+    pushed_at: '2026-08-02T13:30:22Z'
+    default_branch: main
+    has_lakefile: false
+    has_toolchain: true
+    has_manifest: false
+    has_readme: false
+    lean_file_count: 3
+    estimated_lean_loc: 33
+    tree_truncated: false
+    query_matches:
+    - language:Lean created:>=2026-08-01 fork:false archived:false
+    - mathlib created:>=2026-08-01 fork:false archived:false
+  hautevillehouse/exterior-algebra-grassmann-algebras-theorem-canonical-lane-mathlib:
+    url: https://github.com/HautevilleHouse/exterior-algebra-grassmann-algebras-theorem-canonical-lane-mathlib
+    first_seen_at: '2026-08-02T15:20:39+00:00'
+    full_name: HautevilleHouse/exterior-algebra-grassmann-algebras-theorem-canonical-lane-mathlib
+    description: ''
+    signal: medium
+    score: 4
+    reasons:
+    - Lake/Lean project files
+    - 3 Lean files
+    - license NOASSERTION
+    - 'domain terms: algebra, mathlib, theorem'
+    stars: 0
+    license: NOASSERTION
+    topics: []
+    language: Lean
+    created_at: '2026-08-02T13:30:23Z'
+    updated_at: '2026-08-02T13:30:40Z'
+    pushed_at: '2026-08-02T13:30:30Z'
+    default_branch: main
+    has_lakefile: false
+    has_toolchain: true
+    has_manifest: false
+    has_readme: false
+    lean_file_count: 3
+    estimated_lean_loc: 34
+    tree_truncated: false
+    query_matches:
+    - language:Lean created:>=2026-08-01 fork:false archived:false
+    - mathlib created:>=2026-08-01 fork:false archived:false
+  hautevillehouse/exterior-differential-systems-cartan-theory-foundation-canonical-lane-mathlib:
+    url: https://github.com/HautevilleHouse/exterior-differential-systems-cartan-theory-foundation-canonical-lane-mathlib
+    first_seen_at: '2026-08-02T15:20:39+00:00'
+    full_name: HautevilleHouse/exterior-differential-systems-cartan-theory-foundation-canonical-lane-mathlib
+    description: ''
+    signal: medium
+    score: 4
+    reasons:
+    - Lake/Lean project files
+    - 3 Lean files
+    - license NOASSERTION
+    - 'domain terms: mathlib'
+    stars: 0
+    license: NOASSERTION
+    topics: []
+    language: Lean
+    created_at: '2026-08-02T13:30:31Z'
+    updated_at: '2026-08-02T13:30:53Z'
+    pushed_at: '2026-08-02T13:30:37Z'
+    default_branch: main
+    has_lakefile: false
+    has_toolchain: true
+    has_manifest: false
+    has_readme: false
+    lean_file_count: 3
+    estimated_lean_loc: 36
+    tree_truncated: false
+    query_matches:
+    - language:Lean created:>=2026-08-01 fork:false archived:false
+    - mathlib created:>=2026-08-01 fork:false archived:false
+  hautevillehouse/exterior-differential-systems-cartan-theory-lemma-canonical-lane-mathlib:
+    url: https://github.com/HautevilleHouse/exterior-differential-systems-cartan-theory-lemma-canonical-lane-mathlib
+    first_seen_at: '2026-08-02T15:20:39+00:00'
+    full_name: HautevilleHouse/exterior-differential-systems-cartan-theory-lemma-canonical-lane-mathlib
+    description: ''
+    signal: medium
+    score: 4
+    reasons:
+    - Lake/Lean project files
+    - 3 Lean files
+    - license NOASSERTION
+    - 'domain terms: mathlib'
+    stars: 0
+    license: NOASSERTION
+    topics: []
+    language: Lean
+    created_at: '2026-08-02T13:30:38Z'
+    updated_at: '2026-08-02T13:30:55Z'
+    pushed_at: '2026-08-02T13:30:43Z'
+    default_branch: main
+    has_lakefile: false
+    has_toolchain: true
+    has_manifest: false
+    has_readme: false
+    lean_file_count: 3
+    estimated_lean_loc: 35
+    tree_truncated: false
+    query_matches:
+    - language:Lean created:>=2026-08-01 fork:false archived:false
+    - mathlib created:>=2026-08-01 fork:false archived:false
+  hautevillehouse/exterior-differential-systems-cartan-theory-theorem-canonical-lane-mathlib:
+    url: https://github.com/HautevilleHouse/exterior-differential-systems-cartan-theory-theorem-canonical-lane-mathlib
+    first_seen_at: '2026-08-02T15:20:39+00:00'
+    full_name: HautevilleHouse/exterior-differential-systems-cartan-theory-theorem-canonical-lane-mathlib
+    description: ''
+    signal: medium
+    score: 4
+    reasons:
+    - Lake/Lean project files
+    - 3 Lean files
+    - license NOASSERTION
+    - 'domain terms: mathlib, theorem'
+    stars: 0
+    license: NOASSERTION
+    topics: []
+    language: Lean
+    created_at: '2026-08-02T13:30:44Z'
+    updated_at: '2026-08-02T13:31:37Z'
+    pushed_at: '2026-08-02T13:30:54Z'
+    default_branch: main
+    has_lakefile: false
+    has_toolchain: true
+    has_manifest: false
+    has_readme: false
+    lean_file_count: 3
+    estimated_lean_loc: 35
+    tree_truncated: false
+    query_matches:
+    - language:Lean created:>=2026-08-01 fork:false archived:false
+    - mathlib created:>=2026-08-01 fork:false archived:false
+  hautevillehouse/external-book-reviews-lemma-canonical-lane-mathlib:
+    url: https://github.com/HautevilleHouse/external-book-reviews-lemma-canonical-lane-mathlib
+    first_seen_at: '2026-08-02T15:20:39+00:00'
+    full_name: HautevilleHouse/external-book-reviews-lemma-canonical-lane-mathlib
+    description: ''
+    signal: low
+    score: 1
+    reasons:
+    - Lake/Lean project files
+    - 3 Lean files
+    - license NOASSERTION
+    - 'domain terms: mathlib'
+    - 'educational terms: book'
+    stars: 0
+    license: NOASSERTION
+    topics: []
+    language: Lean
+    created_at: '2026-08-02T13:31:00Z'
+    updated_at: '2026-08-02T13:31:26Z'
+    pushed_at: '2026-08-02T13:31:09Z'
+    default_branch: main
+    has_lakefile: false
+    has_toolchain: true
+    has_manifest: false
+    has_readme: false
+    lean_file_count: 3
+    estimated_lean_loc: 31
+    tree_truncated: false
+    query_matches:
+    - language:Lean created:>=2026-08-01 fork:false archived:false
+    - mathlib created:>=2026-08-01 fork:false archived:false
+  hautevillehouse/external-book-reviews-theorem-canonical-lane-mathlib:
+    url: https://github.com/HautevilleHouse/external-book-reviews-theorem-canonical-lane-mathlib
+    first_seen_at: '2026-08-02T15:20:39+00:00'
+    full_name: HautevilleHouse/external-book-reviews-theorem-canonical-lane-mathlib
+    description: ''
+    signal: low
+    score: 1
+    reasons:
+    - Lake/Lean project files
+    - 3 Lean files
+    - license NOASSERTION
+    - 'domain terms: mathlib, theorem'
+    - 'educational terms: book'
+    stars: 0
+    license: NOASSERTION
+    topics: []
+    language: Lean
+    created_at: '2026-08-02T13:31:11Z'
+    updated_at: '2026-08-02T13:31:24Z'
+    pushed_at: '2026-08-02T13:31:18Z'
+    default_branch: main
+    has_lakefile: false
+    has_toolchain: true
+    has_manifest: false
+    has_readme: false
+    lean_file_count: 3
+    estimated_lean_loc: 31
+    tree_truncated: false
+    query_matches:
+    - language:Lean created:>=2026-08-01 fork:false archived:false
+    - mathlib created:>=2026-08-01 fork:false archived:false
   hautevillehouse/farrell-jones-conjecture-canonical-lane-mathlib:
     url: https://github.com/HautevilleHouse/farrell-jones-conjecture-canonical-lane-mathlib
     first_seen_at: '2026-07-07T16:42:08+00:00'
@@ -34801,6 +37307,186 @@ github:
     query_matches:
     - language:Lean created:>=2026-07-06 fork:false archived:false
     - mathlib created:>=2026-07-06 fork:false archived:false
+  hautevillehouse/genetics-quantitative-genetics-theorem-canonical-lane-mathlib:
+    url: https://github.com/HautevilleHouse/genetics-quantitative-genetics-theorem-canonical-lane-mathlib
+    first_seen_at: '2026-08-02T15:20:39+00:00'
+    full_name: HautevilleHouse/genetics-quantitative-genetics-theorem-canonical-lane-mathlib
+    description: ''
+    signal: medium
+    score: 4
+    reasons:
+    - Lake/Lean project files
+    - 3 Lean files
+    - license NOASSERTION
+    - 'domain terms: mathlib, theorem'
+    stars: 0
+    license: NOASSERTION
+    topics: []
+    language: Lean
+    created_at: '2026-08-02T12:27:16Z'
+    updated_at: '2026-08-02T13:15:46Z'
+    pushed_at: '2026-08-02T13:15:30Z'
+    default_branch: main
+    has_lakefile: false
+    has_toolchain: true
+    has_manifest: false
+    has_readme: false
+    lean_file_count: 3
+    estimated_lean_loc: 33
+    tree_truncated: false
+    query_matches:
+    - language:Lean created:>=2026-08-01 fork:false archived:false
+    - mathlib created:>=2026-08-01 fork:false archived:false
+  hautevillehouse/genetics-quantitative-trait-loci-foundation-canonical-lane-mathlib:
+    url: https://github.com/HautevilleHouse/genetics-quantitative-trait-loci-foundation-canonical-lane-mathlib
+    first_seen_at: '2026-08-02T15:20:39+00:00'
+    full_name: HautevilleHouse/genetics-quantitative-trait-loci-foundation-canonical-lane-mathlib
+    description: ''
+    signal: medium
+    score: 4
+    reasons:
+    - Lake/Lean project files
+    - 3 Lean files
+    - license NOASSERTION
+    - 'domain terms: mathlib'
+    stars: 0
+    license: NOASSERTION
+    topics: []
+    language: Lean
+    created_at: '2026-08-02T12:27:46Z'
+    updated_at: '2026-08-02T13:15:45Z'
+    pushed_at: '2026-08-02T13:15:34Z'
+    default_branch: main
+    has_lakefile: false
+    has_toolchain: true
+    has_manifest: false
+    has_readme: false
+    lean_file_count: 3
+    estimated_lean_loc: 34
+    tree_truncated: false
+    query_matches:
+    - language:Lean created:>=2026-08-01 fork:false archived:false
+    - mathlib created:>=2026-08-01 fork:false archived:false
+  hautevillehouse/genetics-quantitative-trait-loci-lemma-canonical-lane-mathlib:
+    url: https://github.com/HautevilleHouse/genetics-quantitative-trait-loci-lemma-canonical-lane-mathlib
+    first_seen_at: '2026-08-02T15:20:39+00:00'
+    full_name: HautevilleHouse/genetics-quantitative-trait-loci-lemma-canonical-lane-mathlib
+    description: ''
+    signal: medium
+    score: 4
+    reasons:
+    - Lake/Lean project files
+    - 3 Lean files
+    - license NOASSERTION
+    - 'domain terms: mathlib'
+    stars: 0
+    license: NOASSERTION
+    topics: []
+    language: Lean
+    created_at: '2026-08-02T12:28:23Z'
+    updated_at: '2026-08-02T13:15:56Z'
+    pushed_at: '2026-08-02T13:15:39Z'
+    default_branch: main
+    has_lakefile: false
+    has_toolchain: true
+    has_manifest: false
+    has_readme: false
+    lean_file_count: 3
+    estimated_lean_loc: 33
+    tree_truncated: false
+    query_matches:
+    - language:Lean created:>=2026-08-01 fork:false archived:false
+    - mathlib created:>=2026-08-01 fork:false archived:false
+  hautevillehouse/genetics-quantitative-trait-loci-theorem-canonical-lane-mathlib:
+    url: https://github.com/HautevilleHouse/genetics-quantitative-trait-loci-theorem-canonical-lane-mathlib
+    first_seen_at: '2026-08-02T15:20:39+00:00'
+    full_name: HautevilleHouse/genetics-quantitative-trait-loci-theorem-canonical-lane-mathlib
+    description: ''
+    signal: medium
+    score: 4
+    reasons:
+    - Lake/Lean project files
+    - 3 Lean files
+    - license NOASSERTION
+    - 'domain terms: mathlib, theorem'
+    stars: 0
+    license: NOASSERTION
+    topics: []
+    language: Lean
+    created_at: '2026-08-02T12:29:37Z'
+    updated_at: '2026-08-02T13:04:59Z'
+    pushed_at: '2026-08-02T13:04:55Z'
+    default_branch: main
+    has_lakefile: false
+    has_toolchain: true
+    has_manifest: false
+    has_readme: false
+    lean_file_count: 3
+    estimated_lean_loc: 33
+    tree_truncated: false
+    query_matches:
+    - language:Lean created:>=2026-08-01 fork:false archived:false
+    - mathlib created:>=2026-08-01 fork:false archived:false
+  hautevillehouse/genetics-reverse-genetics-lemma-canonical-lane-mathlib:
+    url: https://github.com/HautevilleHouse/genetics-reverse-genetics-lemma-canonical-lane-mathlib
+    first_seen_at: '2026-08-02T15:20:39+00:00'
+    full_name: HautevilleHouse/genetics-reverse-genetics-lemma-canonical-lane-mathlib
+    description: ''
+    signal: medium
+    score: 4
+    reasons:
+    - Lake/Lean project files
+    - 3 Lean files
+    - license NOASSERTION
+    - 'domain terms: mathlib'
+    stars: 0
+    license: NOASSERTION
+    topics: []
+    language: Lean
+    created_at: '2026-08-02T12:30:18Z'
+    updated_at: '2026-08-02T13:05:13Z'
+    pushed_at: '2026-08-02T13:05:02Z'
+    default_branch: main
+    has_lakefile: false
+    has_toolchain: true
+    has_manifest: false
+    has_readme: false
+    lean_file_count: 3
+    estimated_lean_loc: 31
+    tree_truncated: false
+    query_matches:
+    - language:Lean created:>=2026-08-01 fork:false archived:false
+    - mathlib created:>=2026-08-01 fork:false archived:false
+  hautevillehouse/genetics-reverse-genetics-theorem-canonical-lane-mathlib:
+    url: https://github.com/HautevilleHouse/genetics-reverse-genetics-theorem-canonical-lane-mathlib
+    first_seen_at: '2026-08-02T15:20:39+00:00'
+    full_name: HautevilleHouse/genetics-reverse-genetics-theorem-canonical-lane-mathlib
+    description: ''
+    signal: medium
+    score: 4
+    reasons:
+    - Lake/Lean project files
+    - 3 Lean files
+    - license NOASSERTION
+    - 'domain terms: mathlib, theorem'
+    stars: 0
+    license: NOASSERTION
+    topics: []
+    language: Lean
+    created_at: '2026-08-02T12:31:00Z'
+    updated_at: '2026-08-02T13:05:18Z'
+    pushed_at: '2026-08-02T13:05:10Z'
+    default_branch: main
+    has_lakefile: false
+    has_toolchain: true
+    has_manifest: false
+    has_readme: false
+    lean_file_count: 3
+    estimated_lean_loc: 32
+    tree_truncated: false
+    query_matches:
+    - language:Lean created:>=2026-08-01 fork:false archived:false
+    - mathlib created:>=2026-08-01 fork:false archived:false
   hautevillehouse/geometric-langlands-canonical-lane-mathlib:
     url: https://github.com/HautevilleHouse/geometric-langlands-canonical-lane-mathlib
     first_seen_at: '2026-07-07T16:42:08+00:00'
@@ -36610,6 +39296,36 @@ github:
     tree_truncated: false
     query_matches:
     - mathlib created:>=2026-07-31 fork:false archived:false
+  hautevillehouse/mechanical-engineering-design-optimization-foundation-canonical-lane-mathlib:
+    url: https://github.com/HautevilleHouse/mechanical-engineering-design-optimization-foundation-canonical-lane-mathlib
+    first_seen_at: '2026-08-02T15:20:39+00:00'
+    full_name: HautevilleHouse/mechanical-engineering-design-optimization-foundation-canonical-lane-mathlib
+    description: ''
+    signal: medium
+    score: 4
+    reasons:
+    - Lake/Lean project files
+    - 3 Lean files
+    - license NOASSERTION
+    - 'domain terms: mathlib'
+    stars: 0
+    license: NOASSERTION
+    topics: []
+    language: Lean
+    created_at: '2026-08-02T00:20:27Z'
+    updated_at: '2026-08-02T11:37:13Z'
+    pushed_at: '2026-08-02T11:37:04Z'
+    default_branch: main
+    has_lakefile: false
+    has_toolchain: true
+    has_manifest: false
+    has_readme: false
+    lean_file_count: 3
+    estimated_lean_loc: 36
+    tree_truncated: false
+    query_matches:
+    - language:Lean created:>=2026-08-01 fork:false archived:false
+    - mathlib created:>=2026-08-01 fork:false archived:false
   hautevillehouse/mersenne-primes-canonical-lane-mathlib:
     url: https://github.com/HautevilleHouse/mersenne-primes-canonical-lane-mathlib
     first_seen_at: '2026-07-07T16:42:08+00:00'
@@ -37679,6 +40395,516 @@ github:
     tree_truncated: false
     query_matches:
     - mathlib created:>=2026-07-06 fork:false archived:false
+  hautevillehouse/pdes-graphs-networks-ramified-polygonal-theorem-canonical-lane-mathlib:
+    url: https://github.com/HautevilleHouse/pdes-graphs-networks-ramified-polygonal-theorem-canonical-lane-mathlib
+    first_seen_at: '2026-08-02T15:20:39+00:00'
+    full_name: HautevilleHouse/pdes-graphs-networks-ramified-polygonal-theorem-canonical-lane-mathlib
+    description: ''
+    signal: medium
+    score: 4
+    reasons:
+    - Lake/Lean project files
+    - 3 Lean files
+    - license NOASSERTION
+    - 'domain terms: graph, mathlib, theorem'
+    stars: 0
+    license: NOASSERTION
+    topics: []
+    language: Lean
+    created_at: '2026-08-02T14:27:20Z'
+    updated_at: '2026-08-02T14:27:44Z'
+    pushed_at: '2026-08-02T14:27:34Z'
+    default_branch: main
+    has_lakefile: false
+    has_toolchain: true
+    has_manifest: false
+    has_readme: false
+    lean_file_count: 3
+    estimated_lean_loc: 34
+    tree_truncated: false
+    query_matches:
+    - language:Lean created:>=2026-08-01 fork:false archived:false
+    - mathlib created:>=2026-08-01 fork:false archived:false
+  hautevillehouse/pdes-heisenberg-groups-lie-groups-foundation-canonical-lane-mathlib:
+    url: https://github.com/HautevilleHouse/pdes-heisenberg-groups-lie-groups-foundation-canonical-lane-mathlib
+    first_seen_at: '2026-08-02T15:20:39+00:00'
+    full_name: HautevilleHouse/pdes-heisenberg-groups-lie-groups-foundation-canonical-lane-mathlib
+    description: ''
+    signal: medium
+    score: 4
+    reasons:
+    - Lake/Lean project files
+    - 3 Lean files
+    - license NOASSERTION
+    - 'domain terms: mathlib'
+    stars: 0
+    license: NOASSERTION
+    topics: []
+    language: Lean
+    created_at: '2026-08-02T14:27:38Z'
+    updated_at: '2026-08-02T14:27:48Z'
+    pushed_at: '2026-08-02T14:27:43Z'
+    default_branch: main
+    has_lakefile: false
+    has_toolchain: true
+    has_manifest: false
+    has_readme: false
+    lean_file_count: 3
+    estimated_lean_loc: 34
+    tree_truncated: false
+    query_matches:
+    - language:Lean created:>=2026-08-01 fork:false archived:false
+    - mathlib created:>=2026-08-01 fork:false archived:false
+  hautevillehouse/pdes-heisenberg-groups-lie-groups-lemma-canonical-lane-mathlib:
+    url: https://github.com/HautevilleHouse/pdes-heisenberg-groups-lie-groups-lemma-canonical-lane-mathlib
+    first_seen_at: '2026-08-02T15:20:39+00:00'
+    full_name: HautevilleHouse/pdes-heisenberg-groups-lie-groups-lemma-canonical-lane-mathlib
+    description: ''
+    signal: medium
+    score: 4
+    reasons:
+    - Lake/Lean project files
+    - 3 Lean files
+    - license NOASSERTION
+    - 'domain terms: mathlib'
+    stars: 0
+    license: NOASSERTION
+    topics: []
+    language: Lean
+    created_at: '2026-08-02T14:27:45Z'
+    updated_at: '2026-08-02T14:27:54Z'
+    pushed_at: '2026-08-02T14:27:50Z'
+    default_branch: main
+    has_lakefile: false
+    has_toolchain: true
+    has_manifest: false
+    has_readme: false
+    lean_file_count: 3
+    estimated_lean_loc: 33
+    tree_truncated: false
+    query_matches:
+    - language:Lean created:>=2026-08-01 fork:false archived:false
+    - mathlib created:>=2026-08-01 fork:false archived:false
+  hautevillehouse/pdes-heisenberg-groups-lie-groups-theorem-canonical-lane-mathlib:
+    url: https://github.com/HautevilleHouse/pdes-heisenberg-groups-lie-groups-theorem-canonical-lane-mathlib
+    first_seen_at: '2026-08-02T15:20:39+00:00'
+    full_name: HautevilleHouse/pdes-heisenberg-groups-lie-groups-theorem-canonical-lane-mathlib
+    description: ''
+    signal: medium
+    score: 4
+    reasons:
+    - Lake/Lean project files
+    - 3 Lean files
+    - license NOASSERTION
+    - 'domain terms: mathlib, theorem'
+    stars: 0
+    license: NOASSERTION
+    topics: []
+    language: Lean
+    created_at: '2026-08-02T14:27:51Z'
+    updated_at: '2026-08-02T14:28:03Z'
+    pushed_at: '2026-08-02T14:27:59Z'
+    default_branch: main
+    has_lakefile: false
+    has_toolchain: true
+    has_manifest: false
+    has_readme: false
+    lean_file_count: 3
+    estimated_lean_loc: 33
+    tree_truncated: false
+    query_matches:
+    - language:Lean created:>=2026-08-01 fork:false archived:false
+    - mathlib created:>=2026-08-01 fork:false archived:false
+  hautevillehouse/pdes-infinite-dimensional-e-g-lemma-canonical-lane-mathlib:
+    url: https://github.com/HautevilleHouse/pdes-infinite-dimensional-e-g-lemma-canonical-lane-mathlib
+    first_seen_at: '2026-08-02T15:20:39+00:00'
+    full_name: HautevilleHouse/pdes-infinite-dimensional-e-g-lemma-canonical-lane-mathlib
+    description: ''
+    signal: medium
+    score: 4
+    reasons:
+    - Lake/Lean project files
+    - 3 Lean files
+    - license NOASSERTION
+    - 'domain terms: mathlib'
+    stars: 0
+    license: NOASSERTION
+    topics: []
+    language: Lean
+    created_at: '2026-08-02T14:28:02Z'
+    updated_at: '2026-08-02T14:28:32Z'
+    pushed_at: '2026-08-02T14:28:27Z'
+    default_branch: main
+    has_lakefile: false
+    has_toolchain: true
+    has_manifest: false
+    has_readme: false
+    lean_file_count: 3
+    estimated_lean_loc: 32
+    tree_truncated: false
+    query_matches:
+    - language:Lean created:>=2026-08-01 fork:false archived:false
+    - mathlib created:>=2026-08-01 fork:false archived:false
+  hautevillehouse/pdes-infinite-dimensional-e-g-theorem-canonical-lane-mathlib:
+    url: https://github.com/HautevilleHouse/pdes-infinite-dimensional-e-g-theorem-canonical-lane-mathlib
+    first_seen_at: '2026-08-02T15:20:39+00:00'
+    full_name: HautevilleHouse/pdes-infinite-dimensional-e-g-theorem-canonical-lane-mathlib
+    description: ''
+    signal: medium
+    score: 4
+    reasons:
+    - Lake/Lean project files
+    - 3 Lean files
+    - license NOASSERTION
+    - 'domain terms: mathlib, theorem'
+    stars: 0
+    license: NOASSERTION
+    topics: []
+    language: Lean
+    created_at: '2026-08-02T14:28:37Z'
+    updated_at: '2026-08-02T14:28:57Z'
+    pushed_at: '2026-08-02T14:28:52Z'
+    default_branch: main
+    has_lakefile: false
+    has_toolchain: true
+    has_manifest: false
+    has_readme: false
+    lean_file_count: 3
+    estimated_lean_loc: 32
+    tree_truncated: false
+    query_matches:
+    - language:Lean created:>=2026-08-01 fork:false archived:false
+    - mathlib created:>=2026-08-01 fork:false archived:false
+  hautevillehouse/pdes-infinite-order-lemma-canonical-lane-mathlib:
+    url: https://github.com/HautevilleHouse/pdes-infinite-order-lemma-canonical-lane-mathlib
+    first_seen_at: '2026-08-02T15:20:39+00:00'
+    full_name: HautevilleHouse/pdes-infinite-order-lemma-canonical-lane-mathlib
+    description: ''
+    signal: medium
+    score: 4
+    reasons:
+    - Lake/Lean project files
+    - 3 Lean files
+    - license NOASSERTION
+    - 'domain terms: mathlib'
+    stars: 0
+    license: NOASSERTION
+    topics: []
+    language: Lean
+    created_at: '2026-08-02T14:28:55Z'
+    updated_at: '2026-08-02T14:29:12Z'
+    pushed_at: '2026-08-02T14:29:09Z'
+    default_branch: main
+    has_lakefile: false
+    has_toolchain: true
+    has_manifest: false
+    has_readme: false
+    lean_file_count: 3
+    estimated_lean_loc: 30
+    tree_truncated: false
+    query_matches:
+    - language:Lean created:>=2026-08-01 fork:false archived:false
+    - mathlib created:>=2026-08-01 fork:false archived:false
+  hautevillehouse/pdes-infinite-order-theorem-canonical-lane-mathlib:
+    url: https://github.com/HautevilleHouse/pdes-infinite-order-theorem-canonical-lane-mathlib
+    first_seen_at: '2026-08-02T15:20:39+00:00'
+    full_name: HautevilleHouse/pdes-infinite-order-theorem-canonical-lane-mathlib
+    description: ''
+    signal: medium
+    score: 4
+    reasons:
+    - Lake/Lean project files
+    - 3 Lean files
+    - license NOASSERTION
+    - 'domain terms: mathlib, theorem'
+    stars: 0
+    license: NOASSERTION
+    topics: []
+    language: Lean
+    created_at: '2026-08-02T14:29:16Z'
+    updated_at: '2026-08-02T14:29:34Z'
+    pushed_at: '2026-08-02T14:29:29Z'
+    default_branch: main
+    has_lakefile: false
+    has_toolchain: true
+    has_manifest: false
+    has_readme: false
+    lean_file_count: 3
+    estimated_lean_loc: 31
+    tree_truncated: false
+    query_matches:
+    - language:Lean created:>=2026-08-01 fork:false archived:false
+    - mathlib created:>=2026-08-01 fork:false archived:false
+  hautevillehouse/pdes-low-regular-coefficients-low-foundation-canonical-lane-mathlib:
+    url: https://github.com/HautevilleHouse/pdes-low-regular-coefficients-low-foundation-canonical-lane-mathlib
+    first_seen_at: '2026-08-02T15:20:39+00:00'
+    full_name: HautevilleHouse/pdes-low-regular-coefficients-low-foundation-canonical-lane-mathlib
+    description: ''
+    signal: medium
+    score: 4
+    reasons:
+    - Lake/Lean project files
+    - 3 Lean files
+    - license NOASSERTION
+    - 'domain terms: mathlib'
+    stars: 0
+    license: NOASSERTION
+    topics: []
+    language: Lean
+    created_at: '2026-08-02T14:29:34Z'
+    updated_at: '2026-08-02T14:30:18Z'
+    pushed_at: '2026-08-02T14:29:48Z'
+    default_branch: main
+    has_lakefile: false
+    has_toolchain: true
+    has_manifest: false
+    has_readme: false
+    lean_file_count: 3
+    estimated_lean_loc: 34
+    tree_truncated: false
+    query_matches:
+    - language:Lean created:>=2026-08-01 fork:false archived:false
+    - mathlib created:>=2026-08-01 fork:false archived:false
+  hautevillehouse/pdes-low-regular-coefficients-low-lemma-canonical-lane-mathlib:
+    url: https://github.com/HautevilleHouse/pdes-low-regular-coefficients-low-lemma-canonical-lane-mathlib
+    first_seen_at: '2026-08-02T15:20:39+00:00'
+    full_name: HautevilleHouse/pdes-low-regular-coefficients-low-lemma-canonical-lane-mathlib
+    description: ''
+    signal: medium
+    score: 4
+    reasons:
+    - Lake/Lean project files
+    - 3 Lean files
+    - license NOASSERTION
+    - 'domain terms: mathlib'
+    stars: 0
+    license: NOASSERTION
+    topics: []
+    language: Lean
+    created_at: '2026-08-02T14:29:49Z'
+    updated_at: '2026-08-02T14:30:24Z'
+    pushed_at: '2026-08-02T14:29:59Z'
+    default_branch: main
+    has_lakefile: false
+    has_toolchain: true
+    has_manifest: false
+    has_readme: false
+    lean_file_count: 3
+    estimated_lean_loc: 33
+    tree_truncated: false
+    query_matches:
+    - language:Lean created:>=2026-08-01 fork:false archived:false
+    - mathlib created:>=2026-08-01 fork:false archived:false
+  hautevillehouse/pdes-low-regular-coefficients-low-theorem-canonical-lane-mathlib:
+    url: https://github.com/HautevilleHouse/pdes-low-regular-coefficients-low-theorem-canonical-lane-mathlib
+    first_seen_at: '2026-08-02T15:20:39+00:00'
+    full_name: HautevilleHouse/pdes-low-regular-coefficients-low-theorem-canonical-lane-mathlib
+    description: ''
+    signal: medium
+    score: 4
+    reasons:
+    - Lake/Lean project files
+    - 3 Lean files
+    - license NOASSERTION
+    - 'domain terms: mathlib, theorem'
+    stars: 0
+    license: NOASSERTION
+    topics: []
+    language: Lean
+    created_at: '2026-08-02T14:30:01Z'
+    updated_at: '2026-08-02T14:30:23Z'
+    pushed_at: '2026-08-02T14:30:08Z'
+    default_branch: main
+    has_lakefile: false
+    has_toolchain: true
+    has_manifest: false
+    has_readme: false
+    lean_file_count: 3
+    estimated_lean_loc: 33
+    tree_truncated: false
+    query_matches:
+    - language:Lean created:>=2026-08-01 fork:false archived:false
+    - mathlib created:>=2026-08-01 fork:false archived:false
+  hautevillehouse/pdes-measure-lemma-canonical-lane-mathlib:
+    url: https://github.com/HautevilleHouse/pdes-measure-lemma-canonical-lane-mathlib
+    first_seen_at: '2026-08-02T15:20:39+00:00'
+    full_name: HautevilleHouse/pdes-measure-lemma-canonical-lane-mathlib
+    description: ''
+    signal: medium
+    score: 4
+    reasons:
+    - Lake/Lean project files
+    - 3 Lean files
+    - license NOASSERTION
+    - 'domain terms: mathlib'
+    stars: 0
+    license: NOASSERTION
+    topics: []
+    language: Lean
+    created_at: '2026-08-02T14:30:11Z'
+    updated_at: '2026-08-02T14:31:53Z'
+    pushed_at: '2026-08-02T14:31:02Z'
+    default_branch: main
+    has_lakefile: false
+    has_toolchain: true
+    has_manifest: false
+    has_readme: false
+    lean_file_count: 3
+    estimated_lean_loc: 29
+    tree_truncated: false
+    query_matches:
+    - language:Lean created:>=2026-08-01 fork:false archived:false
+    - mathlib created:>=2026-08-01 fork:false archived:false
+  hautevillehouse/pdes-measure-theorem-canonical-lane-mathlib:
+    url: https://github.com/HautevilleHouse/pdes-measure-theorem-canonical-lane-mathlib
+    first_seen_at: '2026-08-02T15:20:39+00:00'
+    full_name: HautevilleHouse/pdes-measure-theorem-canonical-lane-mathlib
+    description: ''
+    signal: medium
+    score: 4
+    reasons:
+    - Lake/Lean project files
+    - 3 Lean files
+    - license NOASSERTION
+    - 'domain terms: mathlib, theorem'
+    stars: 0
+    license: NOASSERTION
+    topics: []
+    language: Lean
+    created_at: '2026-08-02T14:31:07Z'
+    updated_at: '2026-08-02T14:31:27Z'
+    pushed_at: '2026-08-02T14:31:21Z'
+    default_branch: main
+    has_lakefile: false
+    has_toolchain: true
+    has_manifest: false
+    has_readme: false
+    lean_file_count: 3
+    estimated_lean_loc: 29
+    tree_truncated: false
+    query_matches:
+    - language:Lean created:>=2026-08-01 fork:false archived:false
+    - mathlib created:>=2026-08-01 fork:false archived:false
+  hautevillehouse/pdes-mixed-type-lemma-canonical-lane-mathlib:
+    url: https://github.com/HautevilleHouse/pdes-mixed-type-lemma-canonical-lane-mathlib
+    first_seen_at: '2026-08-02T15:20:39+00:00'
+    full_name: HautevilleHouse/pdes-mixed-type-lemma-canonical-lane-mathlib
+    description: ''
+    signal: medium
+    score: 4
+    reasons:
+    - Lake/Lean project files
+    - 3 Lean files
+    - license NOASSERTION
+    - 'domain terms: mathlib'
+    stars: 0
+    license: NOASSERTION
+    topics: []
+    language: Lean
+    created_at: '2026-08-02T14:31:26Z'
+    updated_at: '2026-08-02T14:32:01Z'
+    pushed_at: '2026-08-02T14:31:56Z'
+    default_branch: main
+    has_lakefile: false
+    has_toolchain: true
+    has_manifest: false
+    has_readme: false
+    lean_file_count: 3
+    estimated_lean_loc: 29
+    tree_truncated: false
+    query_matches:
+    - language:Lean created:>=2026-08-01 fork:false archived:false
+    - mathlib created:>=2026-08-01 fork:false archived:false
+  hautevillehouse/pdes-mixed-type-theorem-canonical-lane-mathlib:
+    url: https://github.com/HautevilleHouse/pdes-mixed-type-theorem-canonical-lane-mathlib
+    first_seen_at: '2026-08-02T15:20:39+00:00'
+    full_name: HautevilleHouse/pdes-mixed-type-theorem-canonical-lane-mathlib
+    description: ''
+    signal: medium
+    score: 4
+    reasons:
+    - Lake/Lean project files
+    - 3 Lean files
+    - license NOASSERTION
+    - 'domain terms: mathlib, theorem'
+    stars: 0
+    license: NOASSERTION
+    topics: []
+    language: Lean
+    created_at: '2026-08-02T14:32:01Z'
+    updated_at: '2026-08-02T14:32:28Z'
+    pushed_at: '2026-08-02T14:32:15Z'
+    default_branch: main
+    has_lakefile: false
+    has_toolchain: true
+    has_manifest: false
+    has_readme: false
+    lean_file_count: 3
+    estimated_lean_loc: 30
+    tree_truncated: false
+    query_matches:
+    - language:Lean created:>=2026-08-01 fork:false archived:false
+    - mathlib created:>=2026-08-01 fork:false archived:false
+  hautevillehouse/pdes-multivalued-right-hand-sides-foundation-canonical-lane-mathlib:
+    url: https://github.com/HautevilleHouse/pdes-multivalued-right-hand-sides-foundation-canonical-lane-mathlib
+    first_seen_at: '2026-08-02T15:20:39+00:00'
+    full_name: HautevilleHouse/pdes-multivalued-right-hand-sides-foundation-canonical-lane-mathlib
+    description: ''
+    signal: medium
+    score: 4
+    reasons:
+    - Lake/Lean project files
+    - 3 Lean files
+    - license NOASSERTION
+    - 'domain terms: mathlib'
+    stars: 0
+    license: NOASSERTION
+    topics: []
+    language: Lean
+    created_at: '2026-08-02T14:32:23Z'
+    updated_at: '2026-08-02T14:32:58Z'
+    pushed_at: '2026-08-02T14:32:34Z'
+    default_branch: main
+    has_lakefile: false
+    has_toolchain: true
+    has_manifest: false
+    has_readme: false
+    lean_file_count: 3
+    estimated_lean_loc: 34
+    tree_truncated: false
+    query_matches:
+    - language:Lean created:>=2026-08-01 fork:false archived:false
+    - mathlib created:>=2026-08-01 fork:false archived:false
+  hautevillehouse/pdes-multivalued-right-hand-sides-lemma-canonical-lane-mathlib:
+    url: https://github.com/HautevilleHouse/pdes-multivalued-right-hand-sides-lemma-canonical-lane-mathlib
+    first_seen_at: '2026-08-02T15:20:39+00:00'
+    full_name: HautevilleHouse/pdes-multivalued-right-hand-sides-lemma-canonical-lane-mathlib
+    description: ''
+    signal: medium
+    score: 4
+    reasons:
+    - Lake/Lean project files
+    - 3 Lean files
+    - license NOASSERTION
+    - 'domain terms: mathlib'
+    stars: 0
+    license: NOASSERTION
+    topics: []
+    language: Lean
+    created_at: '2026-08-02T14:32:36Z'
+    updated_at: '2026-08-02T14:32:49Z'
+    pushed_at: '2026-08-02T14:32:43Z'
+    default_branch: main
+    has_lakefile: false
+    has_toolchain: true
+    has_manifest: false
+    has_readme: false
+    lean_file_count: 3
+    estimated_lean_loc: 33
+    tree_truncated: false
+    query_matches:
+    - language:Lean created:>=2026-08-01 fork:false archived:false
+    - mathlib created:>=2026-08-01 fork:false archived:false
   hautevillehouse/poincare-conjecture-canonical-lane-mathlib:
     url: https://github.com/HautevilleHouse/poincare-conjecture-canonical-lane-mathlib
     first_seen_at: '2026-07-07T16:42:08+00:00'
@@ -42131,6 +45357,43 @@ github:
     tree_truncated: false
     query_matches:
     - language:Lean created:>=2026-07-19 fork:false archived:false
+  ipitchford/random-reshuffling-baseline-policy:
+    url: https://github.com/ipitchford/random-reshuffling-baseline-policy
+    first_seen_at: '2026-08-02T15:20:39+00:00'
+    full_name: ipitchford/random-reshuffling-baseline-policy
+    description: Anonymous unrefereed candidate on exact value certificates and common-Hessian
+      ordering hardness for random reshuffling
+    signal: low
+    score: 1
+    reasons:
+    - 2 Lean files
+    - about 951 Lean LOC
+    - license CC0-1.0
+    - 'domain terms: algebra, geometry, graph'
+    - 'tool terms: search'
+    stars: 0
+    license: CC0-1.0
+    topics:
+    - computational-complexity
+    - lean4
+    - machine-learning
+    - optimization
+    - random-reshuffling
+    - reproducible-research
+    language: Python
+    created_at: '2026-08-02T11:15:28Z'
+    updated_at: '2026-08-02T15:09:27Z'
+    pushed_at: '2026-08-02T14:42:53Z'
+    default_branch: main
+    has_lakefile: false
+    has_toolchain: false
+    has_manifest: false
+    has_readme: true
+    lean_file_count: 2
+    estimated_lean_loc: 951
+    tree_truncated: false
+    query_matches:
+    - topic:lean4 created:>=2026-08-01 fork:false archived:false
   iquestlab/reap:
     url: https://github.com/IQuestLab/reap
     first_seen_at: '2026-06-30T16:31:59+00:00'
@@ -42766,6 +46029,37 @@ github:
     query_matches:
     - '"Lean 4" created:>=2026-07-01 fork:false archived:false'
     - language:Lean created:>=2026-07-01 fork:false archived:false
+  jamesschreib/apn-8-bit-permutation:
+    url: https://github.com/jamesschreib/apn-8-bit-permutation
+    first_seen_at: '2026-08-02T15:20:39+00:00'
+    full_name: jamesschreib/apn-8-bit-permutation
+    description: ''
+    signal: high
+    score: 9
+    reasons:
+    - Lake/Lean project files
+    - 16 Lean files
+    - about 4773 Lean LOC
+    - Lake manifest
+    - Apache-2.0
+    - 'domain terms: theorem, verification'
+    stars: 0
+    license: Apache-2.0
+    topics: []
+    language: Lean
+    created_at: '2026-08-02T11:18:04Z'
+    updated_at: '2026-08-02T12:30:07Z'
+    pushed_at: '2026-08-02T14:28:07Z'
+    default_branch: main
+    has_lakefile: true
+    has_toolchain: true
+    has_manifest: true
+    has_readme: true
+    lean_file_count: 16
+    estimated_lean_loc: 4773
+    tree_truncated: false
+    query_matches:
+    - language:Lean created:>=2026-08-01 fork:false archived:false
   jamesschreib/imbalance-conjecture:
     url: https://github.com/jamesschreib/imbalance-conjecture
     first_seen_at: '2026-07-25T15:19:50+00:00'
@@ -44595,6 +47889,35 @@ github:
     tree_truncated: false
     query_matches:
     - topic:lean4 created:>=2026-07-31 fork:false archived:false
+  katie1002/rank826matmul:
+    url: https://github.com/Katie1002/Rank826Matmul
+    first_seen_at: '2026-08-02T15:20:39+00:00'
+    full_name: Katie1002/Rank826Matmul
+    description: ''
+    signal: medium
+    score: 5
+    reasons:
+    - 1 Lean files
+    - about 16834 Lean LOC
+    - license unknown
+    - 'domain terms: verification'
+    stars: 0
+    license: null
+    topics: []
+    language: Lean
+    created_at: '2026-08-02T12:55:04Z'
+    updated_at: '2026-08-02T12:56:01Z'
+    pushed_at: '2026-08-02T12:55:23Z'
+    default_branch: main
+    has_lakefile: false
+    has_toolchain: false
+    has_manifest: false
+    has_readme: true
+    lean_file_count: 1
+    estimated_lean_loc: 16834
+    tree_truncated: false
+    query_matches:
+    - language:Lean created:>=2026-08-01 fork:false archived:false
   kausik-a/two-qutrit-cqc-counterexample:
     url: https://github.com/Kausik-A/two-qutrit-cqc-counterexample
     first_seen_at: '2026-07-30T16:00:07+00:00'
@@ -44876,6 +48199,37 @@ github:
     - '"Lean 4" created:>=2026-07-11 fork:false archived:false'
     - language:Lean created:>=2026-07-11 fork:false archived:false
     - topic:lean4 created:>=2026-07-11 fork:false archived:false
+  kg-tsi-civil/graffiti295-proof:
+    url: https://github.com/KG-TSI-Civil/graffiti295-proof
+    first_seen_at: '2026-08-02T15:20:39+00:00'
+    full_name: KG-TSI-Civil/graffiti295-proof
+    description: Complete proof of Graffiti Conjecture 295 with Lean 4 formalization using
+      GPT-5.6 Sol
+    signal: low
+    score: 2
+    reasons:
+    - 8 Lean files
+    - about 545 Lean LOC
+    - license unknown
+    - 'domain terms: algebra, analysis, combinatorics'
+    - 'tool terms: search'
+    stars: 0
+    license: null
+    topics: []
+    language: Python
+    created_at: '2026-08-01T15:47:41Z'
+    updated_at: '2026-08-02T08:18:41Z'
+    pushed_at: '2026-08-02T08:19:18Z'
+    default_branch: main
+    has_lakefile: false
+    has_toolchain: false
+    has_manifest: false
+    has_readme: true
+    lean_file_count: 8
+    estimated_lean_loc: 545
+    tree_truncated: false
+    query_matches:
+    - '"Lean 4" created:>=2026-08-01 fork:false archived:false'
   kidist-c/lean_practice:
     url: https://github.com/Kidist-c/lean_practice
     first_seen_at: '2026-06-28T15:40:26+00:00'
@@ -53873,6 +57227,36 @@ github:
     tree_truncated: false
     query_matches:
     - '"Lean 4" created:>=2026-07-01 fork:false archived:false'
+  nzsn/arborium:
+    url: https://github.com/NzSN/Arborium
+    first_seen_at: '2026-08-02T15:20:39+00:00'
+    full_name: NzSN/Arborium
+    description: ''
+    signal: high
+    score: 6
+    reasons:
+    - Lake/Lean project files
+    - 12 Lean files
+    - about 1569 Lean LOC
+    - Lake manifest
+    - license unknown
+    stars: 0
+    license: null
+    topics: []
+    language: Lean
+    created_at: '2026-08-01T11:37:09Z'
+    updated_at: '2026-08-02T13:43:04Z'
+    pushed_at: '2026-08-02T13:42:32Z'
+    default_branch: main
+    has_lakefile: true
+    has_toolchain: true
+    has_manifest: true
+    has_readme: true
+    lean_file_count: 12
+    estimated_lean_loc: 1569
+    tree_truncated: false
+    query_matches:
+    - language:Lean created:>=2026-08-01 fork:false archived:false
   ojhermann-org/okf-model:
     url: https://github.com/ojhermann-org/okf-model
     first_seen_at: '2026-08-01T15:19:21+00:00'
@@ -54979,6 +58363,66 @@ github:
     tree_truncated: false
     query_matches:
     - language:Lean created:>=2026-07-17 fork:false archived:false
+  paulbutcher/leancurl:
+    url: https://github.com/paulbutcher/leancurl
+    first_seen_at: '2026-08-02T15:20:39+00:00'
+    full_name: paulbutcher/leancurl
+    description: ''
+    signal: high
+    score: 7
+    reasons:
+    - Lake/Lean project files
+    - 8 Lean files
+    - about 347 Lean LOC
+    - Lake manifest
+    - Apache-2.0
+    stars: 0
+    license: Apache-2.0
+    topics: []
+    language: Lean
+    created_at: '2026-08-02T12:31:29Z'
+    updated_at: '2026-08-02T12:34:06Z'
+    pushed_at: '2026-08-02T13:31:07Z'
+    default_branch: main
+    has_lakefile: true
+    has_toolchain: true
+    has_manifest: true
+    has_readme: true
+    lean_file_count: 8
+    estimated_lean_loc: 347
+    tree_truncated: false
+    query_matches:
+    - language:Lean created:>=2026-08-01 fork:false archived:false
+  paulbutcher/leanmigrate:
+    url: https://github.com/paulbutcher/leanmigrate
+    first_seen_at: '2026-08-02T15:20:39+00:00'
+    full_name: paulbutcher/leanmigrate
+    description: ''
+    signal: high
+    score: 7
+    reasons:
+    - Lake/Lean project files
+    - 18 Lean files
+    - about 714 Lean LOC
+    - Lake manifest
+    - Apache-2.0
+    stars: 0
+    license: Apache-2.0
+    topics: []
+    language: Lean
+    created_at: '2026-08-02T10:49:44Z'
+    updated_at: '2026-08-02T12:08:15Z'
+    pushed_at: '2026-08-02T12:08:07Z'
+    default_branch: main
+    has_lakefile: true
+    has_toolchain: true
+    has_manifest: true
+    has_readme: true
+    lean_file_count: 18
+    estimated_lean_loc: 714
+    tree_truncated: false
+    query_matches:
+    - language:Lean created:>=2026-08-01 fork:false archived:false
   paulbutcher/leanpostgres:
     url: https://github.com/paulbutcher/leanpostgres
     first_seen_at: '2026-07-30T16:00:07+00:00'
@@ -58966,6 +62410,36 @@ github:
     tree_truncated: false
     query_matches:
     - language:Lean created:>=2026-07-09 fork:false archived:false
+  sadasant/organon:
+    url: https://github.com/sadasant/organon
+    first_seen_at: '2026-08-02T15:20:39+00:00'
+    full_name: sadasant/organon
+    description: ''
+    signal: low
+    score: 2
+    reasons:
+    - 2 Lean files
+    - about 324 Lean LOC
+    - license unknown
+    - 'domain terms: logic'
+    - 'tool terms: editor'
+    stars: 0
+    license: null
+    topics: []
+    language: Lean
+    created_at: '2026-08-02T14:11:36Z'
+    updated_at: '2026-08-02T15:03:46Z'
+    pushed_at: '2026-08-02T14:55:13Z'
+    default_branch: main
+    has_lakefile: false
+    has_toolchain: false
+    has_manifest: false
+    has_readme: true
+    lean_file_count: 2
+    estimated_lean_loc: 324
+    tree_truncated: false
+    query_matches:
+    - language:Lean created:>=2026-08-01 fork:false archived:false
   saifelokour/autology-lean:
     url: https://github.com/saifelokour/autology-lean
     first_seen_at: '2026-07-16T15:47:19+00:00'
@@ -59271,6 +62745,40 @@ github:
     tree_truncated: false
     query_matches:
     - language:Lean created:>=2026-07-07 fork:false archived:false
+  sashakolpakov/sticknumbers:
+    url: https://github.com/sashakolpakov/StickNumbers
+    first_seen_at: '2026-08-02T15:20:39+00:00'
+    full_name: sashakolpakov/StickNumbers
+    description: 'Asymptotic counting of knot types by stick number: manuscript, reproducibility
+      code, Sphinx docs, and Lean verification.'
+    signal: medium
+    score: 5
+    reasons:
+    - 5 Lean files
+    - about 755 Lean LOC
+    - license unknown
+    - 'domain terms: algebra, geometry, mathlib'
+    stars: 2
+    license: null
+    topics:
+    - knot-theory
+    - lean4
+    - semialgebraic-geometry
+    - stick-number
+    language: TeX
+    created_at: '2026-08-02T01:15:07Z'
+    updated_at: '2026-08-02T14:12:24Z'
+    pushed_at: '2026-08-02T14:12:10Z'
+    default_branch: main
+    has_lakefile: false
+    has_toolchain: false
+    has_manifest: false
+    has_readme: true
+    lean_file_count: 5
+    estimated_lean_loc: 755
+    tree_truncated: false
+    query_matches:
+    - topic:lean4 created:>=2026-08-01 fork:false archived:false
   sasuwailem/shadowtheorem:
     url: https://github.com/SASuwailem/ShadowTheorem
     first_seen_at: '2026-07-04T15:31:24+00:00'
@@ -60209,6 +63717,39 @@ github:
     query_matches:
     - '"Lean 4" created:>=2026-07-21 fork:false archived:false'
     - language:Lean created:>=2026-07-21 fork:false archived:false
+  sfingali/heaviside-formalisation:
+    url: https://github.com/sfingali/heaviside-formalisation
+    first_seen_at: '2026-08-02T15:20:39+00:00'
+    full_name: sfingali/heaviside-formalisation
+    description: "Heaviside corpus in Lean 4: 44 kernel-verified theorems \u2014 telegrapher's\
+      \ equations, 4-vector field, operational calculus, moving charge, line constants, gravitoelectromagnetism,\
+      \ energy flux, EM mass"
+    signal: high
+    score: 8
+    reasons:
+    - Lake/Lean project files
+    - 11 Lean files
+    - about 2005 Lean LOC
+    - MIT
+    - 'domain terms: formalisation, graph, logic'
+    stars: 0
+    license: MIT
+    topics: []
+    language: Lean
+    created_at: '2026-08-02T11:32:43Z'
+    updated_at: '2026-08-02T11:32:56Z'
+    pushed_at: '2026-08-02T11:32:47Z'
+    default_branch: main
+    has_lakefile: true
+    has_toolchain: true
+    has_manifest: false
+    has_readme: true
+    lean_file_count: 11
+    estimated_lean_loc: 2005
+    tree_truncated: false
+    query_matches:
+    - '"Lean 4" created:>=2026-08-01 fork:false archived:false'
+    - language:Lean created:>=2026-08-01 fork:false archived:false
   sgraf812/abs-den-iris:
     url: https://github.com/sgraf812/abs-den-iris
     first_seen_at: '2026-06-30T16:31:59+00:00'
@@ -60805,6 +64346,38 @@ github:
     query_matches:
     - '"Lean 4" created:>=2026-07-01 fork:false archived:false'
     - language:Lean created:>=2026-07-01 fork:false archived:false
+  silipp182/iwasawa-decomposition:
+    url: https://github.com/Silipp182/Iwasawa-Decomposition
+    first_seen_at: '2026-08-02T15:20:39+00:00'
+    full_name: Silipp182/Iwasawa-Decomposition
+    description: Formalization of the Iwasawa-Decomposition. Also contains Gaussian elimination,
+      which is needed for the decomposition
+    signal: high
+    score: 8
+    reasons:
+    - Lake/Lean project files
+    - 1 Lean files
+    - about 470 Lean LOC
+    - Lake manifest
+    - license unknown
+    - 'domain terms: formalization'
+    stars: 0
+    license: null
+    topics: []
+    language: Lean
+    created_at: '2026-08-02T13:58:52Z'
+    updated_at: '2026-08-02T14:04:33Z'
+    pushed_at: '2026-08-02T14:04:09Z'
+    default_branch: main
+    has_lakefile: true
+    has_toolchain: true
+    has_manifest: true
+    has_readme: false
+    lean_file_count: 1
+    estimated_lean_loc: 470
+    tree_truncated: false
+    query_matches:
+    - language:Lean created:>=2026-08-01 fork:false archived:false
   simon-dedeo/collatz-program:
     url: https://github.com/simon-dedeo/collatz-program
     first_seen_at: '2026-07-21T15:52:55+00:00'
@@ -61184,6 +64757,47 @@ github:
     tree_truncated: false
     query_matches:
     - language:Lean created:>=2026-07-02 fork:false archived:false
+  snapkittywest/ahmad-docking:
+    url: https://github.com/SNAPKITTYWEST/ahmad-docking
+    first_seen_at: '2026-08-02T15:20:39+00:00'
+    full_name: SNAPKITTYWEST/ahmad-docking
+    description: "Ahmad Docking \u2014 No-Cloning Theorem \xB7 Biological Formal Stack \xB7\
+      \ LiquidHaskell \xB7 Lean 4 \xB7 SNA DNA Storage"
+    signal: medium
+    score: 4
+    reasons:
+    - 2 Lean files
+    - about 115 Lean LOC
+    - license unknown
+    - 'domain terms: compiler, logic, proof'
+    stars: 1
+    license: null
+    topics:
+    - dna-storage
+    - formal-verification
+    - haskell
+    - lean4
+    - liquidhaskell
+    - no-cloning-theorem
+    - prolog
+    - rust
+    - sna
+    - sovereign
+    language: Haskell
+    created_at: '2026-08-01T04:38:42Z'
+    updated_at: '2026-08-01T20:45:13Z'
+    pushed_at: '2026-08-01T20:45:09Z'
+    default_branch: main
+    has_lakefile: false
+    has_toolchain: false
+    has_manifest: false
+    has_readme: true
+    lean_file_count: 2
+    estimated_lean_loc: 115
+    tree_truncated: false
+    query_matches:
+    - '"Lean 4" created:>=2026-08-01 fork:false archived:false'
+    - topic:lean4 created:>=2026-08-01 fork:false archived:false
   snapkittywest/jacobian-formal:
     url: https://github.com/SNAPKITTYWEST/jacobian-formal
     first_seen_at: '2026-07-20T16:01:54+00:00'
@@ -62274,6 +65888,38 @@ github:
     tree_truncated: false
     query_matches:
     - '"Lean 4" created:>=2026-07-29 fork:false archived:false'
+  stevewmoc/takeuti-glc:
+    url: https://github.com/SteveWmoc/takeuti-glc
+    first_seen_at: '2026-08-02T15:20:39+00:00'
+    full_name: SteveWmoc/takeuti-glc
+    description: "A Lean 4 formalization of Takeuti\u2019s generalized logic calculus, including\
+      \ higher-type syntax, substitution, sequent derivations, restriction, and type elevation."
+    signal: high
+    score: 6
+    reasons:
+    - Lake/Lean project files
+    - 2 Lean files
+    - Lake manifest
+    - license unknown
+    - 'domain terms: formalization, logic, mathlib'
+    stars: 0
+    license: null
+    topics: []
+    language: Lean
+    created_at: '2026-08-02T04:21:52Z'
+    updated_at: '2026-08-02T13:15:20Z'
+    pushed_at: '2026-08-02T13:15:07Z'
+    default_branch: main
+    has_lakefile: true
+    has_toolchain: true
+    has_manifest: true
+    has_readme: true
+    lean_file_count: 2
+    estimated_lean_loc: 31
+    tree_truncated: false
+    query_matches:
+    - '"Lean 4" created:>=2026-08-01 fork:false archived:false'
+    - language:Lean created:>=2026-08-01 fork:false archived:false
   stockedge/frontier-research:
     url: https://github.com/stockedge/frontier-research
     first_seen_at: '2026-07-31T16:12:36+00:00'
@@ -64745,6 +68391,50 @@ github:
     tree_truncated: false
     query_matches:
     - language:Lean created:>=2026-07-16 fork:false archived:false
+  toshiro881967-coder/physicsformalization:
+    url: https://github.com/toshiro881967-coder/PhysicsFormalization
+    first_seen_at: '2026-08-02T15:20:39+00:00'
+    full_name: toshiro881967-coder/PhysicsFormalization
+    description: 'Lean 4 formalization of fundamental physics: PPN metric, LLI satellite bounds
+      (SaToR-G), and Quantum Mechanics in Hilbert spaces.'
+    signal: high
+    score: 7
+    reasons:
+    - Lake/Lean project files
+    - 8 Lean files
+    - about 235 Lean LOC
+    - Lake manifest
+    - license unknown
+    - 'domain terms: formalization, mathlib, mechanics'
+    stars: 0
+    license: null
+    topics:
+    - action-principle
+    - analytical-mechanics
+    - calculus-of-variations
+    - euler-lagrange
+    - formal-verification
+    - general-relativity
+    - lean4
+    - mathlib4
+    - physics
+    - ppn-formalism
+    - quantum-mechanics
+    language: Lean
+    created_at: '2026-08-01T15:31:18Z'
+    updated_at: '2026-08-01T21:28:31Z'
+    pushed_at: '2026-08-01T21:22:13Z'
+    default_branch: main
+    has_lakefile: true
+    has_toolchain: true
+    has_manifest: true
+    has_readme: true
+    lean_file_count: 8
+    estimated_lean_loc: 235
+    tree_truncated: false
+    query_matches:
+    - '"Lean 4" created:>=2026-08-01 fork:false archived:false'
+    - topic:lean4 created:>=2026-08-01 fork:false archived:false
   toshiro881967-coder/tdi_loop_quantum_gravity:
     url: https://github.com/toshiro881967-coder/TDI_LOOP_QUANTUM_GRAVITY
     first_seen_at: '2026-08-01T15:19:21+00:00'
@@ -65791,6 +69481,37 @@ github:
     query_matches:
     - '"Lean 4" created:>=2026-07-14 fork:false archived:false'
     - language:Lean created:>=2026-07-14 fork:false archived:false
+  utensil/fcap:
+    url: https://github.com/utensil/fcap
+    first_seen_at: '2026-08-02T15:20:39+00:00'
+    full_name: utensil/fcap
+    description: ''
+    signal: medium
+    score: 4
+    reasons:
+    - Lake/Lean project files
+    - 2 Lean files
+    - Lake manifest
+    - Apache-2.0
+    - 'domain terms: algebra, formalization, graph'
+    - 'tool terms: search'
+    stars: 0
+    license: Apache-2.0
+    topics: []
+    language: Lean
+    created_at: '2026-08-01T12:32:42Z'
+    updated_at: '2026-08-02T13:12:10Z'
+    pushed_at: '2026-08-02T15:04:40Z'
+    default_branch: main
+    has_lakefile: true
+    has_toolchain: true
+    has_manifest: true
+    has_readme: true
+    lean_file_count: 2
+    estimated_lean_loc: 11
+    tree_truncated: false
+    query_matches:
+    - language:Lean created:>=2026-08-01 fork:false archived:false
   uthunderbird/gaussian-cofinite-derivative-zeros:
     url: https://github.com/uthunderbird/gaussian-cofinite-derivative-zeros
     first_seen_at: '2026-07-26T15:30:10+00:00'
@@ -66468,6 +70189,37 @@ github:
     tree_truncated: false
     query_matches:
     - language:Lean created:>=2026-07-05 fork:false archived:false
+  vincitamore/lean-formalizations:
+    url: https://github.com/vincitamore/lean-formalizations
+    first_seen_at: '2026-08-02T15:20:39+00:00'
+    full_name: vincitamore/lean-formalizations
+    description: 'Author-owned Lean 4 formalizations: Chart Duality, Beurling half-interval
+      residual, Infinity at the Origin'
+    signal: low
+    score: 1
+    reasons:
+    - 2699 Lean files
+    - about 807026 Lean LOC
+    - license NOASSERTION
+    - 'domain terms: formalization, mathlib, verified'
+    - 'tool terms: tactic'
+    stars: 0
+    license: NOASSERTION
+    topics: []
+    language: Lean
+    created_at: '2026-08-01T21:14:43Z'
+    updated_at: '2026-08-01T23:07:53Z'
+    pushed_at: '2026-08-01T23:05:32Z'
+    default_branch: main
+    has_lakefile: false
+    has_toolchain: false
+    has_manifest: false
+    has_readme: true
+    lean_file_count: 2699
+    estimated_lean_loc: 807026
+    tree_truncated: false
+    query_matches:
+    - '"Lean 4" created:>=2026-08-01 fork:false archived:false'
   virtualsecureplatform/formalproof4fhe:
     url: https://github.com/virtualsecureplatform/FormalProof4FHE
     first_seen_at: '2026-07-16T15:47:19+00:00'
@@ -66501,6 +70253,44 @@ github:
     tree_truncated: false
     query_matches:
     - language:Lean created:>=2026-07-15 fork:false archived:false
+  vlad-galkin38/roundedrootsums:
+    url: https://github.com/vlad-galkin38/RoundedRootSums
+    first_seen_at: '2026-08-02T15:20:39+00:00'
+    full_name: vlad-galkin38/RoundedRootSums
+    description: Formal verification in Lean 4 of summatory formulas for integer square roots
+      and related counting identities.
+    signal: high
+    score: 9
+    reasons:
+    - Lake/Lean project files
+    - 21 Lean files
+    - about 1515 Lean LOC
+    - Lake manifest
+    - Apache-2.0
+    - 'domain terms: formalization, mathlib, modular'
+    stars: 0
+    license: Apache-2.0
+    topics:
+    - formal-verification
+    - lean4
+    - mathlib
+    - number-theory
+    - theorem-proving
+    language: Lean
+    created_at: '2026-08-02T05:37:47Z'
+    updated_at: '2026-08-02T11:25:02Z'
+    pushed_at: '2026-08-02T11:17:23Z'
+    default_branch: main
+    has_lakefile: true
+    has_toolchain: true
+    has_manifest: true
+    has_readme: true
+    lean_file_count: 21
+    estimated_lean_loc: 1515
+    tree_truncated: false
+    query_matches:
+    - '"Lean 4" created:>=2026-08-01 fork:false archived:false'
+    - topic:lean4 created:>=2026-08-01 fork:false archived:false
   vladimirreshetnikov/leant:
     url: https://github.com/VladimirReshetnikov/Leant
     first_seen_at: '2026-08-01T15:19:21+00:00'
@@ -68393,6 +72183,35 @@ github:
     tree_truncated: false
     query_matches:
     - topic:lean created:>=2026-07-23 fork:false archived:false
+  yihuang/evm-abi-benchmarks:
+    url: https://github.com/yihuang/evm-abi-benchmarks
+    first_seen_at: '2026-08-02T15:20:39+00:00'
+    full_name: yihuang/evm-abi-benchmarks
+    description: Benchmark evm-abi-lean against other implementations
+    signal: high
+    score: 6
+    reasons:
+    - 1 Lean files
+    - about 256 Lean LOC
+    - MIT
+    - 'domain terms: proof'
+    stars: 0
+    license: MIT
+    topics: []
+    language: Lean
+    created_at: '2026-08-02T08:04:03Z'
+    updated_at: '2026-08-02T12:22:43Z'
+    pushed_at: '2026-08-02T12:22:35Z'
+    default_branch: main
+    has_lakefile: false
+    has_toolchain: false
+    has_manifest: false
+    has_readme: true
+    lean_file_count: 1
+    estimated_lean_loc: 256
+    tree_truncated: false
+    query_matches:
+    - language:Lean created:>=2026-08-01 fork:false archived:false
   yihuang/evm-abi-lean:
     url: https://github.com/yihuang/evm-abi-lean
     first_seen_at: '2026-06-30T16:31:59+00:00'
@@ -68761,6 +72580,36 @@ github:
       reason: Substantial Lean4 formal verification claims (SMT, ERC-20, strategy) with no
         sorries.
       model: gpt-5.4-nano
+  yuanxian-theory/yxtt3.0:
+    url: https://github.com/YuanXian-Theory/YXTT3.0
+    first_seen_at: '2026-08-02T15:20:39+00:00'
+    full_name: YuanXian-Theory/YXTT3.0
+    description: "YXTT 3.0: From Formal Language to Topological Ontology \u2014 Global Unification\
+      \ of the Yuanxian Formalization Tower and Engineering Implementation (Lean 4 + Rocq)"
+    signal: medium
+    score: 3
+    reasons:
+    - 4 Lean files
+    - about 131 Lean LOC
+    - license NOASSERTION
+    - 'domain terms: formalization, logic, theorem'
+    stars: 0
+    license: NOASSERTION
+    topics: []
+    language: Lean
+    created_at: '2026-08-02T09:18:03Z'
+    updated_at: '2026-08-02T09:19:39Z'
+    pushed_at: '2026-08-02T09:19:20Z'
+    default_branch: main
+    has_lakefile: false
+    has_toolchain: false
+    has_manifest: false
+    has_readme: true
+    lean_file_count: 4
+    estimated_lean_loc: 131
+    tree_truncated: false
+    query_matches:
+    - '"Lean 4" created:>=2026-08-01 fork:false archived:false'
   yuanyi-350/brouwerfixedpoint:
     url: https://github.com/yuanyi-350/BrouwerFixedPoint
     first_seen_at: '2026-07-21T15:52:55+00:00'
@@ -69486,6 +73335,46 @@ github:
     query_matches:
     - '"Lean 4" created:>=2026-07-28 fork:false archived:false'
     - topic:lean4 created:>=2026-07-28 fork:false archived:false
+  zuwasi/mysticeti-proof-to-production-demo:
+    url: https://github.com/zuwasi/mysticeti-proof-to-production-demo
+    first_seen_at: '2026-08-02T15:20:39+00:00'
+    full_name: zuwasi/mysticeti-proof-to-production-demo
+    description: Rust + Wolfram + Lean 4 proof-to-production workflow for a bounded Mysticeti-style
+      consensus digital twin
+    signal: low
+    score: 2
+    reasons:
+    - 4 Lean files
+    - about 205 Lean LOC
+    - MIT
+    - 'domain terms: crypto, formalization, graph'
+    - 'tool terms: repl, search'
+    stars: 0
+    license: MIT
+    topics:
+    - blockchain
+    - consensus
+    - formal-verification
+    - lean4
+    - reproducibility
+    - rust
+    - sui
+    - wolfram
+    language: Wolfram Language
+    created_at: '2026-08-02T12:34:20Z'
+    updated_at: '2026-08-02T13:25:46Z'
+    pushed_at: '2026-08-02T13:27:51Z'
+    default_branch: main
+    has_lakefile: false
+    has_toolchain: false
+    has_manifest: false
+    has_readme: true
+    lean_file_count: 4
+    estimated_lean_loc: 205
+    tree_truncated: false
+    query_matches:
+    - '"Lean 4" created:>=2026-08-01 fork:false archived:false'
+    - topic:lean4 created:>=2026-08-01 fork:false archived:false
   zuwasi/sagi-q-factor:
     url: https://github.com/zuwasi/sagi-q-factor
     first_seen_at: '2026-07-30T16:00:07+00:00'
